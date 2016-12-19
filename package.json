@@ -1,0 +1,25 @@
+{
+  "name": "testsystem",
+  "version": "1.0.0",
+  "description": "Graduation Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zyingying/testSystem.git"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "Vinny",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zyingying/testSystem/issues"
+  },
+  "homepage": "https://github.com/Zyingying/testSystem#readme",
+  "dependencies": {
+    "koa": "^1.2.4"
+  }
+}
