@@ -21,7 +21,11 @@ class IndexItem extends React.Component {
 
     render() {
 
-        return <div></div>;
+        return <div className="w-testIndex">
+            <div className="test-title"></div>
+
+            <button>马上测试</button>
+        </div>;
     }
 }
 

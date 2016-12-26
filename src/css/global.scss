@@ -1,0 +1,25 @@
+//首页模块
+.w-topic{
+  width: 70%;
+  margin: 20px auto;
+  background: #eee;
+
+  h1{
+    font-size: 22px;
+  }
+  h2{
+    font-weight: 100;
+    font-size: 17px;
+    color: #aaa;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  h1,h2{
+    text-align: center;
+  }
+}
+
+.w-testIndex{
+  width: 200px;
+  height: 200px;
+}

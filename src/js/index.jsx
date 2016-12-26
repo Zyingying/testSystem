@@ -32,6 +32,13 @@ class Index extends React.Component {
                 </div>
                 {/*<SlideShow/>*/}
 
+                <div className="w-topic">
+                    <h1>这是一个标题</h1>
+                    <h2>这是一个副标题</h2>
+
+                    <IndexItem/>
+
+                </div>
 
 
 
