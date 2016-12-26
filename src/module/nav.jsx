@@ -1,58 +1,59 @@
 "use strict"
 const React = require("react");
 const {Link} = require("react-router");
-const connectToStores = require("alt-utils/lib/connectToStores");
-const PersonalAction = require("pin-alt/src/actions/personalAction");
-const PersonalStore = require("pin-alt/src/stores/personalStore");
+import {Menu, Icon} from 'antd';
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
 
 class Nav extends  React.Component{
 
     constructor(props){
         super(props);
-    }
-    static getStores(){
-        return [PersonalStore];
-    }
-
-    static getPropsFromStores(){
-        return PersonalStore.getState();
-    }
-
-    componentWillMount(){
-        let {activeOn, grouponBadge, orderBadge} = this.props;
-        if(!orderBadge){
-            PersonalAction.getUnpaidOrders();
-        }
-
+        this.state = {
+            firstCateId: this.props.currentCateId,
+            showCateId: this.props.currentCateId,
+            theme:"dark"
+        };
     }
 
     render(){
-        let {activeOn, grouponBadge, orderBadge,unpaidedOrderCount} = this.props;
-        let nopay = orderBadge || unpaidedOrderCount;
 
-        let homeClass = activeOn== 0 ? 'active' : '';
-        let grouponClass = activeOn== 1 ? 'active' : '';
-        let orderClass = activeOn== 2 ? 'active' : '';
-        let userClass = activeOn== 3 ? 'active' : '';
+        return <Menu onClick={this.handleClick}
+                     
+                     theme={this.state.theme}
+                     mode="horizontal" >
+            <Menu.Item key="mail">首页</Menu.Item>
+            <SubMenu title={<span><Icon type="appstore"/>题库</span>}>
+                <MenuItemGroup title="课内">
+                    <Menu.Item key="appstore:1">高数</Menu.Item>
+                    <Menu.Item key="appstore:2">大英</Menu.Item>
+                </MenuItemGroup>
+                <MenuItemGroup title="课外">
+                    <Menu.Item key="appstore:3">C</Menu.Item>
+                    <Menu.Item key="appstore:4">Javascript</Menu.Item>
+                </MenuItemGroup>
+            </SubMenu>
 
-        return <nav className="w-nav">
-                    <Link to="/" className={homeClass}>
-                        <i className={'i-home ' + homeClass}></i>首页
+            <SubMenu className="li-personal"
+                     title={
+                         <Link to="/personal">
+                             <Icon type="user"/>个人中心
+                         </Link>} >
+                <Menu.Item key="setting:1"><Icon type="user"/>个人主页</Menu.Item>
+                <Menu.Item key="setting:2">
+                    <Link to="/personal/personMsg">
+                        <Icon type="setting"/>账号设置
                     </Link>
+                </Menu.Item>
+                <Menu.Item key="setting:3"><Icon type="poweroff"/>退出登录</Menu.Item>
+            </SubMenu>
+            <Menu.Item key="login" className="li-login">
+                <Link to="/login">
+                    <Icon type="user" />登录
+                </Link>
 
-                    <Link to="/myGroupons" className={grouponClass}>
-                        <i className={"i-group " + grouponClass}></i>我的团{grouponBadge && <em className="w-badge">grouponBadge</em>}
-                        </Link>
-
-                    <Link to="/myOrders" className={orderClass}>
-                        <i className={"i-order " + orderClass}></i>我的订单{nopay > 0 ? <em className="w-badge">{nopay}</em> : null}
-                    </Link>
-
-                    <Link to="/personal" className={userClass}>
-                        <i className={"i-user " + userClass}></i>个人
-                    </Link>
-
-                </nav>;
+            </Menu.Item>
+        </Menu>;
     }
 }
-module.exports = connectToStores(Nav);
+module.exports = Nav;

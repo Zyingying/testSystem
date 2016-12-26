@@ -5,11 +5,11 @@
 //require("../css/index.scss");
 const React = require("react");
 const {Link} = require("react-router");
-const Nav = require("../module/nav");
-const connectToStores = require("alt-utils/lib/connectToStores");
-const IndexAction = require("pin-alt/src/actions/indexAction");
-const IndexStore = require("pin-alt/src/stores/indexStore");
-const util = require('pin-util/src/web_util');
+
+// const connectToStores = require("alt-utils/lib/connectToStores");
+// const IndexAction = require("pin-alt/src/actions/indexAction");
+// const IndexStore = require("pin-alt/src/stores/indexStore");
+
 
 
 class IndexItem extends React.Component {
@@ -18,13 +18,9 @@ class IndexItem extends React.Component {
         super(props);
     }
 
-    joinGroup(id){
-        let history = this.props.history;
-        history.pushState(null, '/goodsDetail/' + id);
-    }
 
     render() {
-        let items = this.props.categorie;
+
         return <div>
             {items ? items.map((item,n)=> {
                 if(!item.buyAble){

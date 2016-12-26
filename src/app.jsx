@@ -1,6 +1,6 @@
 "use strict";
 
-// require("./css/style.scss");
+require("./css/style.scss");
 require('antd/lib/style/index.less');
 require('antd/dist/antd.css')
 require('babel-polyfill');
