@@ -1,8 +1,31 @@
 //首页模块
+.btn{
+  display: inline-block;
+  text-align: center;
+  padding: 10px 0;
+  width: 110px;
+  color: #FFF;
+  font-size: 14px;
+  border-radius: 3px;
+  border: none 0;
+  cursor: pointer;
+  line-height: normal;
+  outline: 0;
+  white-space: nowrap;
+
+}
+.none-btn{
+  display: none;
+}
+
+.w-main{
+  background: #eee;
+  overflow: hidden;
+}
 .w-topic{
   width: 70%;
   margin: 20px auto;
-  background: #eee;
+
 
   h1{
     font-size: 22px;
@@ -22,4 +45,41 @@
 .w-testIndex{
   width: 200px;
   height: 200px;
+  padding: 15px;
+  margin: 20px 15px  ;
+  background: #fff;
+  border-radius: 5px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+
+  .test-title{
+    font-size: 15px ;
+    text-align: center;
+    vertical-align: middle;
+    color: #666;
+    margin: 15px;
+    overflow: hidden;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+
+  &:hover{
+
+
+    .exam-btn{
+      display: block;
+      width: 100%;
+      background: #00BC9B;
+      position: relative;
+      top: 60px;
+    }
+  }
+}
+.w-sildshow{
+  .w-banner{
+    display: block;
+    height: 300px;
+    outline: 0;
+  }
 }

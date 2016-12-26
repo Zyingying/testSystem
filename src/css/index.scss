@@ -2,6 +2,10 @@
 
   .w-categories{
     background: #404040;
+    position: fixed;
+    z-index: 10;
+    width: 100%;
+
 
     .ant-menu{
       width: 70%;
