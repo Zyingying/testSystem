@@ -21,62 +21,7 @@ class IndexItem extends React.Component {
 
     render() {
 
-        return <div>
-            {items ? items.map((item,n)=> {
-                if(!item.buyAble){
-                    return null;
-                }
-
-                return <div className="w-goods large" key={n}>
-                    <div className="pic"
-                         onClick={()=> {this.joinGroup(item._id);}}>
-                        {/*商品无剩余*/}
-
-                        { item.remain <= 0 && item.status == 1 ?
-                            <div className="soldOut">已售罄</div> : null
-                        }
-
-                        <img src={util.getImage(item.image250 , item.imageToken, 'intro')}
-                             alt=""
-                             height="1.6rem"/>
-                        <div className="goodsTag">
-                            {item.productArea ?
-                                <div className="w-label">{item.productArea}</div>
-
-                                :null
-                            }
-                            {item.isRecent ?
-                                <span className="w-tag">新品</span>
-                                : null
-                            }
-                        </div>
-
-                    </div>
-                    <div className="info">
-                        <h2>{item.name}</h2>
-                        <p>{item.desc}</p>
-                    </div>
-                    <div className="oprt">
-                        <span className="grp">
-                            <i className="i-group xs group-icon"></i>{item.groupQuota}人团
-                        </span>
-                        <span className="price">
-                            <strong className="w-price">¥{item.mobilePrice}</strong>包邮
-                        </span>
-                        <span className="original">单购价：¥{item.yanPrice + item.yanShipPrice}</span>
-                        <Link className="w-btn main" to={'goodsDetail/' + item._id}>
-                            <div className="tojoinGroup">
-                                去开团
-                            </div>
-                            <div className="icon"><i className="i-white-right toGoods"></i></div>
-
-                        </Link>
-                    </div>
-                </div>;
-
-
-            }) : null}
-        </div>
+        return <div></div>;
     }
 }
 
