@@ -10,21 +10,18 @@ const {Link} = require("react-router");
 // const IndexAction = require("pin-alt/src/actions/indexAction");
 // const IndexStore = require("pin-alt/src/stores/indexStore");
 
-
-
 class IndexItem extends React.Component {
 
     constructor(props) {
         super(props);
     }
 
-
     render() {
 
         return <div className="w-testIndex">
-            <div className="test-title"></div>
+            <div className="test-title">试卷的题目</div>
 
-            <button>马上测试</button>
+            <button className="btn none-btn exam-btn">马上测试</button>
         </div>;
     }
 }
