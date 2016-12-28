@@ -35,11 +35,14 @@ class Index extends React.Component {
                 <Carousel autoplay="true" className="w-sildshow">
                     <div>
                         <a href=""
-                           className="w-banner"
-                           style="background: url('//static.nowcoder.com/recommand/ad/offer-960.png') center top no-repeat rgb(135, 198, 231);"></a>
+                           className="w-banner">
+                            <img src="" alt=""/>
+
+                        </a>
                     </div>
                     <div>
-                        <a href=""  className="w-banner" style="background: url('//static.nowcoder.com/recommand/ad/offer-960.png') center top no-repeat rgb(135, 198, 231);"></a>
+                        <a href=""  className="w-banner" >
+                        </a>
                     </div>
                 </Carousel>
 
