@@ -1,31 +1,6 @@
 .f-page.index{
 
-  .w-categories{
-    background: #404040;
-    position: fixed;
-    z-index: 10;
-    width: 100%;
 
-
-    .ant-menu{
-      width: 70%;
-      margin: 0 auto;
-
-      >li{
-        width: 140px;
-        font-size: 15px;
-      }
-
-      .li-personal,.li-login{
-        float: right;
-      }
-
-      .ant-menu-item-group-title{
-        font-size: 13px;
-      }
-
-    }
-  }
 
 
 }
