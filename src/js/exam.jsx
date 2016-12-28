@@ -15,6 +15,7 @@ class exam extends React.Component {
             <div className="w-categories">
                 <Nav/>
             </div>
+            <div className="main-exam"></div>
 
 
         </div>;
