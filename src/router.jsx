@@ -8,9 +8,10 @@ const ReactDom = require("react-dom");
 const createHashHistory = require( 'history/lib/createHashHistory');
 
 const App = require("./app.jsx");
-const Index = require("./js/index.jsx");
+const Index = require("./js/index");
 const personMsg = require("./js/personalMsg");
-const Login = require("./js/login.jsx");
+const Login = require("./js/login");
+const Exam = require("./js/exam");
 
 
 const mobileUtil = require("./mobileUtil");
@@ -31,8 +32,7 @@ let routes = <Router history={createHashHistory()}>
                     <IndexRoute component={Index} />
                     <Route path="login" components={Login}/>
                     <Route path="personMsg" component={personMsg} onEnter={requireLogin}/>
-
-
+                    <Route path="Exam" component={Exam}/>
                 </Route>
             </Router>;
 ReactDom.render(routes,document.getElementById("App"));

@@ -1,5 +1,6 @@
 "use strict"
 const React = require("react");
+const Nav = require("../module/nav");
 const {Link} = require("react-router");
 import {Menu, Icon} from 'antd';
 const SubMenu = Menu.SubMenu;

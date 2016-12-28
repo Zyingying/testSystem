@@ -23,7 +23,9 @@ class Nav extends  React.Component{
                      theme={this.state.theme}
                      mode="horizontal" >
             <Menu.Item key="mail">首页</Menu.Item>
-            <SubMenu title={<span><Icon type="appstore"/>题库</span>}>
+            <SubMenu title={<Link to="/exam">
+                            <Icon type="appstore"/>题库
+                </Link>}>
                 <MenuItemGroup title="课内">
                     {/*<Menu.Item key="appstore:1">高数</Menu.Item>*/}
                     {/*<Menu.Item key="appstore:2">大英</Menu.Item>*/}
