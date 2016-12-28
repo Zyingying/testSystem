@@ -1,6 +1,8 @@
 "use strict"
 const React = require("react");
 const Nav = require("../module/nav");
+const IndexItem = require("../subItem/indexItem");
+
 // const {Link} = require("react-router");
 import {Menu, Icon} from 'antd';
 const SubMenu = Menu.SubMenu;
@@ -47,7 +49,14 @@ class exam extends React.Component {
                     </SubMenu>
                 </Menu>
 
-                <div className="nk-content"></div>
+                <div className="nk-content">
+
+                    <IndexItem/>
+                    <IndexItem/>
+                    <IndexItem/>
+                    <IndexItem/>
+
+                </div>
             </div>
 
 

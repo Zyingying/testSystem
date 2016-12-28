@@ -79,6 +79,7 @@
   position: relative;
   display: inline-block;
   vertical-align: top;
+  border:1px solid #eee;
 
   .test-title{
     font-size: 15px ;
@@ -89,9 +90,11 @@
     overflow: hidden;
     line-height: 1.4;
     font-weight: 400;
+
   }
 
   &:hover{
+    border:1px solid #ccc;
 
 
     .exam-btn{
