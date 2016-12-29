@@ -30,31 +30,17 @@ class Login extends React.Component{
     }
 
 
-    loginSubmit(e) {
-        // e.preventDefault();
+    loginSubmit() {
         let {email,loginPsd} = this.state;
+        if(/^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$/.test(email)){
 
-        // message.success('d登陆~~~ ：' + JSON.stringify(this.state, function(k, v) {
-        //         if (typeof v === 'undefined') {
-        //             return '';
-        //         }
-        //         return v;
-        //     }));
-        console.log(email,loginPsd);
+        }
         LoginAction.login(email,loginPsd);
-
     }
 
-    resSubmit(e){
-        e.preventDefault();
-
-        // message.success('注册~~~ ：' + JSON.stringify(this.state, function(k, v) {
-        //         if (typeof v === 'undefined') {
-        //             return '';
-        //         }
-        //         return v;
-        //     }));
-        // console.log(v);
+    resSubmit(){
+        let {email,regPsd} = this.state;
+        LoginAction.register(email,regPsd);
     }
 
     setValue(key,value){
@@ -112,7 +98,7 @@ class Login extends React.Component{
                     </TabPane>
 
                     <TabPane tab="注册" key="2">
-                        <Form horizontal onSubmit={this.resSubmit}>
+                        <Form horizontal>
                             <FormItem
                                 label="电子邮箱："
                                 labelCol={{span: 6}}
@@ -145,7 +131,8 @@ class Login extends React.Component{
                                 <Col span="14" offset="6">
                                     <Button type="primary"
                                             htmlType="submit"
-                                            className="ant-btn-submit">
+                                            className="ant-btn-submit"
+                                            onClick={()=>{this.resSubmit()}}>
                                         确定注册
                                     </Button>
                                 </Col>

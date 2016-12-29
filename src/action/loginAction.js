@@ -7,9 +7,11 @@ class LoginAction {
 
     constructor(){
         this.url = {
-            login:'http://localhost:3099/user/signup'
+            login:'http://localhost:3000/user/signin',
+            register:'http://localhost:3000/user/signup',
+            logout:'http://localhost:3000/user/logout'
         };
-        // this.generateActions('');
+        this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail');
     }
 
     login(email,psd){
@@ -31,6 +33,47 @@ class LoginAction {
             },
             error: ()=> {
                 this.loginFail();
+            }
+        });
+    }
+    register(email,psd){
+        let sUrl = this.url["register"];
+        $.ajax({
+            url: sUrl,
+            type: 'post',
+            data:{
+                username:email,
+                password:psd
+            },
+            dataType:"json",
+            success: (result)=> {
+                if(result.code == 200) {
+                    this.registerSuccess(result.result);
+                }else{
+                    this.registerFail();
+                }
+            },
+            error: ()=> {
+                this.registerFail();
+            }
+        });
+    }
+
+    logout(){
+        let sUrl = this.url["register"];
+        $.ajax({
+            url: sUrl,
+            type: 'get',
+            dataType:"json",
+            success: (result)=> {
+                if(result.code == 200) {
+                    this.logoutSuccess(result.result);
+                }else{
+                    this.logoutFail();
+                }
+            },
+            error: ()=> {
+                this.logoutFail();
             }
         });
     }
