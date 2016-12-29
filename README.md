@@ -11,3 +11,22 @@ npm install webpack -g
 
 端口是6004
 
+注册：http://localhost:3099/user/signup
+
+登陆：http://localhost:3099/user/signin
+
++ eMail 
++ psd
+
+
+题目类别：
+{
+    onetype：{
+       twotype: {
+            _id:题目id
+       }
+       twotype
+    }
+},{
+
+}
