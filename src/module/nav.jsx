@@ -26,14 +26,14 @@ class Nav extends  React.Component{
             <SubMenu title={<Link to="/exam">
                             <Icon type="appstore"/>题库
                 </Link>}>
-                <MenuItemGroup title="课内">
+                {/*<MenuItemGroup title="课内">*/}
                     {/*<Menu.Item key="appstore:1">高数</Menu.Item>*/}
                     {/*<Menu.Item key="appstore:2">大英</Menu.Item>*/}
-                </MenuItemGroup>
-                <MenuItemGroup title="课外">
+                {/*</MenuItemGroup>*/}
+                {/*<MenuItemGroup title="课外">*/}
                     {/*<Menu.Item key="appstore:3">C</Menu.Item>*/}
                     {/*<Menu.Item key="appstore:4">Javascript</Menu.Item>*/}
-                </MenuItemGroup>
+                {/*</MenuItemGroup>*/}
             </SubMenu>
 
             <SubMenu className="li-personal"
