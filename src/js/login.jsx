@@ -1,53 +1,74 @@
 "use strict"
 const React = require("react");
-import { Tabs } from 'antd';
+const { Tabs }  = require('antd');
 const TabPane = Tabs.TabPane;
-import {Form, Input, Button, Checkbox, Radio, Row, Col, message} from 'antd';
+const {Form, Input, Button, Checkbox, Row, Col}  = require('antd');
 const FormItem = Form.Item;
-const RadioGroup = Radio.Group;
+const LoginAction = require('../action/loginAction');
+const LoginStore = require('../store/loginStore');
+const connectToStores = require("alt-utils/lib/connectToStores");
 
 
-const Login = React.createClass({
-    mixins: [Form.ValueMixin],
-
-    getInitialState() {
-        return {
-            formData: {
-                email: undefined,
-                password: undefined,
-                psdAgain:undefined,
-                agreement: undefined,
-            }
+class Login extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state={
+            email: undefined,
+            loginPsd: undefined,
+            regPsd:undefined,
+            psdAgain:undefined,
+            agreement: undefined
         };
-    },
+    }
 
-    handleSubmit(e) {
+    static getStores() {
+        return [LoginStore];
+    }
+
+    static getPropsFromStores() {
+        return LoginStore.getState();
+    }
+
+
+    loginSubmit(e) {
+        // e.preventDefault();
+        let {email,loginPsd} = this.state;
+
+        // message.success('d登陆~~~ ：' + JSON.stringify(this.state, function(k, v) {
+        //         if (typeof v === 'undefined') {
+        //             return '';
+        //         }
+        //         return v;
+        //     }));
+        console.log(email,loginPsd);
+        LoginAction.login(email,loginPsd);
+
+    }
+
+    resSubmit(e){
         e.preventDefault();
-        message.success('收到表单值~~~ ：' + JSON.stringify(this.state.formData, function(k, v) {
-                if (typeof v === 'undefined') {
-                    return '';
-                }
-                return v;
-            }));
-    },
 
-    callback(key){
-        console.log(key);
-    },
+        // message.success('注册~~~ ：' + JSON.stringify(this.state, function(k, v) {
+        //         if (typeof v === 'undefined') {
+        //             return '';
+        //         }
+        //         return v;
+        //     }));
+        // console.log(v);
+    }
 
     setValue(key,value){
         this.state[key] = value,
         this.setState(this.state);
-    },
+    }
 
 
     render() {
-        const formData = this.state.formData;
-        return (
-            <div className="login">
+        const state = this.state;
+        return <div className="login">
                 <Tabs type="card" >
                     <TabPane tab="登录" key="1" className="loginTitle">
-                        <Form horizontal onSubmit={this.handleSubmit}>
+                        <Form horizontal >
                             <FormItem
                                 label="电子邮箱："
                                 labelCol={{span: 6}}
@@ -56,19 +77,19 @@ const Login = React.createClass({
                                 <Input type="text" id="email"
                                        name="email"
                                        placeholder="请输入邮箱"
-                                       value={this.state.email} onChange={(e)=>{this.setValue('email',e.target.value)}} />
+                                       value={state.email} onChange={(e)=>{this.setValue('email',e.target.value)}} />
                             </FormItem>
                             <FormItem
-                                id="password"
+                                id="loginPsd"
                                 label="密码："
                                 labelCol={{span: 6}}
                                 wrapperCol={{span: 14}}
                                 required>
-                                <Input type="password" id="password"
-                                       name="password"
+                                <Input type="password" id="loginPsd"
+                                       name="loginPsd"
                                        placeholder="请输入密码"
-                                       value={this.state.password}
-                                       onChange={(e)=>{this.setValue( 'password',e.target.value)}} />
+                                       value={state.loginPsd}
+                                       onChange={(e)=>{this.setValue( 'loginPsd',e.target.value)}} />
                             </FormItem>
                             <FormItem
                                 wrapperCol={{span: 14, offset: 6}} >
@@ -81,8 +102,9 @@ const Login = React.createClass({
                                     <Button type="primary"
                                             htmlType="submit"
                                             span="14"
-                                            className="ant-btn-submit">
-                                        确定
+                                            className="ant-btn-submit"
+                                            onClick={()=>{this.loginSubmit()}}>
+                                        确定登陆
                                     </Button>
                                 </Col>
                             </Row>
@@ -90,26 +112,26 @@ const Login = React.createClass({
                     </TabPane>
 
                     <TabPane tab="注册" key="2">
-                        <Form horizontal onSubmit={this.handleSubmit}>
+                        <Form horizontal onSubmit={this.resSubmit}>
                             <FormItem
                                 label="电子邮箱："
                                 labelCol={{span: 6}}
                                 wrapperCol={{span: 14}}
                                 required>
-                                <Input type="text" id="userid" name="userid" placeholder="请输入邮箱" value={this.state.userid} onChange={(e)=>{this.setValue('userid',e.target.value)}} />
+                                <Input type="text" id="userid" name="userid" placeholder="请输入邮箱" value={state.userid} onChange={(e)=>{this.setValue('userid',e.target.value)}} />
                             </FormItem>
                             <FormItem
-                                id="password"
+                                id="regPsd"
                                 label="密码："
                                 labelCol={{span: 6}}
                                 wrapperCol={{span: 14}}
                                 required>
                                 <Input type="password"
-                                       id="password"
-                                       name="password"
+                                       id="regPsd"
+                                       name="regPsd"
                                        placeholder="请输入密码"
-                                       value={this.state.password}
-                                       onChange={(e)=>{this.setValue('password',e.target.value)}}  />
+                                       value={state.regPsd}
+                                       onChange={(e)=>{this.setValue('regPsd',e.target.value)}}  />
                             </FormItem>
                             <FormItem
                                 id="password"
@@ -124,7 +146,7 @@ const Login = React.createClass({
                                     <Button type="primary"
                                             htmlType="submit"
                                             className="ant-btn-submit">
-                                        确定
+                                        确定注册
                                     </Button>
                                 </Col>
                             </Row>
@@ -134,8 +156,8 @@ const Login = React.createClass({
             </div>
 
 
-        );
+        ;
     }
-});
+};
 
-module.exports = Login;
+module.exports = connectToStores(Login);
