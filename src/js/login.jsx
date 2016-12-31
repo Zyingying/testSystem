@@ -2,8 +2,9 @@
 const React = require("react");
 const {Tabs}  = require('antd');
 const TabPane = Tabs.TabPane;
-const {Form, Input, Button, Checkbox, Row, Col}  = require('antd');
+const {Form, Input, Button, Checkbox, Row, Col,Radio}  = require('antd');
 const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
 const LoginAction = require('../action/loginAction');
 const LoginStore = require('../store/loginStore');
 const connectToStores = require("alt-utils/lib/connectToStores");
@@ -26,6 +27,13 @@ class Login extends React.Component {
             isRegPsd: undefined,
             isPsdAgain:undefined
         };
+        this.listener = (store) =>{
+            console.log(store);
+        }
+        LoginStore.listen(this.listener);
+    }
+    componentWillUnmount(){
+        LoginStore.unlisten(this.listener);
     }
 
     static getStores() {
@@ -44,8 +52,8 @@ class Login extends React.Component {
     }
 
     resSubmit() {
-        let {email, regPsd} = this.state;
-        LoginAction.register(email, regPsd);
+        let {regEmail, regPsd} = this.state;
+        LoginAction.register(regEmail, regPsd);
     }
 
     setValue(key, value) {
@@ -106,7 +114,7 @@ class Login extends React.Component {
                             wrapperCol={{span: 14}}
                             required
                             hasFeedback
-                            validateStatus={state.isLogMail ?"success": "error"}
+                            validateStatus={state.isLogMail==undefined ?"":(state.isLogMail?'success':'error')}
                             >
                             <Input type="text" id="logEmail"
                                    name="logEmail"
@@ -126,7 +134,7 @@ class Login extends React.Component {
                             wrapperCol={{span: 14}}
                             required
                             hasFeedback
-                            validateStatus={state.isLogPsd ?"success": "error"}
+                            validateStatus={state.isLogPsd==undefined ?"":(state.isLogPsd?'success':'error')}
                         >
                             <Input type="password" id="loginPsd"
                                    name="loginPsd"
@@ -171,7 +179,7 @@ class Login extends React.Component {
                             wrapperCol={{span: 14}}
                             required
                             hasFeedback
-                            validateStatus={state.isRegMail ?"success": "error"}
+                            validateStatus={state.isRegMail==undefined ? '': (state.isRegMail?"success": "error")}
                         >
                             <Input type="text"
                                    id="regEmail"
@@ -193,7 +201,7 @@ class Login extends React.Component {
                             wrapperCol={{span: 14}}
                             required
                             hasFeedback
-                            validateStatus={state.isRegPsd ?"success": "error"}
+                            validateStatus={state.isRegPsd==undefined ?'':(state.isRegPsd?'success':'error')}
                         >
                             <Input type="password"
                                    id="regPsd"
@@ -215,7 +223,7 @@ class Login extends React.Component {
                             wrapperCol={{span: 14}}
                             required
                             hasFeedback
-                            validateStatus={state.isPsdAgain ?"success": "error"}
+                            validateStatus={state.isPsdAgain==undefined ?'':(state.isPsdAgain?'success':'error')}
                         >
                             <Input type="password"
                                    id="psdAgain"
@@ -230,12 +238,21 @@ class Login extends React.Component {
                                    }}
                             />
                         </FormItem>
+                        <FormItem
+                            label="Radio 单选框："
+                            labelCol={{span: 6}}
+                            wrapperCol={{span: 18}} >
+                            <RadioGroup value="b">
+                                <Radio value="man">男</Radio>
+                                <Radio value="woman">女</Radio>
+                            </RadioGroup>
+                        </FormItem>
                         <Row>
                             <Col span="14" offset="6">
                                 <Button type="primary"
                                         htmlType="submit"
                                         className="ant-btn-submit"
-                                        disabled = {state.isRegMail && state.isRegPsd && state.isPsdAgain ? 'false':'true'}
+                                        disabled={state.isRegMail && state.isRegPsd && state.isPsdAgain ? false: true}
                                         onClick={()=> {
                                             this.resSubmit()
                                         }}>
