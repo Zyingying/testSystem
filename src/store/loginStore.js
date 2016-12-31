@@ -10,10 +10,19 @@ class LoginStore{
 
     }
 
-    onLoginSuccess(results){
-        this.userMsg = results;
+    onLoginSuccess(result){
+        this.result = result;
     }
 
+    onRegisterSuccess(result){
+        this.result = result;
+    }
+
+    onLogoutSuccess(result){
+        this.result = result;
+    }
+
+    onRegisterFail(){}
     onLoginFail(){}
 }
 module.exports = Flux.createStore(LoginStore);
