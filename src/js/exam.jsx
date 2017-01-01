@@ -23,7 +23,7 @@ class exam extends React.Component {
             </div>
             <div className="main-exam">
                 <Menu onClick={this.handleClick} style={{width:240}} mode="vertical">
-                    <SubMenu key="sub1" title={<span><Icon type="mail" /><span>课内</span></span>}>
+                    <SubMenu key="sub1" title='课内'>
                         {/*<MenuItemGroup title="专业">*/}
                             <Menu.Item key="1">算法</Menu.Item>
                             <Menu.Item key="2">计算机网络</Menu.Item>
@@ -33,11 +33,11 @@ class exam extends React.Component {
                             <Menu.Item key="4">大学英语</Menu.Item>
                         {/*</MenuItemGroup>*/}
                     </SubMenu>
-                    <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>职业方向</span></span>}>
+                    <SubMenu key="sub2" title='职业方向'>
                         <Menu.Item key="5">C++工程师</Menu.Item>
                         <Menu.Item key="6">前端工程师</Menu.Item>
                     </SubMenu>
-                    <SubMenu key="sub4" title={<span><icon type="setting" /><span>时间</span></span>}>
+                    <SubMenu key="sub4" title='时间'>
                         <Menu.Item key="9">2017</Menu.Item>
                         <Menu.Item key="10">2016</Menu.Item>
                     </SubMenu>
