@@ -22,6 +22,12 @@ class LoginStore{
         this.result = result;
     }
 
+    onIsLoginSuccess(result){
+        debugger;
+        this.result = result;
+
+    }
+
     onRegisterFail(){}
     onLoginFail(){}
 }

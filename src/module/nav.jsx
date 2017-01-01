@@ -17,6 +17,7 @@ class Nav extends  React.Component{
     }
 
     render(){
+        let {isLogin} = this.props;
 
         return <Menu onClick={this.handleClick}
                      
@@ -35,26 +36,34 @@ class Nav extends  React.Component{
                     {/*<Menu.Item key="appstore:4">Javascript</Menu.Item>*/}
                 {/*</MenuItemGroup>*/}
             </SubMenu>
-
-            <SubMenu className="li-personal"
-                     title={
-                         <Link to="/personal">
-                             <Icon type="user"/>个人中心
-                         </Link>} >
-                <Menu.Item key="setting:1"><Icon type="user"/>个人主页</Menu.Item>
-                <Menu.Item key="setting:2">
-                    <Link to="/personal/personMsg">
-                        <Icon type="setting"/>账号设置
+            
+            {isLogin ?
+                <SubMenu className="li-personal"
+                         title={
+                             <Link to="/personal">
+                                 <Icon type="user"/>个人中心
+                             </Link>} >
+                    <Menu.Item key="setting:1">
+                        <Icon type="user"/>个人主页</Menu.Item>
+                    <Menu.Item key="setting:2">
+                        <Link to="/personal/personMsg">
+                            <Icon type="setting"/>账号设置
+                        </Link>
+                    </Menu.Item>
+                    <Menu.Item key="setting:3">
+                        <Icon type="poweroff"/>退出登录</Menu.Item>
+                </SubMenu>
+                :
+                <Menu.Item key="login" className="li-login">
+                    <Link to="/login">
+                        <Icon type="user" />登录
                     </Link>
                 </Menu.Item>
-                <Menu.Item key="setting:3"><Icon type="poweroff"/>退出登录</Menu.Item>
-            </SubMenu>
-            <Menu.Item key="login" className="li-login">
-                <Link to="/login">
-                    <Icon type="user" />登录
-                </Link>
 
-            </Menu.Item>
+            }
+
+
+
         </Menu>;
     }
 }
