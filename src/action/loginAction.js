@@ -9,9 +9,10 @@ class LoginAction {
         this.url = {
             login:'http://localhost:3000/user/signin',
             register:'http://localhost:3000/user/signup',
-            logout:'http://localhost:3000/user/logout'
+            logOut:'http://localhost:3000/user/logout',
+            isLogin:'http://localhost:3000/user/isLogin'
         };
-        this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail');
+        this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail','isLoginSuccess','isLoginFail');
         this._cacheAvatar = {};
     }
 
@@ -50,7 +51,6 @@ class LoginAction {
             success: (result)=> {
                 if(result.code == 200) {
                     this.registerSuccess(result);
-                    message.success(result.msg,5);
                 }else{
                     this.registerFail();
                     message.error(result.msg, 5)
@@ -61,9 +61,8 @@ class LoginAction {
             }
         });
     }
-
-    logout(){
-        let sUrl = this.url["register"];
+    logOut(){
+        let sUrl = this.url["logOut"];
         $.ajax({
             url: sUrl,
             type: 'get',
@@ -77,6 +76,24 @@ class LoginAction {
             },
             error: ()=> {
                 this.logoutFail();
+            }
+        });
+    }
+    isLogin(){
+        let sUrl = this.url["isLogin"];
+        $.ajax({
+            url: sUrl,
+            type: 'get',
+            dataType:"json",
+            success: (result)=> {
+                if(result) {
+                    this.isLoginSuccess(result);
+                }else{
+                    this.isLoginFail();
+                }
+            },
+            error: ()=> {
+                this.isLoginFail();
             }
         });
     }
