@@ -14,8 +14,8 @@ class LoginStore{
         this.result = result;
     }
 
-    onRegisterSuccess(result){
-        this.result = result;
+    onRegisterSuccess(results){
+        this.result = results;
     }
 
     onLogoutSuccess(result){

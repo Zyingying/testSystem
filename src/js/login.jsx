@@ -2,7 +2,7 @@
 const React = require("react");
 const {Tabs}  = require('antd');
 const TabPane = Tabs.TabPane;
-const {Form, Input, Button, Checkbox, Row, Col,Radio}  = require('antd');
+const {Form, Input, Button, Checkbox, Row, Col,Radio ,message}  = require('antd');
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const LoginAction = require('../action/loginAction');
@@ -29,6 +29,8 @@ class Login extends React.Component {
         };
         this.listener = (store) =>{
             console.log(store);
+            
+
         }
         LoginStore.listen(this.listener);
     }
@@ -46,9 +48,8 @@ class Login extends React.Component {
 
 
     loginSubmit() {
-        let {email, loginPsd} = this.state;
-
-        LoginAction.login(email, loginPsd);
+        let {logEmail, loginPsd} = this.state;
+        LoginAction.login(logEmail, loginPsd);
     }
 
     resSubmit() {

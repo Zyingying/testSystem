@@ -12,6 +12,7 @@ class LoginAction {
             logout:'http://localhost:3000/user/logout'
         };
         this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail');
+        this._cacheAvatar = {};
     }
 
     login(email,psd){
@@ -26,7 +27,7 @@ class LoginAction {
             dataType:"json",
             success: (result)=> {
                 if(result.code == 200) {
-                    this.loginSuccess(result.result);
+                    this.loginSuccess(result);
                 }else{
                     this.loginFail();
                 }
@@ -48,9 +49,11 @@ class LoginAction {
             dataType:"json",
             success: (result)=> {
                 if(result.code == 200) {
-                    this.registerSuccess(result.result);
+                    this.registerSuccess(result);
+                    message.success(result.msg,5);
                 }else{
                     this.registerFail();
+                    message.error(result.msg, 5)
                 }
             },
             error: ()=> {
@@ -67,7 +70,7 @@ class LoginAction {
             dataType:"json",
             success: (result)=> {
                 if(result.code == 200) {
-                    this.logoutSuccess(result.result);
+                    this.logoutSuccess(result);
                 }else{
                     this.logoutFail();
                 }
