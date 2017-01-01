@@ -27,13 +27,26 @@ class Login extends React.Component {
             isRegPsd: undefined,
             isPsdAgain:undefined
         };
-        this.listener = (store) =>{
-            console.log(store);
-            
+
+    }
+    componentWillMount(){
+        LoginStore.listen(this.getListener());
+    }
+
+    getListener(){
+        let history = this.props.history;
+        return this.listener = (store) =>{
+            let result = store.result;
+            if(result.type == 1){
+                message.success(result.msg + ',即将跳往首页',2);
+                setTimeout(function () {
+                    history.pushState(null,'/')
+                },3000)
+            }
 
         }
-        LoginStore.listen(this.listener);
     }
+
     componentWillUnmount(){
         LoginStore.unlisten(this.listener);
     }
