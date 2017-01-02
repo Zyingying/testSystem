@@ -78,10 +78,11 @@ class Index extends React.Component {
                         <h1>这是一个标题</h1>
                         <h2>这是一个副标题</h2>
 
-                        <IndexItem/>
-                        <IndexItem/>
-                        <IndexItem/>
-                        <IndexItem/>
+                        <IndexItem title="计算机学科专业基础综合"/>
+                        <IndexItem title="网易有道2017内推选择题"/>
+                        <IndexItem title="2016校招真题练习"/>
+                        <IndexItem title="2016校招真题练习"/>
+                        <IndexItem title="ACM训练"/>
 
                     </div>
                 </div>
