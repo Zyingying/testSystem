@@ -45,11 +45,13 @@ class exam extends React.Component {
             </div>
             <div className="main-exam">
                 <Menu onClick={this.handleClick} style={{width:240}} mode="vertical">
-                    {subject.length > 0 && subject.map((item,n)=>{
-                        let subjects = item.subjects;
-                        return <SubMenu key={n} title={item.typename}>
-                            <Menu.Item key="1">算法</Menu.Item>
+                    {subject.length > 0 && subject.map((sub,n)=>{
+                        let subjectsItem = sub.subjects;
+                        return <SubMenu key={n} title={sub.typename}>
 
+                                {subjectsItem && subjectsItem.map((item,n)=>{
+                                    return <Menu.Item key={n}>{item.subjectName}</Menu.Item>;
+                                })}
                         </SubMenu>
                     })}
 
