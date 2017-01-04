@@ -107,9 +107,14 @@
   }
 }
 .w-sildshow{
+  margin-top: 46px;
   .w-banner{
     display: block;
     height: 300px;
     outline: 0;
+
+    img{
+      margin: 0 auto;
+    }
   }
 }
