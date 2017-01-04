@@ -35,7 +35,6 @@ class exam extends React.Component {
     render() {
 
         let {subject} = this.props;
-        console.log(subject);
         if(!subject){
             return null;
         }
@@ -47,30 +46,13 @@ class exam extends React.Component {
             <div className="main-exam">
                 <Menu onClick={this.handleClick} style={{width:240}} mode="vertical">
                     {subject.length > 0 && subject.map((item,n)=>{
-                        console.log(item ,n)
                         let subjects = item.subjects;
-                        <SubMenu key="sub1" title={item.typename}>
+                        return <SubMenu key={n} title={item.typename}>
                             <Menu.Item key="1">算法</Menu.Item>
-                            <Menu.Item key="2">计算机网络</Menu.Item>
-                            <Menu.Item key="3">高等数学</Menu.Item>
-                            <Menu.Item key="4">大学英语</Menu.Item>
-                        </SubMenu>
 
+                        </SubMenu>
                     })}
-                    <SubMenu key="sub1" title='课内'>
-                            <Menu.Item key="1">算法</Menu.Item>
-                            <Menu.Item key="2">计算机网络</Menu.Item>
-                            <Menu.Item key="3">高等数学</Menu.Item>
-                            <Menu.Item key="4">大学英语</Menu.Item>
-                    </SubMenu>
-                    <SubMenu key="sub2" title='职业方向'>
-                        <Menu.Item key="5">C++工程师</Menu.Item>
-                        <Menu.Item key="6">前端工程师</Menu.Item>
-                    </SubMenu>
-                    <SubMenu key="sub4" title='时间'>
-                        <Menu.Item key="9">2017</Menu.Item>
-                        <Menu.Item key="10">2016</Menu.Item>
-                    </SubMenu>
+
                 </Menu>
 
                 <div className="nk-content">
