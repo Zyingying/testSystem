@@ -36,6 +36,9 @@ class exam extends React.Component {
 
         let {subject} = this.props;
         console.log(subject);
+        if(!subject){
+            return null;
+        }
 
         return <div className="f-page exam">
             <div className="w-categories">
