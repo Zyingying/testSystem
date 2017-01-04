@@ -2,14 +2,31 @@
 const React = require("react");
 const Nav = require("../module/nav");
 const IndexItem = require("../subItem/indexItem");
-
-// const {Link} = require("react-router");
 import {Menu, Icon} from 'antd';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
+const SubjectAction = require('../action/subjectAction');
+const SubjectStore = require('../store/subjectStore');
+const connectToStores = require("alt-utils/lib/connectToStores");
+
 
 class exam extends React.Component {
+    constructor(props) {
+        super(props);
+
+    }
+    static getStores() {
+        return [SubjectStore];
+    }
+
+    static getPropsFromStores() {
+        return SubjectStore.getState();
+    }
+
+    componentWillMount(){
+        SubjectAction.getAll();
+    }
 
     handleClick(e) {
         console.log('click', e);
@@ -17,21 +34,31 @@ class exam extends React.Component {
 
     render() {
 
+        let {subject} = this.props;
+        console.log(subject);
+
         return <div className="f-page exam">
             <div className="w-categories">
                 <Nav/>
             </div>
             <div className="main-exam">
                 <Menu onClick={this.handleClick} style={{width:240}} mode="vertical">
-                    <SubMenu key="sub1" title='课内'>
-                        {/*<MenuItemGroup title="专业">*/}
+                    {subject.length > 0 && subject.map((item,n)=>{
+                        console.log(item ,n)
+                        let subjects = item.subjects;
+                        <SubMenu key="sub1" title={item.typename}>
                             <Menu.Item key="1">算法</Menu.Item>
                             <Menu.Item key="2">计算机网络</Menu.Item>
-                        {/*</MenuItemGroup>*/}
-                        {/*<MenuItemGroup title="通识">*/}
                             <Menu.Item key="3">高等数学</Menu.Item>
                             <Menu.Item key="4">大学英语</Menu.Item>
-                        {/*</MenuItemGroup>*/}
+                        </SubMenu>
+
+                    })}
+                    <SubMenu key="sub1" title='课内'>
+                            <Menu.Item key="1">算法</Menu.Item>
+                            <Menu.Item key="2">计算机网络</Menu.Item>
+                            <Menu.Item key="3">高等数学</Menu.Item>
+                            <Menu.Item key="4">大学英语</Menu.Item>
                     </SubMenu>
                     <SubMenu key="sub2" title='职业方向'>
                         <Menu.Item key="5">C++工程师</Menu.Item>
@@ -45,10 +72,10 @@ class exam extends React.Component {
 
                 <div className="nk-content">
 
-                    <IndexItem/>
-                    <IndexItem/>
-                    <IndexItem/>
-                    <IndexItem/>
+                    <IndexItem title='计算机学科专业基础综合'/>
+                    <IndexItem title="2016校招真题练习"/>
+                    <IndexItem title="2016校招真题练习"/>
+                    <IndexItem title="ACM训练"/>
 
                 </div>
             </div>
@@ -58,4 +85,4 @@ class exam extends React.Component {
 
     }
 }
-module.exports = exam;
+module.exports = connectToStores(exam);

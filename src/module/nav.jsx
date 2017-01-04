@@ -5,6 +5,11 @@ import {Menu, Icon} from 'antd';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
+const LoginAction = require('../action/loginAction');
+const LoginStore = require('../store/loginStore');
+const connectToStores = require("alt-utils/lib/connectToStores");
+
+
 class Nav extends  React.Component{
 
     constructor(props){
@@ -14,10 +19,29 @@ class Nav extends  React.Component{
             showCateId: this.props.currentCateId,
             theme:"dark"
         };
+        LoginAction.isLogin();
+    }
+
+    componentWillMount(){
+        LoginStore.listen(this.getLoginStore());
+    }
+    componentWillUnmount(){
+        LoginStore.unlisten(this.logLinsten);
+
+    }
+    getLoginStore(){
+        return this.logLinsten = (store) =>{
+            if(store.result){
+                this.setState({isLogin:true});
+            }else{
+                this.state.isLogin=false;
+            }
+        }
     }
 
     render(){
-        let {isLogin} = this.props;
+        let {isLogin} = this.state;
+        console.log(isLogin);
 
         return <Menu onClick={this.handleClick}
                      

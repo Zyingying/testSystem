@@ -5,8 +5,7 @@ const {Link} = require("react-router");
 const connectToStores = require("alt-utils/lib/connectToStores");
 const IndexAction = require("../action/indexAction");
 const IndexStore = require("../store/indexStore");
-const LoginAction = require('../action/loginAction');
-const LoginStore = require('../store/loginStore');
+
 
 const IndexItem = require("../subItem/indexItem");
 
@@ -20,9 +19,6 @@ class Index extends React.Component {
         this.state = {
             isLogin:false
         }
-        LoginAction.isLogin();
-
-
     }
 
     static getStores() {
@@ -33,27 +29,14 @@ class Index extends React.Component {
         return IndexStore.getState();
     }
 
-    componentWillMount(){
-        LoginStore.listen(this.getLoginStore());
-    }
-    componentWillUnmount(){
-        LoginStore.unlisten(this.logLinsten);
 
-    }
 
-    getLoginStore(){
-        return this.logLinsten = (store) =>{
-            if(store.result){
-                this.setState({isLogin:true});
-            }else{
-                this.state.isLogin=false;
-            }
-        }
-    }
+
 
 
     render() {
-        let state = this.state;
+        let state = this.state,
+            title = '';
         return <div className="f-page index">
 
                 <div className="w-categories">
@@ -64,22 +47,22 @@ class Index extends React.Component {
                     <div>
                         <a href=""
                            className="w-banner">
-                            <img src="" alt=""/>
+                            <img src="http://static.nowcoder.com/recommand/ad/offer-960.png" alt=""/>
                         </a>
                     </div>
                     <div>
                         <a href=""  className="w-banner" >
+                            <img src="http://uploadfiles.nowcoder.com/files/20161105/826546_1478323513738_qimokaoshishouye.jpg" alt=""/>
                         </a>
                     </div>
                 </Carousel>
 
                 <div className="w-main">
                     <div className="w-topic">
-                        <h1>这是一个标题</h1>
-                        <h2>这是一个副标题</h2>
+                        <h1>精准能力评估+智能专项练习</h1>
+                        <h2>选择目标职位，测评技能现状，为你定制薄弱知识点专项练习</h2>
 
-                        <IndexItem title="计算机学科专业基础综合"/>
-                        <IndexItem title="网易有道2017内推选择题"/>
+                        <IndexItem title='计算机学科专业基础综合'/>
                         <IndexItem title="2016校招真题练习"/>
                         <IndexItem title="2016校招真题练习"/>
                         <IndexItem title="ACM训练"/>

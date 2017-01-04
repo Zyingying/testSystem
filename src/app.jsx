@@ -9,6 +9,7 @@ const React = require("react");
 const WeixinUtil = require("./weixinUtil");
 const MobileUtil = require("./mobileUtil");
 
+
 class App extends React.Component{
     constructor(props){
         super(props);
@@ -19,7 +20,10 @@ class App extends React.Component{
 
         this.listenAjax();
         this.setCookie();
+
     }
+
+
 
     setCookie(){
         let query = this.props.location.query;
