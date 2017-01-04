@@ -23,7 +23,6 @@ class LoginStore{
     }
 
     onIsLoginSuccess(result){
-        debugger;
         this.result = result;
 
     }
