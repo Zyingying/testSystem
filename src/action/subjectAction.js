@@ -7,13 +7,14 @@ class SubjectAction {
 
     constructor(){
         this.url = {
-            all:'http://localhost:3000/subjectAll'
+            all:'http://localhost:3000/subjectAll',
+            itemList:'http://localhost:3000/subjectListByItemId/:'
         };
         this.generateActions('getAllSuccess','getAllFail');
         this._cacheAvatar = {};
     }
 
-    getAll(email,psd){
+    getAll(){
         let sUrl = this.url["all"];
         $.ajax({
             url: sUrl,
@@ -28,6 +29,26 @@ class SubjectAction {
             },
             error: ()=> {
                 this.getAllFail();
+            }
+        });
+    }
+
+    itemList(itemId){
+        let sUrl = this.url["getTestList"];
+        $.ajax({
+            url: sUrl + itemId,
+            type: 'get',
+            dataType:"json",
+            success: (result)=> {
+                // if(result.code == 200) {
+                //     this.loginSuccess(result);
+                // }else{
+                //     this.loginFail();
+                // }
+                console.log(result);
+            },
+            error: ()=> {
+                this.loginFail();
             }
         });
     }
