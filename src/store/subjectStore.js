@@ -13,6 +13,21 @@ class SubjectStore{
         this.subject = result;
     }
 
+    onNameListSuccess(data){
+        this.nameList = data;
+    }
+
+    onSubjectMianSuccess(){
+
+    }
+
+
     onGetAllFail(){}
+
+    onsubjectMianFail(){
+
+    }
+
+
 }
 module.exports = Flux.createStore(SubjectStore);
