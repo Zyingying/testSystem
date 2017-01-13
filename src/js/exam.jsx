@@ -29,15 +29,23 @@ class exam extends React.Component {
     }
 
     handleClick(e) {
-        console.log('click', e);
+        // console.log('click', e);
+        let itemId = e.key;
+        SubjectAction.nameListById(itemId);
+    }
+
+    showTest(id){
+        SubjectAction.ftechTest(id);
     }
 
     render() {
 
-        let {subject} = this.props;
+        let {subject,nameList} = this.props;
         if(!subject){
             return null;
         }
+        console.log(this.props)
+
 
         return <div className="f-page exam">
             <div className="w-categories">
@@ -50,7 +58,7 @@ class exam extends React.Component {
                         return <SubMenu key={n} title={sub.typename}>
 
                                 {subjectsItem && subjectsItem.map((item,n)=>{
-                                    return <Menu.Item key={n}>{item.subjectName}</Menu.Item>;
+                                    return <Menu.Item key={item._id} data-id={item._id}>{item.subjectName}</Menu.Item>;
                                 })}
                         </SubMenu>
                     })}
@@ -58,11 +66,13 @@ class exam extends React.Component {
                 </Menu>
 
                 <div className="nk-content">
+                    {nameList && nameList.map((item,n)=>{
+                        return <IndexItem title={item.title}
+                                          key={n}
+                                          id={item._id}
+                                          showTest={this.showTest.bind(this)}/>;
+                    }) }
 
-                    <IndexItem title='计算机学科专业基础综合'/>
-                    <IndexItem title="2016校招真题练习"/>
-                    <IndexItem title="2016校招真题练习"/>
-                    <IndexItem title="ACM训练"/>
 
                 </div>
             </div>
