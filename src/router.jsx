@@ -12,6 +12,7 @@ const Index = require("./js/index");
 const personMsg = require("./js/personalMsg");
 const Login = require("./js/login");
 const Exam = require("./js/exam");
+const Test = require("./js/test");
 
 
 const mobileUtil = require("./mobileUtil");
@@ -32,7 +33,8 @@ let routes = <Router history={createHashHistory()}>
                     <IndexRoute component={Index} />
                     <Route path="login" components={Login}/>
                     <Route path="personMsg" component={personMsg} onEnter={requireLogin}/>
-                    <Route path="Exam" component={Exam}/>
+                    <Route path="exam" component={Exam}/>
+                    <Route path="test" component={Test}/>
                 </Route>
             </Router>;
 ReactDom.render(routes,document.getElementById("App"));
