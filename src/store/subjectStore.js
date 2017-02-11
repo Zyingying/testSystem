@@ -21,12 +21,17 @@ class SubjectStore{
 
     }
 
+    onFtechTestSuccess(data){
+        this.testList = data;
+    }
+
 
     onGetAllFail(){}
 
-    onsubjectMianFail(){
+    onsubjectMianFail(){}
 
-    }
+    onFtechTestFail(){}
+    
 
 
 }

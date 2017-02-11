@@ -11,7 +11,7 @@ class SubjectAction {
             nameListById:'http://localhost:3000/subjectTitleBySbId/',
             ftechTest:'http://localhost:3000/subjectListByItemId/',
         };
-        this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess');
+        this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail');
         this._cacheAvatar = {};
     }
 
@@ -60,10 +60,14 @@ class SubjectAction {
             type: 'get',
             dataType:"json",
             success: (result)=> {
-               console.log(result);
+                if(result.code == 200) {
+                    this.ftechTestSuccess(result.data);
+                }else{
+                    this.ftechTestFail();
+                }
             },
             error: ()=> {
-                this.c();
+                this.ftechTestFail();
             }
         });
     }
