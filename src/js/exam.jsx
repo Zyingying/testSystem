@@ -36,8 +36,6 @@ class exam extends React.Component {
 
     showTest(id){
         let history = this.props.history;
-        console.log(this.props);
-        SubjectAction.ftechTest(id);
         history.pushState(null,'/test?testId='+ id)
     }
 
