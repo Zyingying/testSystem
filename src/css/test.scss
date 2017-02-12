@@ -1,0 +1,59 @@
+.f-page.test{
+  overflow: hidden;
+  background: #eee;
+
+  .allTopic{
+    margin: 70px auto;
+    width: 950px;
+    //padding: 30px 10px;
+    background: #fff;
+
+    .subject-progress{
+      background: #232c31;
+      padding: 15px 40px;
+    }
+    .progress{
+      height: 15px;
+      border-radius: 10px;
+      background: #ebedef;
+      width: 80%;
+      display: inline-block;
+
+      .progress-bar{
+        background: #1abc9c;
+        height: 100%;
+        border-radius: 15px;
+      }
+    }
+
+    .restTime{
+      color: #fff;
+      display: inline-block;
+      margin-left: 25px;
+    }
+
+    .testMain{
+      margin: 10px 0;
+    }
+
+    .title{
+      font-size: 15px;
+    }
+
+    .ant-radio-group{
+      display: block;
+
+
+      .ant-radio-wrapper{
+        display: block;
+        padding: 8px 12px;
+        border: 1px solid #eee;
+        margin: 12px;
+        font-size: 13px;
+      }
+      .chooseSelect{
+        border:1px solid #1abc9c;
+      }
+    }
+  }
+}
