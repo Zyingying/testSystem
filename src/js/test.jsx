@@ -13,9 +13,9 @@ class Test extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: ' ',
+            value: [],
+            count: 0,
             percent: 0,
-            hasDo: 1
         }
         this.onChange = this.onChange.bind(this);
 
@@ -34,29 +34,18 @@ class Test extends React.Component {
         SubjectAction.ftechTest(testId);
     }
 
-    onChange(e) {
+    onChange(e,n) {
         console.log('radio checked:' + e.target.value);
+        let {value,count} = this.state;
+        if(!value[n]){
+            count ++ ;
+        }
+        value[n] = e.target.value;
         this.setState({
-            value: e.target.value
+            value: value,
+            count:count
         });
     }
-
-    increase() {
-        let percent = this.state.percent + 10;
-        if (percent > 100) {
-            percent = 100;
-        }
-        this.setState({percent});
-    }
-
-    decline() {
-        let percent = this.state.percent - 10;
-        if (percent < 0) {
-            percent = 0;
-        }
-        this.setState({percent});
-    }
-
 
     render() {
         let {testList} = this.props;
@@ -65,8 +54,8 @@ class Test extends React.Component {
         }
         console.log(testList);
         let testNum = testList.length;
-        let hasDo = this.state.hasDo;
-        let progress = (hasDo/testNum)*100;
+        let count = this.state.count;
+        let progress = (count/testNum)*100;
         return <div className="f-page test">
             <div className="w-categories">
                 <Nav/>
@@ -77,6 +66,7 @@ class Test extends React.Component {
                     <div className="progress">
                         <div className="progress-bar" style={{width: progress +'%'}}></div>
                     </div>
+                    <div className="hasDo">{count}/{testNum}</div>
                     <div className="restTime">
                         11:11:11
                     </div>
@@ -87,6 +77,7 @@ class Test extends React.Component {
 
                 { testList.map((list, n)=> {
                     let {choice, answer, question, score} = list;
+                    let myAnswer = this.state.value[n];
                     return <div className="testItem">
 
                         <div className="title">
@@ -94,24 +85,29 @@ class Test extends React.Component {
 
                         </div>
                         <div>
-                            <RadioGroup onChange={this.onChange} value={this.state.value}>
+                            <RadioGroup onChange={(e)=>{this.onChange(e,n)}} value={myAnswer}>
                                 <Radio value={choice.A}
-                                       className={this.state.value == choice.A ?
+                                       className={ myAnswer == choice.A ?
                                            'chooseSelect' : ''}>
-                                    A
+                                    {choice.A}
                                 </Radio>
                                 <Radio value={choice.B}
-                                       className={this.state.value == choice.B ?
+                                       className={ myAnswer == choice.B ?
                                            'chooseSelect' : ''}>
-                                    B
+                                    {choice.B}
                                 </Radio>
-                                <Radio value={choice.C} className={this.state.value == choice.C ?
-                                    'chooseSelect' : ''}>C</Radio>
+                                <Radio value={choice.C}
+                                       className={ myAnswer == choice.C ?
+                                    'chooseSelect' : ''}>
+                                    {choice.C}
+                                </Radio>
                                 <Radio value={choice.D}
-                                       className={this.state.value == choice.D ?
-                                           'chooseSelect' : ''}>D</Radio>
+                                       className={ myAnswer == choice.D ?
+                                           'chooseSelect' : ''}>
+                                    {choice.D}
+                                </Radio>
                             </RadioGroup>
-                            <div style={{marginTop: 20}}>你选中的: {this.state.value}</div>
+
                         </div>
                     </div>;
                 })}
