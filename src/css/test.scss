@@ -5,7 +5,7 @@
   .allTopic{
     margin: 70px auto;
     width: 950px;
-    //padding: 30px 10px;
+    overflow: hidden;
     background: #fff;
 
     .subject-progress{
@@ -39,6 +39,11 @@
 
     .testMain{
       margin: 10px 0;
+
+      .w-btn{
+        float: right;
+        margin: 10px;
+      }
     }
 
     .title{

@@ -118,3 +118,32 @@
     }
   }
 }
+
+.w-btn{
+  display: inline-block;
+  text-align: center;
+  padding: 10px 0;
+  width: 110px;
+  color: #FFF;
+  font-size: 14px;
+  border-radius: 3px;
+  border: none 0;
+  cursor: pointer;
+  line-height: normal;
+  outline: 0;
+  white-space: nowrap;
+  background-color: #eee;
+
+  &.btn-primary{
+    background: #00BC9B;
+
+    &:hover{
+      background: #00B091;
+    }
+  }
+
+  &.warning-btn{
+    background: #ff6547;
+    //float: left;
+  }
+}
