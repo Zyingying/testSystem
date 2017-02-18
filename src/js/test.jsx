@@ -16,6 +16,11 @@ class Test extends React.Component {
             value: [],
             count: 0,
             percent: 0,
+            finalTime:{
+                hour: '00',
+                min : '00',
+                second:'00'
+            }
         }
         this.onChange = this.onChange.bind(this);
 
@@ -31,7 +36,16 @@ class Test extends React.Component {
 
     componentWillMount() {
         let {testId} = this.props.location.query;
+        let restTime = 20;
         SubjectAction.ftechTest(testId);
+        let that = this;
+        var time = setInterval(function(){
+            that.showRestTime(restTime);
+            restTime--;
+            if(restTime < 0){
+                clearInterval(time);
+            }
+        },1000);
     }
 
     onChange(e,n) {
@@ -47,15 +61,34 @@ class Test extends React.Component {
         });
     }
 
+    showRestTime(time){
+        let hour,min,second,final = {};
+
+        if(time >= 0){
+            hour=Math.floor(time/60/60%24);
+            min=Math.floor(time/60%60);
+            second=Math.floor(time%60);
+        }
+        final = {
+            hour:(hour > 9 ? hour : '0' + hour),
+            min:(min > 9 ? min : '0' + min),
+            second:(second > 9 ? second : '0' + second)
+        }
+
+        this.setState({finalTime:final})
+    }
+
     render() {
         let {testList} = this.props;
+        let {hour,min,second} = this.state.finalTime;
         if (!testList) {
             return null;
         }
-        console.log(testList);
         let testNum = testList.length;
         let count = this.state.count;
         let progress = (count/testNum)*100;
+
+
         return <div className="f-page test">
             <div className="w-categories">
                 <Nav/>
@@ -68,7 +101,7 @@ class Test extends React.Component {
                     </div>
                     <div className="hasDo">{count}/{testNum}</div>
                     <div className="restTime">
-                        11:11:11
+                        {hour} : {min} : {second}
                     </div>
                 </div>
 
@@ -111,6 +144,8 @@ class Test extends React.Component {
                         </div>
                     </div>;
                 })}
+
+                <div className="w-btn warning-btn">提交试卷</div>
                 </div>
             </div>
         </div>;
