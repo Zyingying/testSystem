@@ -7,11 +7,15 @@ class SubjectAction {
 
     constructor(){
         this.url = {
-            all:'http://localhost:3000/subjectAll',
-            nameListById:'http://localhost:3000/subjectTitleBySbId/',
-            ftechTest:'http://localhost:3000/subjectListByItemId/',
-            creatOne:'http://localhost:3000/subjectType/create',
-            creatTwo:'http://localhost:3000/subjectItemType/create'
+          all:'http://localhost:3000/subjectAll',
+          nameListById:'http://localhost:3000/subjectTitleBySbId/',
+          ftechTest:'http://localhost:3000/subjectListByItemId/',
+          //添加目录&&题目呀
+          creatOne:'http://localhost:3000/subjectType/create',
+          creatTwo:'http://localhost:3000/subjectItemType/create',
+          creatTest:'http://localhost:3000/subject/create',
+          //获取题目，
+          fetch:'http://localhost:3000/subjectListByItemId/'
         };
         this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail');
         this._cacheAvatar = {};
@@ -56,22 +60,42 @@ class SubjectAction {
     }
 
     ftechTest(titleId){
-        let sUrl = this.url["ftechTest"];
-        $.ajax({
-            url: sUrl + titleId,
-            type: 'get',
-            dataType:"json",
-            success: (result)=> {
-                if(result.code == 200) {
-                    this.ftechTestSuccess(result.data);
-                }else{
-                    this.ftechTestFail();
-                }
-            },
-            error: ()=> {
+      let sUrl = this.url["ftechTest"];
+      $.ajax({
+        url: sUrl + titleId,
+        type: 'get',
+        dataType:"json",
+        success: (result)=> {
+            if(result.code == 200) {
+                this.ftechTestSuccess(result.data);
+            }else{
                 this.ftechTestFail();
             }
-        });
+        },
+        error: ()=> {
+            this.ftechTestFail();
+        }
+      });
+    }
+
+    creatOne(typename){
+      let sUrl = this.url["creatOne"];
+      $.ajax({
+        url:sUrl,
+        type:'post',
+        data:{typename:typename},
+        dataType:'json',
+        success:(result)=>{
+          if(result.code == 200){
+            this.creatOneSuccess(result.data);
+          }else{
+            this.creatOneFail();
+          }
+        },
+        error:()=>{
+          this.creatOneFail();
+        }
+      })
     }
 
 }
