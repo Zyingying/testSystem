@@ -10,6 +10,8 @@ class SubjectAction {
             all:'http://localhost:3000/subjectAll',
             nameListById:'http://localhost:3000/subjectTitleBySbId/',
             ftechTest:'http://localhost:3000/subjectListByItemId/',
+            creatOne:'http://localhost:3000/subjectType/create',
+            creatTwo:'http://localhost:3000/subjectItemType/create'
         };
         this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail');
         this._cacheAvatar = {};
