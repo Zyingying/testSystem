@@ -1,10 +1,9 @@
 "use strict"
 const React = require("react");
 const Nav = require("../module/nav");
+const MenuList = require("../module/menuList");
 const IndexItem = require("../subItem/indexItem");
-import {Menu, Icon} from 'antd';
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+
 
 const SubjectAction = require('../action/subjectAction');
 const SubjectStore = require('../store/subjectStore');
@@ -28,7 +27,7 @@ class exam extends React.Component {
         SubjectAction.getAll();
     }
 
-    handleClick(e) {
+    menuClick(e) {
         // console.log('click', e);
         let itemId = e.key;
         SubjectAction.nameListById(itemId);
@@ -53,18 +52,8 @@ class exam extends React.Component {
                 <Nav/>
             </div>
             <div className="main-exam">
-                <Menu onClick={this.handleClick} style={{width:240}} mode="vertical">
-                    {subject.length > 0 && subject.map((sub,n)=>{
-                        let subjectsItem = sub.subjects;
-                        return <SubMenu key={n} title={sub.typename}>
-
-                                {subjectsItem && subjectsItem.map((item,n)=>{
-                                    return <Menu.Item key={item._id} data-id={item._id}>{item.subjectName}</Menu.Item>;
-                                })}
-                        </SubMenu>
-                    })}
-
-                </Menu>
+                <MenuList subject={subject}
+                          menuClick={this.menuClick}/>
 
                 <div className="nk-content">
                     {nameList && nameList.map((item,n)=>{
