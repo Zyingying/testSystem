@@ -14,10 +14,9 @@ class SubjectAction {
           creatOne:'http://localhost:3000/subjectType/create',
           creatTwo:'http://localhost:3000/subjectItemType/create',
           creatTest:'http://localhost:3000/subject/create',
-          //获取题目，
-          fetch:'http://localhost:3000/subjectListByItemId/'
+          creatSubject:'http://localhost:3000/subject/create'
         };
-        this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail');
+        this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail','creatOneSuccess','creatOneFail','creatTwoSuccess','creatTwoFail','creatSubjectSuccess','creatSubjectFail');
         this._cacheAvatar = {};
     }
 
@@ -94,6 +93,52 @@ class SubjectAction {
         },
         error:()=>{
           this.creatOneFail();
+        }
+      })
+    }
+
+    creatTwo(subjectName,parentType){
+      let sUrl = this.url["creatTwo"];
+      $.ajax({
+        url:sUrl,
+        type:'post',
+        data:{
+          subjectName:subjectName,
+          parentType:parentType
+        },
+        dataType:'json',
+        success:(result)=>{
+          if(result.code == 200){
+            this.creatTwoSuccess(result.data);
+          }else{
+            this.creatTwoFail();
+          }
+        },
+        error:()=>{
+          this.creatTwoFail();
+        }
+      })
+    }
+
+    creatSubject(){
+      let sUrl = this.url["creatSubject"];
+      $.ajax({
+        url:sUrl,
+        type:'post',
+        data:{
+          subjectName:subjectName,
+          parentType:parentType
+        },
+        dataType:'json',
+        success:(result)=>{
+          if(result.code == 200){
+            this.creatSubjectSuccess(result.data);
+          }else{
+            this.creatSubjectFail();
+          }
+        },
+        error:()=>{
+          this.creatSubjectFail();
         }
       })
     }
