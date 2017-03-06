@@ -43,9 +43,9 @@ class Admin extends React.Component {
     }
 
     handleClick(e) {
-        this.setState({
-            funPage: e.key,
-        });
+        // this.setState({
+        //     funPage: e.key,
+        // });
     }
 
     handleSubmit(e) {
@@ -74,8 +74,8 @@ class Admin extends React.Component {
         // let getFieldDecorator = form.getFieldDecorator;
 
         return <div className="f-page admin">
-            <Menu onClick={this.handleClick}
-                  style={{ width: 240 ,height:this.state.pageHeight}}
+            <Menu onClick={this.handleClick.bind(this)}
+                  style={{ width: 240 ,height:thperis.state.pageHeight}}
                   defaultSelectedKeys={['1']}
                   defaultOpenKeys={['change','creat']}
                   mode="inline"
