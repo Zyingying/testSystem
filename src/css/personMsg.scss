@@ -1,8 +1,29 @@
 .f-page.personMsg{
   overflow: hidden;
   background: #f8f8f8;
+  
+  input,button,select,textarea{
+    outline:none
+  }
 
   .personMsg-Form{
-    margin-top: 36px;
+    width: 500px;
+    margin: 70px auto 0 auto;
+  }
+
+  .ant-form{
+    .ant-row{
+      label{
+        font-size: 15px;
+      }
+      .ant-input-lg{
+        font-size: 14px;
+      }
+      .change-sure{
+        width: 100%;
+        display: block;
+      }
+
+    }
   }
 }

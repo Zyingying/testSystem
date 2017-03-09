@@ -1,0 +1,32 @@
+.f-page.person{
+  overflow: hidden;
+  background: #f8f8f8;
+
+  .main-person{
+    width: 1000px;
+    overflow: hidden;
+    margin: 46px auto 0 auto;
+
+    .user{
+      width: 300px ;
+      padding: 50px 20px;
+      background: #fff;
+      float: left;
+    }
+    .user-img{
+      display: block;
+      width: 80px;
+      height: 80px;
+      background: #ddd;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    .show-person-list{
+      float: left;
+      margin-left: 20px;
+      background: #fff;
+    }
+  }
+
+}
