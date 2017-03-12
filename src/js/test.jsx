@@ -103,6 +103,7 @@ class Test extends React.Component {
     }
 
     submit(){
+      console.log(this.state.value);
 
     }
 
@@ -175,7 +176,7 @@ class Test extends React.Component {
                 })}
 
                 <div className="w-btn warning-btn"
-                     onClick={this.submit()}>提交试卷</div>
+                     onClick={()=>{this.submit()}}>提交试卷</div>
                 </div>
                 <BackTop />
             </div>
