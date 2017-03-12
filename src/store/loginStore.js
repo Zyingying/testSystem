@@ -7,7 +7,6 @@ const LoginAction = require("../action/loginAction");
 class LoginStore{
     constructor(){
         this.bindActions(LoginAction);
-
     }
 
     onLoginSuccess(result){
