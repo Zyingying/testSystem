@@ -64,7 +64,7 @@ class Nav extends React.Component {
                    </Link>}>
 
           <Menu.Item key="setting:1">
-            <Link to="/personMsg">
+            <Link to="/personal">
               <Icon type="user"/>个人主页
             </Link>
           </Menu.Item>

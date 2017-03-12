@@ -252,15 +252,6 @@ class Login extends React.Component {
                                    }}
                             />
                         </FormItem>
-                        <FormItem
-                            label="Radio 单选框："
-                            labelCol={{span: 6}}
-                            wrapperCol={{span: 18}} >
-                            <RadioGroup value="b">
-                                <Radio value="man">男</Radio>
-                                <Radio value="woman">女</Radio>
-                            </RadioGroup>
-                        </FormItem>
                         <Row>
                             <Col span="14" offset="6">
                                 <Button type="primary"

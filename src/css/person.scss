@@ -5,10 +5,10 @@
   .main-person{
     width: 1000px;
     overflow: hidden;
-    margin: 46px auto 0 auto;
+    margin: 70px auto 0 auto;
 
     .user{
-      width: 300px ;
+      width: 250px ;
       padding: 50px 20px;
       background: #fff;
       float: left;
@@ -21,11 +21,21 @@
       border-radius: 50%;
       margin: 0 auto;
     }
+    .psg-btn{
+      margin-top: 15px;
+      text-align: center;
+
+      button{
+        margin: 0 5px;
+      }
+    }
 
     .show-person-list{
       float: left;
+      width: 700px;
       margin-left: 20px;
       background: #fff;
+      padding: 15px 20px;
     }
   }
 

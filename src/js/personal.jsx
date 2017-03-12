@@ -19,7 +19,7 @@ class Personal extends React.Component {
         <div className="user">
             <img src="" alt="" className="user-img"/>
 
-          <div>
+          <div className="psg-btn">
             <Button type="primary">返回首页</Button>
             <Button type="danger">编辑资料</Button>
           </div>
@@ -28,14 +28,11 @@ class Personal extends React.Component {
         <Tabs defaultActiveKey="1"
               onChange={callback}
               className="show-person-list">
-          <TabPane tab="Tab 1" key="1">
-            Content of Tab Pane 1
+          <TabPane tab="已阅试题" key="1">
+            已阅试题
           </TabPane>
-          <TabPane tab="Tab 2" key="2">
-            Content of Tab Pane 2
-          </TabPane>
-          <TabPane tab="Tab 3" key="3">
-            Content of Tab Pane 3
+          <TabPane tab="已交试题" key="2">
+            已交试题
           </TabPane>
         </Tabs>
       </div>

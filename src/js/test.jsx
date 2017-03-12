@@ -4,7 +4,7 @@ const Nav = require("../module/nav");
 const SubjectAction = require('../action/subjectAction');
 const SubjectStore = require('../store/subjectStore');
 const connectToStores = require("alt-utils/lib/connectToStores");
-import {Radio} from 'antd';
+import {Radio ,BackTop, Icon, Button, notification } from 'antd';
 // import {Progress, Button, Icon} from 'antd';
 const RadioGroup = Radio.Group;
 
@@ -39,11 +39,11 @@ class Test extends React.Component {
         let restTime = 20;
         SubjectAction.ftechTest(testId);
         let that = this;
-        var time = setInterval(function(){
+        var timeCount = setInterval(function(){
             that.showRestTime(restTime);
             restTime--;
             if(restTime < 0){
-                clearInterval(time);
+                clearInterval(timeCount);
             }
         },1000);
     }
@@ -61,6 +61,28 @@ class Test extends React.Component {
         });
     }
 
+    timeOver(){
+      const key = `open${Date.now()}`;
+      const btnClick = function () {
+        // to hide notification box
+        notification.close(key);
+      };
+      const btn = (
+        <Button type="primary" size="small" onClick={btnClick}>
+          我知道了
+        </Button>
+      );
+      const args = {
+        message: '考试时间已到',
+        description: '亲爱的同学，您的考试时间已到，3秒过后自动提交试卷！',
+        duration: 0,
+        btn,
+        key
+      };
+      notification.open(args);
+
+    }
+
     showRestTime(time){
         let hour,min,second,final = {};
 
@@ -68,6 +90,8 @@ class Test extends React.Component {
             hour=Math.floor(time/60/60%24);
             min=Math.floor(time/60%60);
             second=Math.floor(time%60);
+        }if(time == 0){
+            this.timeOver();
         }
         final = {
             hour:(hour > 9 ? hour : '0' + hour),
@@ -76,6 +100,10 @@ class Test extends React.Component {
         }
 
         this.setState({finalTime:final})
+    }
+
+    submit(){
+
     }
 
     render() {
@@ -101,7 +129,8 @@ class Test extends React.Component {
                     </div>
                     <div className="hasDo">{count}/{testNum}</div>
                     <div className="restTime">
-                        {hour} : {min} : {second}
+                      <Icon type="clock-circle-o" />
+                        {hour}:{min}:{second}
                     </div>
                 </div>
 
@@ -113,7 +142,7 @@ class Test extends React.Component {
                     let myAnswer = this.state.value[n];
                     return <div className="testItem">
 
-                        <div className="title">
+                        <div className="title" key={n}>
                             <span>第{n + 1}题 . </span>{question}
 
                         </div>
@@ -145,8 +174,10 @@ class Test extends React.Component {
                     </div>;
                 })}
 
-                <div className="w-btn warning-btn">提交试卷</div>
+                <div className="w-btn warning-btn"
+                     onClick={this.submit()}>提交试卷</div>
                 </div>
+                <BackTop />
             </div>
         </div>;
 
