@@ -8,7 +8,8 @@
     "build": "NODE_ENV=development webpack --progress --profile --colors -p",
     "release": "NODE_ENV=production webpack --progress --profile --colors -p",
     "start_local": "NODE_ENV=local node server.js",
-    "start": "node server.js"
+    "start": "node server.js",
+    "winStart": "win.cmd"
   },
   "repository": {
     "type": "git",

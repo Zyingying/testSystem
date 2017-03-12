@@ -22,7 +22,7 @@ class LoginAction {
             url: sUrl,
             type: 'post',
             data:{
-                username:email,
+                email:email,
                 password:psd
             },
             dataType:"json",
@@ -44,7 +44,7 @@ class LoginAction {
             url: sUrl,
             type: 'post',
             data:{
-                username:email,
+                email:email,
                 password:psd
             },
             dataType:"json",
