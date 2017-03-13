@@ -14,13 +14,15 @@ class Test extends React.Component {
         super(props);
         this.state = {
             value: [],
+            answer:[],
             count: 0,
             percent: 0,
             finalTime:{
                 hour: '00',
                 min : '00',
                 second:'00'
-            }
+            },
+            list:false
         }
         this.onChange = this.onChange.bind(this);
 
@@ -103,7 +105,14 @@ class Test extends React.Component {
     }
 
     submit(){
+      let answer = [], {testList} = this.props ,i = 0;
       console.log(this.state.value);
+      console.log(testList);
+      for(i;i < testList.length;i++){
+        answer.push(testList[i].answer);
+      }
+      this.setState({answer:answer,list:true})
+      console.log(answer)
 
     }
 
@@ -114,7 +123,7 @@ class Test extends React.Component {
             return null;
         }
         let testNum = testList.length;
-        let count = this.state.count;
+        let {count,answer} = this.state;
         let progress = (count/testNum)*100;
 
 
@@ -136,6 +145,15 @@ class Test extends React.Component {
                 </div>
 
                 <div className="testMain">
+                  {this.state.list &&
+                  <div className="answerList">
+                    {answer.map((block,n)=>{
+                      <div className="w-block" key={n}>n</div>
+                    })}
+                  </div>
+
+                  }
+
 
 
                 { testList.map((list, n)=> {

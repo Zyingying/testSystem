@@ -66,8 +66,6 @@ class exam extends React.Component {
 
                 </div>
             </div>
-
-
         </div>;
 
     }
