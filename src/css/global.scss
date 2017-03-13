@@ -177,3 +177,22 @@
     border-top: 2px dotted #d1d1d1;
   }
 }
+
+.w-smaillList{
+  display: inline-block;
+  width: 40px ;
+  height: 40px;
+  color: #fff;
+  line-height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  margin:10px 0 10px 15px;
+
+  &.right{
+    background:  #1abc9c;
+  }
+
+  &.error{
+    background:  #ff6547;
+  }
+}

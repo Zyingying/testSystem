@@ -44,24 +44,25 @@
     .testMain{
       margin: 10px 0;
 
+      .testItem{
+        padding: 15px ;
+        border-bottom: 2px solid #d2ddf2;
+      }
+
       .w-btn{
         float: right;
         margin: 10px;
       }
-
-      .w-block{
-        display: inline-block;
-        width: 40px ;
-        height: 40px;
-        line-height: 40px;
-        text-align: center;
-        vertical-align: middle;
+      .answerList{
+        width: 100%;
+        padding: 10px 20px;
+        border-bottom: 2px solid #d2ddf2;
       }
+
     }
 
     .title{
       font-size: 16px;
-      margin: 15px;
     }
 
     .ant-radio-group{
@@ -72,11 +73,14 @@
         display: block;
         padding: 8px 12px;
         border: 1px solid #eee;
-        margin: 12px;
+        margin: 12px 0;
         font-size: 13px;
       }
       .chooseSelect{
         border:1px solid #1abc9c;
+      }
+      .error{
+        border: 1px solid #ff6547;
       }
     }
   }

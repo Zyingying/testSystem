@@ -95,19 +95,20 @@ class Test extends React.Component {
         }if(time == 0){
             this.timeOver();
         }
-        final = {
+        if(this.state.list == false){
+          final = {
             hour:(hour > 9 ? hour : '0' + hour),
             min:(min > 9 ? min : '0' + min),
             second:(second > 9 ? second : '0' + second)
+          }
+
+          this.setState({finalTime:final})
         }
 
-        this.setState({finalTime:final})
     }
 
     submit(){
       let answer = [], {testList} = this.props ,i = 0;
-      console.log(this.state.value);
-      console.log(testList);
       for(i;i < testList.length;i++){
         answer.push(testList[i].answer);
       }
@@ -123,7 +124,7 @@ class Test extends React.Component {
             return null;
         }
         let testNum = testList.length;
-        let {count,answer} = this.state;
+        let {count,answer,value} = this.state;
         let progress = (count/testNum)*100;
 
 
@@ -147,8 +148,11 @@ class Test extends React.Component {
                 <div className="testMain">
                   {this.state.list &&
                   <div className="answerList">
-                    {answer.map((block,n)=>{
-                      <div className="w-block" key={n}>n</div>
+                    答题情况
+                    <br/>
+                    {answer.map((ans,n)=>{
+                      let className = (ans.select === value[n] ? 'right' : 'error' )
+                      return <div className={"w-smaillList " + className} key={n}>{n}</div>
                     })}
                   </div>
 
@@ -158,7 +162,10 @@ class Test extends React.Component {
 
                 { testList.map((list, n)=> {
                     let {choice, answer, question, score} = list;
-                    let myAnswer = this.state.value[n];
+                    let myAnswer = this.state.value[n],judeg;
+                    if(answer.select === myAnswer){
+                      judeg = true;
+                    }
                     return <div className="testItem">
 
                         <div className="title" key={n}>
@@ -168,28 +175,38 @@ class Test extends React.Component {
                         <div>
                             <RadioGroup onChange={(e)=>{this.onChange(e,n)}} value={myAnswer}>
                                 <Radio value={choice.A}
-                                       className={ myAnswer == choice.A ?
-                                           'chooseSelect' : ''}>
+                                       className={ (myAnswer == choice.A )?
+                                         (judeg? 'chooseSelect' : '')
+                                         :
+                                         (judeg? 'error':'')}>
                                     {choice.A}
                                 </Radio>
                                 <Radio value={choice.B}
                                        className={ myAnswer == choice.B ?
-                                           'chooseSelect' : ''}>
+                                         (judeg? 'chooseSelect' : '')
+                                         :
+                                         (judeg? 'error':'')}>
                                     {choice.B}
                                 </Radio>
                                 <Radio value={choice.C}
                                        className={ myAnswer == choice.C ?
-                                    'chooseSelect' : ''}>
+                                         (judeg? 'chooseSelect' : '')
+                                         :
+                                         (judeg? 'error':'')}>
                                     {choice.C}
                                 </Radio>
                                 <Radio value={choice.D}
                                        className={ myAnswer == choice.D ?
-                                           'chooseSelect' : ''}>
+                                         (judeg? 'chooseSelect' : '')
+                                         :
+                                         (judeg? 'error':'')}>
                                     {choice.D}
                                 </Radio>
                             </RadioGroup>
 
                         </div>
+                        {this.state.list &&
+                        <div>答案解析：<br/>{list.answer.detail}</div>}
                     </div>;
                 })}
 
