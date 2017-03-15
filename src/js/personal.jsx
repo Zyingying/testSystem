@@ -1,5 +1,6 @@
 "use strict"
 const React = require("react");
+const {Link} = require("react-router");
 const Nav = require("../module/nav");
 import {Tabs,Button } from 'antd';
 const TabPane = Tabs.TabPane;
@@ -20,8 +21,12 @@ class Personal extends React.Component {
             <img src="" alt="" className="user-img"/>
 
           <div className="psg-btn">
-            <Button type="primary">返回首页</Button>
-            <Button type="danger">编辑资料</Button>
+            <Link to="/">
+              <Button type="primary">返回首页</Button>
+            </Link>
+            <Link to="/personMsg">
+              <Button type="danger">编辑资料</Button>
+            </Link>
           </div>
         </div>
 
