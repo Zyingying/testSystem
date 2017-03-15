@@ -126,6 +126,8 @@ class Test extends React.Component {
         let testNum = testList.length;
         let {count,answer,value,list} = this.state;
         let progress = (count/testNum)*100;
+        let showList = this.state.list;
+
 
 
         return <div className="f-page test">
@@ -165,6 +167,8 @@ class Test extends React.Component {
                     let myAnswer = this.state.value[n],judeg;
                     if(answer.select === myAnswer){
                       judeg = true;
+                    }else{
+                      judeg = false;
                     }
                     return <div className="testItem" key={n}>
 
@@ -176,22 +180,22 @@ class Test extends React.Component {
                             <RadioGroup onChange={(e)=>{this.onChange(e,n)}} value={myAnswer}>
                                 <Radio value={choice.A}
                                        className={ (myAnswer == choice.A )?
-                                         'chooseSelect':(list && judeg ? 'error':' ')}>
+                                         'chooseSelect':(showList && (choice.A==answer.select) ? 'error':' ')}>
                                     {choice.A}
                                 </Radio>
                                 <Radio value={choice.B}
                                        className={ myAnswer == choice.B ?
-                                         'chooseSelect':(list && judeg ? 'error':' ')}>
+                                         'chooseSelect':(showList && (choice.B==answer.select) ? 'error':' ')}>
                                     {choice.B}
                                 </Radio>
                                 <Radio value={choice.C}
                                        className={ myAnswer == choice.C ?
-                                         'chooseSelect':(list && judeg ? 'error':' ')}>
+                                         'chooseSelect':(showList && (choice.C==answer.select) ? 'error':' ')}>
                                     {choice.C}
                                 </Radio>
                                 <Radio value={choice.D}
                                        className={ myAnswer == choice.D ?
-                                         'chooseSelect':(list && judeg ? 'error':' ')}>
+                                         'chooseSelect':(showList && (choice.D==answer.select) ? 'error':' ')}>
                                     {choice.D}
                                 </Radio>
                             </RadioGroup>
