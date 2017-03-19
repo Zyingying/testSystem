@@ -115,6 +115,10 @@ class Login extends React.Component {
         }
     }
 
+    loginout(){
+        LoginAction.logOut();
+    }
+
 
     render() {
         const state = this.state;
@@ -263,6 +267,8 @@ class Login extends React.Component {
                                         }}>
                                     确定注册
                                 </Button>
+
+                                <button onClick={()=>{this.loginout()}}>退出</button>
                             </Col>
                         </Row>
                     </Form>

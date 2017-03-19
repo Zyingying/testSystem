@@ -22,9 +22,11 @@ class LoginStore{
     }
 
     onIsLoginSuccess(result){
-        this.result = result;
+        this.isLogin = result;
 
     }
+
+
 
     onRegisterFail(){}
     onLoginFail(){}

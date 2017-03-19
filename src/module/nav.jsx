@@ -17,9 +17,18 @@ class Nav extends React.Component {
     this.state = {
       firstCateId: this.props.currentCateId,
       showCateId: this.props.currentCateId,
-      theme: "dark"
+      theme: "dark",
+      user:''
     };
     LoginAction.isLogin();
+  }
+
+  static getStores() {
+    return [LoginStore];
+  }
+
+  static getPropsFromStores() {
+    return LoginStore.getState();
   }
 
   componentWillMount() {
@@ -33,8 +42,9 @@ class Nav extends React.Component {
 
   getLoginStore() {
     return this.logLinsten = (store) => {
-      if (store.result) {
-        this.setState({isLogin: true});
+      let status = store.isLogin.type;
+      if (status == 1) {
+        this.setState({isLogin: true,user:store.isLogin.user.email});
       } else {
         this.state.isLogin = false;
       }
@@ -42,7 +52,8 @@ class Nav extends React.Component {
   }
 
   render() {
-    let {isLogin} = this.state;
+    let {isLogin,user} = this.state;
+    console.log(this.props);
 
     return <Menu onClick={this.handleClick}
 
@@ -60,7 +71,7 @@ class Nav extends React.Component {
         <SubMenu className="li-personal"
                  title={
                    <Link to="/personal">
-                     <Icon type="user"/>个人中心
+                     <Icon type="user"/>{user}
                    </Link>}>
 
           <Menu.Item key="setting:1">

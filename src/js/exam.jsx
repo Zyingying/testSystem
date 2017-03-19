@@ -44,7 +44,6 @@ class exam extends React.Component {
         if(!subject){
             return null;
         }
-        console.log(this.props)
 
 
         return <div className="f-page exam">

@@ -107,6 +107,27 @@
     font-weight: 400;
 
   }
+  
+  .logo{
+    width: 80px;
+    height:80px;
+    margin: 15px auto;
+    background-size: 100% 100%;
+    
+    &.frontend{
+      background-image: url("../img/front-end.png")
+    }
+
+    &.android{
+      background-image: url("../img/android.png")
+    }
+
+    &.unknow{
+      background-image: url("../img/unknow.png")
+    }
+  }
+  
+  
 
   &:hover{
     border:1px solid #ccc;
@@ -117,12 +138,16 @@
       width: 100%;
       background: #00BC9B;
       position: relative;
-      top: 60px;
+      top: 70px;
+    }
+    .logo{
+      display: none;
     }
   }
 }
 .w-sildshow{
   margin-top: 46px;
+
   .w-banner{
     display: block;
     height: 300px;

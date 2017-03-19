@@ -77,11 +77,14 @@ class Test extends React.Component {
       const args = {
         message: '考试时间已到',
         description: '亲爱的同学，您的考试时间已到，3秒过后自动提交试卷！',
-        duration: 0,
         btn,
         key
       };
+      let that = this;
       notification.open(args);
+      setTimeout(function () {
+        that.submit();
+      },3000)
 
     }
 
