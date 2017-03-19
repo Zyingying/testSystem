@@ -26,6 +26,8 @@ class SubjectAction {
             url: sUrl,
             type: 'get',
             dataType:"json",
+            xhrFields: {withCredentials : true},
+            crossDomain: true,
             success: (result)=> {
                 if(result.code == 200) {
                     this.getAllSuccess(result.data);
@@ -45,6 +47,8 @@ class SubjectAction {
             url: sUrl + itemId,
             type: 'get',
             dataType:"json",
+            xhrFields: {withCredentials : true},
+            crossDomain: true,
             success: (result)=> {
                 if(result.code == 200) {
                     this.nameListSuccess(result.data);
@@ -64,6 +68,8 @@ class SubjectAction {
         url: sUrl + titleId,
         type: 'get',
         dataType:"json",
+        xhrFields: {withCredentials : true},
+        crossDomain: true,
         success: (result)=> {
             if(result.code == 200) {
                 this.ftechTestSuccess(result.data);
@@ -84,6 +90,8 @@ class SubjectAction {
         type:'post',
         data:{typename:typename},
         dataType:'json',
+        xhrFields: {withCredentials : true},
+        crossDomain: true,
         success:(result)=>{
           if(result.code == 200){
             this.creatOneSuccess(result.data);

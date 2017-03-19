@@ -25,6 +25,8 @@ class LoginAction {
                 email:email,
                 password:psd
             },
+            xhrFields: {withCredentials : true},
+            crossDomain: true,
             dataType:"json",
             success: (result)=> {
                 if(result.code == 200) {
@@ -47,6 +49,8 @@ class LoginAction {
                 email:email,
                 password:psd
             },
+            xhrFields: {withCredentials : true},
+            crossDomain: true,
             dataType:"json",
             success: (result)=> {
                 if(result.code == 200) {
@@ -67,6 +71,8 @@ class LoginAction {
             url: sUrl,
             type: 'get',
             dataType:"json",
+            xhrFields: {withCredentials : true},
+            crossDomain: true,
             success: (result)=> {
                 if(result.code == 200) {
                     this.logoutSuccess(result);
@@ -85,10 +91,12 @@ class LoginAction {
             url: sUrl,
             type: 'get',
             dataType:"json",
+            xhrFields: {withCredentials : true},
+            crossDomain: true,
             success: (result)=> {
                 if(result) {
                     this.isLoginSuccess(result);
-                }else{
+                }else {
                     this.isLoginFail();
                 }
             },
