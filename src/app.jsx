@@ -24,7 +24,6 @@ class App extends React.Component{
     }
 
 
-
     setCookie(){
         let query = this.props.location.query;
         let domain = location.host.replace(/^m\./, '.');

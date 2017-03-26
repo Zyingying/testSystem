@@ -51,3 +51,5 @@ webpack.config.js
 build
 #html
 html
+
+.idea
