@@ -9,6 +9,8 @@ const RadioGroup = Radio.Group;
 const connectToStores = require("alt-utils/lib/connectToStores");
 const PerMsgAction = require("../action/perMsgAction");
 const PerMsgStore = require("../store/perMsgStore");
+const LoginAction = require('../action/loginAction');
+const LoginStore = require('../store/loginStore');
 
 class personMsg extends React.Component {
   constructor(props) {
@@ -17,15 +19,17 @@ class personMsg extends React.Component {
     this.state = {
 
     }
+    LoginAction.isLogin();
   }
 
   static getStores() {
-    return [PerMsgStore];
+    return [PerMsgStore,LoginStore];
   }
 
   static getPropsFromStores() {
     return {
-      ...PerMsgStore.getState()
+      ...PerMsgStore.getState(),
+      ...LoginStore.getState()
     }
   }
 
@@ -35,6 +39,12 @@ class personMsg extends React.Component {
 
 
   render() {
+    console.log(this.props);
+    let {isLogin} = this.props;
+    if(!isLogin){
+      return null;
+    }
+    let {user,type} = isLogin;
 
     return <div className="f-page personMsg" ref="personalMsg">
       <div className="w-categories">
@@ -48,7 +58,7 @@ class personMsg extends React.Component {
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}
                   required="true">
-          <Input />
+          <Input value={user.email} disabled="true"/>
         </FormItem>
         <FormItem label="用户名"
                   labelCol={{span: 5}}

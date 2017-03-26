@@ -53,7 +53,6 @@ class Nav extends React.Component {
 
   render() {
     let {isLogin,user} = this.state;
-    console.log(this.props);
 
     return <Menu onClick={this.handleClick}
 
@@ -104,4 +103,4 @@ class Nav extends React.Component {
     /**/
   }
 }
-module.exports = Nav;
+module.exports = connectToStores(Nav);
