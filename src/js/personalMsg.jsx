@@ -1,7 +1,7 @@
 "use strict";
 const React = require("react");
 const Nav = require("../module/nav");
-import {Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, DatePicker,Radio} from 'antd';
+import {Form, Input, Select, Button, DatePicker,Radio, notification} from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -20,6 +20,7 @@ class personMsg extends React.Component {
 
     }
     LoginAction.isLogin();
+    PerMsgAction.getMsg();
   }
 
   static getStores() {
@@ -37,13 +38,26 @@ class personMsg extends React.Component {
 
   }
 
+  openNotification = () => {
+    notification.open({
+      message: '您还未登陆',
+      description: '即将跳转到登陆页登陆',
+      duration: 2,
+    });
+  };
 
   render() {
     console.log(this.props);
-    let {isLogin} = this.props;
+    let {isLogin,history} = this.props;
     if(!isLogin){
       return null;
     }
+    if(isLogin.type!=1){
+      this.openNotification();
+      setTimeout(function(){history.pushState(null,'/login');},2000)
+      return null;
+    }
+
     let {user,type} = isLogin;
 
     return <div className="f-page personMsg" ref="personalMsg">
