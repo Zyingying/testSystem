@@ -17,7 +17,12 @@ class personMsg extends React.Component {
     super(props);
 
     this.state = {
-
+      name:undefined,
+      gender:undefined,
+      tel:undefined,
+      birth:undefined,
+      school:undefined,
+      education:undefined
     }
     LoginAction.isLogin();
     PerMsgAction.getMsg();
@@ -34,6 +39,16 @@ class personMsg extends React.Component {
     }
   }
 
+  componentDidMount(){
+    // PerMsgStore.listen(this.getUserMsg())
+  }
+
+  // getUserMsg(){
+  //   this.listen = ()=>{
+  //
+  //   }
+  // }
+
   handleSubmit() {
 
   }
@@ -47,7 +62,7 @@ class personMsg extends React.Component {
   };
 
   render() {
-    console.log(this.props);
+
     let {isLogin,history} = this.props;
     if(!isLogin){
       return null;
@@ -78,37 +93,37 @@ class personMsg extends React.Component {
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}
                   required="true">
-          <Input />
+          <Input value={this.state.name} onChange={(e)=>{this.setState({name: e.target.value})}}/>
         </FormItem>
         <FormItem label="性别"
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}>
-          <RadioGroup>
-            <Radio value="a">保密</Radio>
-            <Radio value="b">男</Radio>
-            <Radio value="c">女</Radio>
+          <RadioGroup onChange={(e)=>{this.setState({gender: e.target.value})}} value={this.state.gender}>
+            <Radio value={0}>保密</Radio>
+            <Radio value={1}>男</Radio>
+            <Radio value={2}>女</Radio>
           </RadioGroup>
         </FormItem>
         <FormItem label="绑定手机"
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}>
-          <Input />
+          <Input value={this.state.tel} onChange={(e)=>{this.setState({tel: e.target.value})}}/>
         </FormItem>
         <FormItem label="生日"
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}>
-          <DatePicker />
+          <DatePicker value={this.state.birth} onChange={(date, dateString)=>{this.setState({birth: date})}}/>
         </FormItem>
 
         <FormItem label="学校"
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}>
-          <Input />
+          <Input value={this.state.school} onChange={(e)=>{this.setState({school: e.target.value})}}/>
         </FormItem>
         <FormItem label="学历"
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}>
-          <Select>
+          <Select onChange={(value)=>{this.setState({education:value})}} value={this.state.education} >
             <Option value="中专">中专</Option>
             <Option value="大专">大专</Option>
             <Option value="本科">本科</Option>
@@ -123,7 +138,7 @@ class personMsg extends React.Component {
         </FormItem>
 
         <FormItem labelCol={{span: 5}}
-                  wrapperCol={{span: 12}}>
+                  wrapperCol={{span: 12}} className="btn">
           <Button type="primary"
                   htmlType="submit"
                   className="change-sure">确认修改</Button>
