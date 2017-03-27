@@ -17,7 +17,6 @@ class SubjectAction {
           creatSubject:'http://localhost:3000/subject/create'
         };
         this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail','creatOneSuccess','creatOneFail','creatTwoSuccess','creatTwoFail','creatSubjectSuccess','creatSubjectFail');
-        this._cacheAvatar = {};
     }
 
     getAll(){

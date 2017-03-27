@@ -7,5 +7,9 @@ class PersonalMsgStore{
     constructor(){
         this.bindActions(PerMsgAction);
     }
+
+    onUpdateMsgSuccess(result){
+        this.result = result;
+    }
 }
 module.exports = Flux.createStore(PersonalMsgStore);
