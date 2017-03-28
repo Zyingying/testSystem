@@ -138,7 +138,7 @@ class personMsg extends React.Component {
         </FormItem>
 
         <FormItem labelCol={{span: 5}}
-                  wrapperCol={{span: 12}} className="btn">
+                  wrapperCol={{span: 12}} className="submit-btn">
           <Button type="primary"
                   htmlType="submit"
                   className="change-sure">确认修改</Button>

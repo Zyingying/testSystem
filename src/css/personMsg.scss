@@ -26,9 +26,16 @@
       .change-sure{
         width: 100%;
         display: block;
-
+        height: 35px;
       }
 
+    }
+  }
+
+  .submit-btn{
+    .ant-col-12{
+      float: none;
+      margin-left: 104px;
     }
   }
 }
