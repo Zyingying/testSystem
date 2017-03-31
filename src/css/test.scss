@@ -1,0 +1,87 @@
+.f-page.test{
+  overflow: hidden;
+  background: #eee;
+
+  .allTopic{
+    margin: 70px auto;
+    width: 950px;
+    overflow: hidden;
+    background: #fff;
+
+    .subject-progress{
+      background: #232c31;
+      padding: 15px 40px;
+    }
+    .progress{
+      height: 15px;
+      border-radius: 10px;
+      background: #ebedef;
+      width: 80%;
+      display: inline-block;
+
+      .progress-bar{
+        background: #1abc9c;
+        height: 100%;
+        border-radius: 15px;
+      }
+    }
+
+    .hasDo,.restTime{
+      font-size: 20px;
+      color: #fff;
+      display: inline-block;
+      margin-left: 20px;
+
+      i{
+        margin-right: 8px;
+      }
+    }
+
+    .hasDo{
+      margin-left: 10px;
+    }
+
+    .testMain{
+      margin: 10px 0;
+
+      .testItem{
+        padding: 15px ;
+        border-bottom: 2px solid #d2ddf2;
+      }
+
+      .w-btn{
+        float: right;
+        margin: 10px;
+      }
+      .answerList{
+        width: 100%;
+        padding: 10px 20px;
+        border-bottom: 2px solid #d2ddf2;
+      }
+
+    }
+
+    .title{
+      font-size: 16px;
+    }
+
+    .ant-radio-group{
+      display: block;
+
+
+      .ant-radio-wrapper{
+        display: block;
+        padding: 8px 12px;
+        border: 1px solid #eee;
+        margin: 12px 0;
+        font-size: 13px;
+      }
+      .chooseSelect{
+        border:1px solid #1abc9c;
+      }
+      .error{
+        border: 1px solid #ff6547;
+      }
+    }
+  }
+}

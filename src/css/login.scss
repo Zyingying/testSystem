@@ -1,0 +1,53 @@
+.login{
+  background: #f8f8f8;
+  padding: 50px 0;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  .ant-tabs{
+    width: 40%;
+    margin: 0 auto;
+    background: #fff;
+
+    >.ant-tabs-bar {
+      height: 60px;
+
+      >.ant-tabs-nav-container{
+        height: 60px !important;
+        line-height: 60px;
+      }
+      .ant-tabs-nav {
+        width: 100%;
+        display: flex;
+      }
+      .ant-tabs-tab{
+        flex: 1;
+        margin-right: 0;
+      }
+    }
+    .ant-tabs-content{
+      //padding: 20px;
+
+    }
+    .ant-btn-submit{
+      display: block;
+      width: 100%;
+      margin-bottom: 30px;
+    }
+
+  }
+
+
+
+
+
+  .ant-tabs-tab,.ant-tabs-tab-active {
+    font-size: 30px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+  }
+}

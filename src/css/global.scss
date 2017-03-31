@@ -1,0 +1,223 @@
+//首页模块
+.btn{
+  display: inline-block;
+  text-align: center;
+  padding: 10px 0;
+  width: 110px;
+  color: #FFF;
+  font-size: 14px;
+  border-radius: 3px;
+  border: none 0;
+  cursor: pointer;
+  line-height: normal;
+  outline: 0;
+  white-space: nowrap;
+
+}
+.none-btn{
+  display: none;
+}
+
+.w-categories{
+  background: #404040;
+  position: fixed;
+  z-index: 10;
+  width: 100%;
+
+
+  .ant-menu{
+    width: 70%;
+    min-width: 600px;
+    margin: 0 auto;
+
+    &:not(.ant-menu-horizontal){
+      .ant-menu-item-selected{
+        background-color: #404040;
+
+      }
+    }
+
+    >li{
+      width: 140px;
+      font-size: 15px;
+    }
+
+    .li-personal,.li-login{
+      float: right;
+    }
+
+    .ant-menu-item-group-title{
+      font-size: 13px;
+    }
+
+    .ant-menu-item,.ant-menu-submenu{
+      a{
+        color: #bbb;
+      }
+    }
+
+
+
+  }
+}
+.w-main{
+  background: #eee;
+  overflow: hidden;
+}
+.w-topic{
+  width: 70%;
+  margin: 20px auto;
+
+
+  h1{
+    font-size: 22px;
+  }
+  h2{
+    font-weight: 100;
+    font-size: 17px;
+    color: #aaa;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+  h1,h2{
+    text-align: center;
+  }
+}
+
+.w-testIndex{
+  width: 200px;
+  height: 200px;
+  padding: 15px;
+  margin: 20px 15px  ;
+  background: #fff;
+  border-radius: 5px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  border:1px solid #eee;
+
+  .test-title{
+    font-size: 15px ;
+    text-align: center;
+    vertical-align: middle;
+    color: #666;
+    margin: 15px;
+    overflow: hidden;
+    line-height: 1.4;
+    font-weight: 400;
+
+  }
+  
+  .logo{
+    width: 80px;
+    height:80px;
+    margin: 15px auto;
+    background-size: 100% 100%;
+    
+    &.frontend{
+      background-image: url("../img/front-end.png")
+    }
+
+    &.android{
+      background-image: url("../img/android.png")
+    }
+
+    &.unknow{
+      background-image: url("../img/unknow.png")
+    }
+  }
+  
+  
+
+  &:hover{
+    border:1px solid #ccc;
+
+
+    .exam-btn{
+      display: block;
+      width: 100%;
+      background: #00BC9B;
+      position: relative;
+      top: 70px;
+    }
+    .logo{
+      display: none;
+    }
+  }
+}
+.w-sildshow{
+  margin-top: 46px;
+
+  .w-banner{
+    display: block;
+    height: 300px;
+    outline: 0;
+
+    img{
+      margin: 0 auto;
+    }
+  }
+}
+
+.w-btn{
+  display: inline-block;
+  text-align: center;
+  padding: 10px 0;
+  width: 110px;
+  color: #FFF;
+  font-size: 14px;
+  border-radius: 3px;
+  border: none 0;
+  cursor: pointer;
+  line-height: normal;
+  outline: 0;
+  white-space: nowrap;
+  background-color: #eee;
+
+  &.btn-primary{
+    background: #00BC9B;
+
+    &:hover{
+      background: #00B091;
+    }
+  }
+
+  &.warning-btn{
+    background: #ff6547;
+    //float: left;
+  }
+}
+
+.w-changeMian{
+  margin-left: 240px;
+  padding: 15px;
+
+  .title{
+    font-size: 18px;
+    margin: 15px 0;
+  }
+
+  hr{
+    margin: 10px 0;
+    border-top: 2px dotted #d1d1d1;
+  }
+}
+
+.w-smaillList{
+  display: inline-block;
+  width: 40px ;
+  height: 40px;
+  color: #fff;
+  line-height: 40px;
+  text-align: center;
+  vertical-align: middle;
+  margin:10px 0 10px 15px;
+
+  &.right{
+    background:  #1abc9c;
+  }
+
+  &.error{
+    background:  #ff6547;
+  }
+}

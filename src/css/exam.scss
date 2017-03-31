@@ -1,0 +1,26 @@
+.f-page.exam{
+  overflow: hidden;
+  background: #eee;
+
+  .main-exam{
+    width: 1000px;
+    margin: 0px auto;
+    margin-top: 80px;
+
+    .ant-menu{
+      float: left;
+
+      .ant-menu-item-active, .ant-menu-submenu-title:hover {
+        background-color: #eaf8fe;
+      }
+    }
+
+    .nk-content{
+      margin-left: 260px;
+      background: #fff;
+      min-height: 85vh;
+      margin-bottom: 15px;
+    }
+  }
+}
+

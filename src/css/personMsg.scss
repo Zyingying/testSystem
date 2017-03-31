@@ -1,0 +1,41 @@
+.f-page.personMsg{
+  overflow: hidden;
+  background: #f8f8f8;
+  
+  input,button,select,textarea{
+    outline:none
+  }
+
+  .personMsg-Form{
+    width: 500px;
+    margin: 70px auto 0 auto;
+  }
+
+  .ant-form{
+    .ant-row{
+      label{
+        font-size: 15px;
+      }
+      .ant-input-lg{
+        font-size: 14px;
+      }
+      .btn{
+        left: 50%;
+        margin-left: -29%;
+      }
+      .change-sure{
+        width: 100%;
+        display: block;
+        height: 35px;
+      }
+
+    }
+  }
+
+  .submit-btn{
+    .ant-col-12{
+      float: none;
+      margin-left: 104px;
+    }
+  }
+}

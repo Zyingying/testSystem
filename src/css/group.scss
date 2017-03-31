@@ -1,0 +1,186 @@
+@import "./_vars";
+
+.f-page.group{
+  background: $asideBackground;
+  padding-bottom: $footerHeight;
+
+  .i-help{
+    position: fixed;
+    top: 50%;
+    left: size(12);
+    margin: size(-20) 0 0 0;
+  }
+
+  .f-body > .main{
+    text-align: center;
+    position: relative;
+    margin-bottom: $spacing-xl;
+
+    .mark{
+      position: absolute;
+      right: $spacing-l;
+      top: size(-20);
+      z-index: 2;
+    }
+
+    .tips{
+      margin-bottom: $spacing-l;
+    }
+  }
+
+  .w-memberList{
+    text-align: center;
+    margin: $spacing-xl 0;
+  }
+
+  .w-members{
+    margin: size(18) 0
+  }
+
+  .w-goods{
+    margin-top: $spacing-xl;
+  }
+
+  .w-countdown{
+    display: block;
+    padding: size(18);
+    text-align: center;
+
+    position: relative;
+
+    &:before,
+    &:after{
+      position: absolute;
+      height: 1px;
+      background: $controlBorder;
+      overflow: hidden;
+      content:'';
+      top: 50%;
+    }
+
+    &:before{
+      left:0;
+      right: 80%;
+    }
+
+    &:after{
+      left: 80%;
+      right:0;
+    }
+  }
+
+  .result{
+    text-align: center;
+    margin-top: $spacing-xl;
+
+    .icon{
+      font-size: size(15);
+      color: $successColor;
+
+      i{
+        margin-bottom: $spacing-s;
+      }
+    }
+
+    p{
+      margin: $spacing-s 0;
+
+      &.orderId{
+        color: $asideColor;
+      }
+    }
+  }
+
+  .about{
+    padding: $spacing-xl;
+    color: $asideColor;
+    line-height:1.5;
+  }
+
+  .w-operation{
+    background: #fff;
+  }
+}
+
+.f-layer.join{
+  background: $asideBackground;
+
+  .info,
+  .sku{
+    background: $white;
+    padding: 0 size(15);
+  }
+
+  .info{
+    border-bottom: 1px solid #E6E6E6;
+    padding-bottom: size(8);
+
+    p{
+      overflow: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    h2{
+      margin-bottom: size(8);
+    }
+
+    em{
+      font-size: size(14);
+      max-width: 9em;
+      display: inline-block;
+      vertical-align: text-bottom;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      position: relative;
+      padding: 0 .55em;
+
+      &:before{
+        position: absolute;
+        left: 0;
+        top: 0;
+        content: '“'
+      }
+
+      &:after{
+        position: absolute;
+        right: 0;
+        top: 0;
+        content: '”'
+      }
+    }
+
+    .w-face{
+      margin: size(-7) size(15) 0 0;
+      vertical-align: middle;
+    }
+  }
+
+  .sku{
+    overflow: auto;
+    -webkit-overflow-scrolling: touch;
+    h2{
+      padding: size(8) 0;
+    }
+    .w-sku{
+      margin: 0 size(8) size(8) 0;
+    }
+  }
+
+  .submit{
+    text-align: center;
+    padding: size(8) 0;
+
+    .w-btn{
+      height: size(40);
+      line-height: size(40);
+      width: size(276);
+    }
+  }
+
+  .i-close{
+    position: absolute;
+    right:size(12);
+    top:size(12);
+  }
+}

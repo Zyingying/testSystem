@@ -1,0 +1,69 @@
+.f-page.admin{
+  overflow: hidden;
+  background: #f8f8f8;
+
+  .admin-menu{
+
+    &.ant-menu-root{
+      float: left;
+    }
+
+    .ant-menu-submenu-title{
+      font-size: 16px;
+    }
+
+    .ant-menu-item{
+      font-size: 13px;
+    }
+
+
+    .ant-menu-item-selected {
+      background-color: #333;
+
+    }
+
+
+  }
+
+  .w-changeMian{
+    .ant-form{
+      .ant-input{
+        width: 210px;
+      }
+
+
+
+      .ant-row{
+        //display: inline-block;
+        margin-bottom: 20px;
+
+        .ant-form-item-control{
+
+
+          &:before{
+            content: " ";
+            display: inline;
+          }
+          &:after{
+            content: " ";
+            display: inline;
+          }
+
+        }
+      }
+      .ant-row:before, .ant-row:after {
+        content: " ";
+        display: inline;
+      }
+
+      .ant-form-item {
+        argin-bottom: 0;
+        height: 50px;
+      }
+
+    }
+  }
+
+
+
+}

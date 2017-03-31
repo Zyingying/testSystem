@@ -1,0 +1,80 @@
+@import "./_vars";
+
+.f-page.userGroup{
+
+  .t-err,.red{
+    color: $red;
+  }
+
+  .t-suc{
+    color: $green;
+  }
+  .t-warning{
+    color: #ee7622;
+  }
+  .gray{
+    color: $gray-lighten;
+  }
+  .group-list{
+    margin:$spacing*4 0;
+    //padding-top: $spacing;
+    background: #f8f8f8;
+  }
+
+  .list-main{
+    margin:$spacing-xl 0;
+    padding:0 0 $spacing-xs $spacing;
+    background: #fff;
+
+    > .order-num{
+      margin:$spacing-xl $spacing-xs;
+    }
+    .time{
+      float: right;
+    }
+    > .order-content{
+      padding: $spacing-s $spacing-s;
+      border-bottom: 1px solid #e6e6e6;
+      border-left:0;
+      border-right:0;
+
+      .order-img{
+        width: size(60);
+        vertical-align: top;
+        display: inline-block;
+        padding:$spacing-xs;
+        justify-content: center;
+
+      }
+    }
+    .order-p{
+      display: inline-block;
+      padding: 0 $spacing-xs;
+      line-height: 1.7;
+      width: 2.1rem;
+      width: calc(100% - 0.8rem);
+
+      .good-name{
+        font-size: $spacing-xl;
+
+      }
+    }
+    .list-detail{
+      margin: $spacing-s 0;
+      overflow: hidden;
+      line-height: size(36);
+      button{
+        font-size: inherit;
+        min-width: 0;
+        margin:0 0 0 $spacing-xs;
+        padding: 0 $spacing-xs;
+      }
+      .btns{
+        float: right;
+        margin-right: $spacing;
+      }
+    }
+  }
+}
+
+
