@@ -24,8 +24,9 @@ class personMsg extends React.Component {
       school:undefined,
       education:undefined
     }
-    LoginAction.isLogin();
-    PerMsgAction.getMsg();
+
+    PerMsgStore.listen(this.getUserMsg())
+
   }
 
   static getStores() {
@@ -40,17 +41,33 @@ class personMsg extends React.Component {
   }
 
   componentDidMount(){
-    // PerMsgStore.listen(this.getUserMsg())
+    LoginAction.isLogin();
+    PerMsgAction.getUserDetail();
   }
 
-  // getUserMsg(){
-  //   this.listen = ()=>{
-  //
-  //   }
-  // }
+  componentWillUnmount(){
+    PerMsgStore.unlisten(this.listener)
+  }
 
-  handleSubmit() {
+  getUserMsg(){
+    return this.listener = (store)=>{
+      console.log(store);
+      let {gender,nickname,tel,school,education,birth} = store.getUserMsg;
+      this.setState({
+        name:nickname,
+        gender:gender,
+        tel:tel,
+        birth:birth,
+        school:school,
+        education:education
+      })
+    }
+  }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    let {name,gender,tel,birth,school,education} = this.state;
+    PerMsgAction.updateMsg(name,gender,tel,birth,school,education);
   }
 
   openNotification = () => {
@@ -63,7 +80,7 @@ class personMsg extends React.Component {
 
   render() {
 
-    let {isLogin,history} = this.props;
+    let {isLogin,history,userMsg} = this.props;
     if(!isLogin){
       return null;
     }
@@ -77,17 +94,18 @@ class personMsg extends React.Component {
 
     return <div className="f-page personMsg" ref="personalMsg">
       <div className="w-categories">
-        <Nav/>
+        <Nav isLogin={isLogin.type == 1}
+             user={isLogin.user.email}/>
       </div>
 
-      <Form onSubmit={this.handleSubmit}
+      <Form onSubmit={this.handleSubmit.bind(this)}
             className="personMsg-Form"
             layout="inline">
         <FormItem label="账号邮箱"
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}
                   required="true">
-          <Input value={user.email} disabled="true"/>
+          <Input value={user.email} disabled={true}/>
         </FormItem>
         <FormItem label="用户名"
                   labelCol={{span: 5}}
@@ -141,7 +159,7 @@ class personMsg extends React.Component {
                   wrapperCol={{span: 12}} className="submit-btn">
           <Button type="primary"
                   htmlType="submit"
-                  className="change-sure">确认修改</Button>
+                  className="change-sure" >确认修改</Button>
         </FormItem>
 
       </Form>

@@ -15,12 +15,9 @@ class Nav extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      firstCateId: this.props.currentCateId,
-      showCateId: this.props.currentCateId,
-      theme: "dark",
-      user:''
+      theme: "dark"
     };
-    LoginAction.isLogin();
+
   }
 
   static getStores() {
@@ -32,27 +29,12 @@ class Nav extends React.Component {
   }
 
   componentWillMount() {
-    LoginStore.listen(this.getLoginStore());
   }
 
-  componentWillUnmount() {
-    LoginStore.unlisten(this.logLinsten);
 
-  }
-
-  getLoginStore() {
-    return this.logLinsten = (store) => {
-      let status = store.isLogin.type;
-      if (status == 1) {
-        this.setState({isLogin: true,user:store.isLogin.user.email});
-      } else {
-        this.state.isLogin = false;
-      }
-    }
-  }
 
   render() {
-    let {isLogin,user} = this.state;
+    let {isLogin,logout,user} = this.props;
 
     return <Menu onClick={this.handleClick}
 
@@ -88,7 +70,7 @@ class Nav extends React.Component {
               <Icon type="setting"/>管理后台
             </Link>
           </Menu.Item>
-          <Menu.Item key="setting:4">
+          <Menu.Item key="setting:4" onClick={()=>{logout()}}>
             <Icon type="poweroff"/>退出登录</Menu.Item>
         </SubMenu>
         :
