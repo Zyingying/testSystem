@@ -65,6 +65,7 @@ class LoginAction {
             }
         });
     }
+
     logOut(){
         let sUrl = this.url["logOut"];
         $.ajax({

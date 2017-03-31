@@ -9,7 +9,10 @@ class PersonalMsgStore{
     }
 
     onUpdateMsgSuccess(result){
-        this.result = result;
+        this.setUserMsg = result;
+    }
+    onGetMsgSuccess(result){
+        this.getUserMsg = result;
     }
 }
 module.exports = Flux.createStore(PersonalMsgStore);

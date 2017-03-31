@@ -4,13 +4,31 @@ class PersonalMsgAction {
 
     constructor(){
         this.url = {
+            "userDetail":'http://localhost:3000/user/getDetail',
             'update':'http://localhost:3000/user/update'
         };
-        this.generateActions('updateMsgSuccess','updateMsgFail');
+        this.generateActions('getMsgSuccess','getMsgFail','updateMsgSuccess','updateMsgFail');
     }
 
-    getMsg(){
-        
+    getUserDetail(){
+        let sUrl = this.url['userDetail'];
+        $.ajax({
+            url:sUrl,
+            type:'get',
+            dataType:'json',
+            xhrFields: {withCredentials : true},
+            crossDomain: true,
+            success:(result)=>{
+                if(result.code == 200){
+                    this.getMsgSuccess(result.data);
+                }else{
+                    this.getMsgFail();
+                }
+            },
+            error:()=>{
+                this.getMsgFail();
+            }
+        })
     }
 
     updateMsg(name,gender,tel,birth,school,education){
