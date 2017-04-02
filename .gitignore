@@ -40,10 +40,8 @@ src/css/*.css
 src/css/*.map
 src/design/*.png
 
-server.js
 .gitignore
 win.cmd
-webpack.config.js
 .babelrc
 
 #build
