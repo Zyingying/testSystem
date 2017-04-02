@@ -35,12 +35,7 @@ class Personal extends React.Component {
 
   componentWillMount() {
     LoginStore.listen(this.getLoginStore());
-    LoginAction.isLogin();
-  }
-
-  logout(){
-    LoginAction.logOut();
-    LoginAction.isLogin();
+    // LoginAction.isLogin();
   }
 
   componentWillUnmount() {

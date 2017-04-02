@@ -29,11 +29,11 @@ class LoginAction {
             crossDomain: true,
             dataType:"json",
             success: (result)=> {
-                if(result.code == 200) {
+                // if(result.code == 200) {
                     this.loginSuccess(result);
-                }else{
-                    this.loginFail();
-                }
+                // }else{
+                //     this.loginFail();
+                // }
             },
             error: ()=> {
                 this.loginFail();

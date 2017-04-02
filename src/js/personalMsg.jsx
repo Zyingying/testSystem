@@ -40,8 +40,10 @@ class personMsg extends React.Component {
     }
   }
 
+
+
   componentDidMount(){
-    LoginAction.isLogin();
+    // LoginAction.isLogin();
     PerMsgAction.getUserDetail();
   }
 
@@ -81,21 +83,11 @@ class personMsg extends React.Component {
   render() {
 
     let {isLogin,history,userMsg} = this.props;
-    if(!isLogin){
-      return null;
-    }
-    if(isLogin.type!=1){
-      this.openNotification();
-      setTimeout(function(){history.pushState(null,'/login');},2000)
-      return null;
-    }
 
-    let {user,type} = isLogin;
 
     return <div className="f-page personMsg" ref="personalMsg">
       <div className="w-categories">
-        <Nav isLogin={isLogin.type == 1}
-             user={isLogin.user.email}/>
+        <Nav />
       </div>
 
       <Form onSubmit={this.handleSubmit.bind(this)}
@@ -105,7 +97,7 @@ class personMsg extends React.Component {
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}
                   required="true">
-          <Input value={user.email} disabled={true}/>
+          <Input value={"2"} disabled={true}/>
         </FormItem>
         <FormItem label="用户名"
                   labelCol={{span: 5}}
