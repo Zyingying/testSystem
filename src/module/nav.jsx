@@ -29,12 +29,22 @@ class Nav extends React.Component {
   }
 
   componentWillMount() {
+    LoginAction.isLogin();
+  }
+
+  logout(){
+    LoginAction.logOut();
+    LoginAction.isLogin();
+
   }
 
 
 
   render() {
-    let {isLogin,logout,user} = this.props;
+    let {isLogin,logout} = this.props,user;
+    if(isLogin && isLogin.type == 1){
+      user = isLogin.user.email;
+    }
 
     return <Menu onClick={this.handleClick}
 
@@ -70,7 +80,7 @@ class Nav extends React.Component {
               <Icon type="setting"/>管理后台
             </Link>
           </Menu.Item>
-          <Menu.Item key="setting:4" onClick={()=>{logout()}}>
+          <Menu.Item key="setting:4" onClick={()=>{this.logout()}}>
             <Icon type="poweroff"/>退出登录</Menu.Item>
         </SubMenu>
         :

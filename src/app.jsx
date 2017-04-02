@@ -10,18 +10,22 @@ const WeixinUtil = require("./weixinUtil");
 const MobileUtil = require("./mobileUtil");
 
 
+
 class App extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            loading: false
+            loading: false,
+            isLogin: undefined
         };
 
         this.listenAjax();
         this.setCookie();
 
     }
+
+
 
 
     setCookie(){
@@ -49,6 +53,7 @@ class App extends React.Component{
         }
     }
 
+
     listenAjax(){
         $(document).on('ajaxBeforeSend', ()=>{
             setTimeout(()=>this.setState({loading: true}),0);
@@ -60,6 +65,7 @@ class App extends React.Component{
     }
 
     render(){
+        console.log(this.props);
         return <div>
                     {this.props.children}
                     {this.state.loading && <div className="w-loading"></div>}

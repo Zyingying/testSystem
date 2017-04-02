@@ -16,11 +16,14 @@ const Exam = require("./js/exam");
 const Test = require("./js/test");
 const Admin = require("./js/admin");
 
+// const LoginAction = require('./action/loginAction');
+// const LoginStore = require('./store/loginStore');
+// const connectToStores = require("alt-utils/lib/connectToStores");
 
-const mobileUtil = require("./mobileUtil");
+var isLogin = isLogin();
 
 function requireLogin(nextState, replace){
-    if(!mobileUtil.isLogin()){
+    if(!isLogin){
         if(window.__needReloadForLogin){
             // replace(null, nextState.location.pathname);
             window.location.reload();
@@ -29,17 +32,40 @@ function requireLogin(nextState, replace){
         }
     }
 }
+
+function isLogin(){
+
+    let sUrl = 'http://localhost:3000/user/isLogin';
+    $.ajax({
+        url: sUrl,
+        type: 'get',
+        dataType:"json",
+        xhrFields: {withCredentials : true},
+        crossDomain: true,
+        success: (result)=> {
+            if (result.type !==1 ){
+                requireLogin();
+                return false;
+            }
+        },
+        error: ()=> {
+            requireLogin();
+            return false;
+        }
+    });
+
+}
 // onEnter={requireLogin}
 
 let routes = <Router history={createHashHistory()}>
                 <Route path="/" component={App}>
                     <IndexRoute component={Index} />
-                    <Route path="login" components={Login}/>
-                    <Route path="personMsg" component={personMsg} />
+                    <Route path="login" components={Login} />
+                    <Route path="personMsg" component={personMsg} onEnter={isLogin}/>
                     <Route path="exam" component={Exam}/>
                     <Route path="test" component={Test}/>
-                    <Route path="personal" component={Personal}/>
-                    <Route path="admin" component={Admin}/>
+                    <Route path="personal" component={Personal} onEnter={isLogin}/>
+                    <Route path="admin" component={Admin} onEnter={isLogin}/>
                 </Route>
             </Router>;
 ReactDom.render(routes,document.getElementById("App"));
