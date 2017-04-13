@@ -47,9 +47,7 @@ class exam extends React.Component {
 
 
         return <div className="f-page exam">
-            <div className="w-categories">
                 <Nav/>
-            </div>
             <div className="main-exam">
                 <MenuList subject={subject}
                           menuClick={this.menuClick}/>

@@ -3,6 +3,7 @@
  */
 "use strict";
 const Flux = require("pin-alt/src/flux");
+import { message } from 'antd';
 class LoginAction {
 
     constructor(){
@@ -13,7 +14,6 @@ class LoginAction {
             isLogin:'http://localhost:3000/user/isLogin'
         };
         this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail','isLoginSuccess','isLoginFail');
-        this._cacheAvatar = {};
     }
 
     login(email,psd){

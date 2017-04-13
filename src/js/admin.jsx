@@ -11,7 +11,6 @@ const SubjectAction = require('../action/subjectAction');
 const SubjectStore = require('../store/subjectStore');
 const connectToStores = require("alt-utils/lib/connectToStores");
 
-// const adminForm = CreateForm()( React.creatClass({
 class Admin extends React.Component {
 
     constructor(props) {
@@ -46,6 +45,7 @@ class Admin extends React.Component {
         // this.setState({
         //     funPage: e.key,
         // });
+        console.log(e)
     }
 
     handleSubmit(e) {
@@ -115,7 +115,7 @@ class Admin extends React.Component {
 
                 <hr/>
 
-                <AdminForm c={this.handleSubmit.bind(this)}/>
+                <AdminForm num={this.handleSubmit.bind(this)}/>
 
             </div>
         </div>;

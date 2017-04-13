@@ -17,7 +17,6 @@ class Index extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            isLogin:false
         }
     }
 
@@ -31,17 +30,12 @@ class Index extends React.Component {
 
 
 
-
-
-
     render() {
         let state = this.state,
             title = '';
         return <div className="f-page index">
 
-                <div className="w-categories">
-                    <Nav isLogin={state.isLogin}/>
-                </div>
+                    <Nav/>
 
                 <Carousel autoplay="true" className="w-sildshow">
                     <div>

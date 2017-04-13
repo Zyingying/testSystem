@@ -21,7 +21,7 @@ class App extends React.Component{
         };
 
         this.listenAjax();
-        this.setCookie();
+        // this.setCookie();
 
     }
 
@@ -65,7 +65,6 @@ class App extends React.Component{
     }
 
     render(){
-        console.log(this.props);
         return <div>
                     {this.props.children}
                     {this.state.loading && <div className="w-loading"></div>}

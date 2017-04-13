@@ -9,6 +9,8 @@ const LoginAction = require('../action/loginAction');
 const LoginStore = require('../store/loginStore');
 const connectToStores = require("alt-utils/lib/connectToStores");
 
+const defaultImg = require('../img/github-5.png')
+
 class Personal extends React.Component {
 
 
@@ -59,15 +61,11 @@ class Personal extends React.Component {
     let {isLogin,user} = this.state;
 
     return <div className="f-page person">
-      <div className="w-categories">
-        <Nav isLogin={isLogin}
-             user={user}
-             logout={this.logout.bind(this)}/>
-      </div>
+        <Nav/>
 
       <div className="main-person">
         <div className="user">
-            <img src="" alt="" className="user-img"/>
+            <img src={defaultImg} alt="" className="user-img"/>
 
           <div className="psg-btn">
             <Link to="/">

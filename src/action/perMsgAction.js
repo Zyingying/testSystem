@@ -37,7 +37,7 @@ class PersonalMsgAction {
             url:sUrl,
             type:'post',
             data:{
-                nikename:name,
+                nickname:name,
                 gender:gender,
                 tel:tel,
                 birthday:birth,
@@ -49,7 +49,7 @@ class PersonalMsgAction {
             crossDomain: true,
             success:(result)=>{
                 if(result.code == 200){
-                    this.updateMsgSuccess(result.data);
+                    this.updateMsgSuccess(result.msg);
                 }else{
                     this.updateMsgFail();
                 }

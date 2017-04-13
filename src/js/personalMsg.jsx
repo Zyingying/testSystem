@@ -1,7 +1,7 @@
 "use strict";
 const React = require("react");
 const Nav = require("../module/nav");
-import {Form, Input, Select, Button, DatePicker,Radio, notification} from 'antd';
+import {Form, Input, Select, Button, DatePicker,Radio, notification,message} from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioGroup = Radio.Group;
@@ -63,6 +63,9 @@ class personMsg extends React.Component {
         school:school,
         education:education
       })
+      if(store && store.setUserMsg){
+        message.success(store.setUserMsg + ',修改成功',2);
+      }
     }
   }
 
@@ -70,15 +73,9 @@ class personMsg extends React.Component {
     e.preventDefault();
     let {name,gender,tel,birth,school,education} = this.state;
     PerMsgAction.updateMsg(name,gender,tel,birth,school,education);
+    PerMsgAction.getUserDetail();
   }
 
-  openNotification = () => {
-    notification.open({
-      message: '您还未登陆',
-      description: '即将跳转到登陆页登陆',
-      duration: 2,
-    });
-  };
 
   render() {
 
@@ -86,10 +83,7 @@ class personMsg extends React.Component {
 
 
     return <div className="f-page personMsg" ref="personalMsg">
-      <div className="w-categories">
         <Nav />
-      </div>
-
       <Form onSubmit={this.handleSubmit.bind(this)}
             className="personMsg-Form"
             layout="inline">
@@ -97,7 +91,7 @@ class personMsg extends React.Component {
                   labelCol={{span: 5}}
                   wrapperCol={{span: 12}}
                   required="true">
-          <Input value={"2"} disabled={true}/>
+          <Input value={window._test_data.email} disabled={true}/>
         </FormItem>
         <FormItem label="用户名"
                   labelCol={{span: 5}}
@@ -119,11 +113,11 @@ class personMsg extends React.Component {
                   wrapperCol={{span: 12}}>
           <Input value={this.state.tel} onChange={(e)=>{this.setState({tel: e.target.value})}}/>
         </FormItem>
-        <FormItem label="生日"
-                  labelCol={{span: 5}}
-                  wrapperCol={{span: 12}}>
-          <DatePicker value={this.state.birth} onChange={(date, dateString)=>{this.setState({birth: date})}}/>
-        </FormItem>
+        {/*<FormItem label="生日"*/}
+                  {/*labelCol={{span: 5}}*/}
+                  {/*wrapperCol={{span: 12}}>*/}
+          {/*<DatePicker value={this.state.birth} onChange={(date, dateString)=>{this.setState({birth: date})}}/>*/}
+        {/*</FormItem>*/}
 
         <FormItem label="学校"
                   labelCol={{span: 5}}
@@ -141,11 +135,11 @@ class personMsg extends React.Component {
             <Option value="博士">博士</Option>
           </Select>
         </FormItem>
-        <FormItem label="简介"
-                  labelCol={{span: 5}}
-                  wrapperCol={{span: 12}}>
-          <Input type="textarea" rows={4} />
-        </FormItem>
+        {/*<FormItem label="简介"*/}
+                  {/*labelCol={{span: 5}}*/}
+                  {/*wrapperCol={{span: 12}}>*/}
+          {/*<Input type="textarea" rows={4} />*/}
+        {/*</FormItem>*/}
 
         <FormItem labelCol={{span: 5}}
                   wrapperCol={{span: 12}} className="submit-btn">
