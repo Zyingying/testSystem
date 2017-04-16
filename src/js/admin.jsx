@@ -42,9 +42,9 @@ class Admin extends React.Component {
     }
 
     handleClick(e) {
-        // this.setState({
-        //     funPage: e.key,
-        // });
+        this.setState({
+            funPage: e.key,
+        });
         console.log(e)
     }
 
@@ -71,6 +71,7 @@ class Admin extends React.Component {
         if(!subject){
             return null;
         }
+        let {funPage} = this.state;
         // let getFieldDecorator = form.getFieldDecorator;
 
         return <div className="f-page admin">
@@ -115,7 +116,7 @@ class Admin extends React.Component {
 
                 <hr/>
 
-                <AdminForm num={this.handleSubmit.bind(this)}/>
+                <AdminForm funPage={funPage}/>
 
             </div>
         </div>;

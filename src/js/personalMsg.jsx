@@ -54,9 +54,9 @@ class personMsg extends React.Component {
   getUserMsg(){
     return this.listener = (store)=>{
       console.log(store);
-      let {gender,nickname,tel,school,education,birth} = store.getUserMsg;
+      let {gender,nikename,tel,school,education,birth} = store.getUserMsg;
       this.setState({
-        name:nickname,
+        name:nikename,
         gender:gender,
         tel:tel,
         birth:birth,
