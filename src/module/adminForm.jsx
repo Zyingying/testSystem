@@ -1,8 +1,11 @@
 "use strict"
 const React = require("react");
-import {Form, Input, Button, Checkbox ,Icon} from 'antd';
+import {Form, Input, Button, Checkbox ,Icon ,message} from 'antd';
 const FormItem = Form.Item;
 const CreateForm = Form.create;
+const AdminAction = require('../action/adminAction');
+const AdminStore = require('../store/adminStore');
+
 
 class AdminForm extends React.Component {
 
@@ -13,9 +16,31 @@ class AdminForm extends React.Component {
     };
   }
 
+  addOption(option){
+    if(option < 4 && option > 0){
+        this.setState({option:option+1})
+    }else{
+        message.error('选项数量不符，超过4个选项')
+    }
+  }
+
+  cutOption(option){
+      if(option > 2){
+          this.setState({option:option - 1})
+      }else{
+          message.error('选项数量不符，不能低于两个选项')
+      }
+  }
+  submit(funPage){
+      switch (funPage){
+          case 4:
+              AdminAction.creatLOne()
+      }
+  }
+
 
   render() {
-    let funPage = 0;
+    let funPage = 0,items = [],count = 0;
         funPage = this.props.funPage;
     let {option} = this.state;
 
@@ -27,7 +52,7 @@ class AdminForm extends React.Component {
           (()=>{
           switch (funPage){
             case 4:
-              return  <FormItem>
+              return  <FormItem >
                 {getFieldDecorator('level_one', {
                   rules: [{ required: true, message: '您输入的一级目录为空!' }],
                 })(
@@ -93,23 +118,31 @@ class AdminForm extends React.Component {
                   <Input addonBefore={<Icon type="clock-circle" />} placeholder="题目" />
                 )}
                 </FormItem>
-                <div> 选项
-                  <br/>
+                <FormItem>
+                    <h3>答案选项</h3>
 
                   {(()=>{
-                    for( var i=1;i <= funPage;i++){
-                      <Input placeholder={"选项"+i} />
+
+                    for(count;count < option;count++){
+                        items.push(<Input placeholder={"选项"+(count+1)} className="input-option"/> );
                     }
                   })()}
-
-
-                </div>
-                <FormItem>{getFieldDecorator('lever_two', {
-                  rules: [{ required: true, message: '您输入的二级类目为空!' }],
-                })(
-                  <Input addonBefore={<Icon type="menu-unfold" />} placeholder="所属二级类目" />
-                )}
+                    {items}
+                    <Icon type="plus-square" onClick={()=>{this.addOption(option)}}/>
+                    <Icon type="minus-square" onClick={()=>{this.cutOption(option)}}/>
+                  <br/>
                 </FormItem>
+                <FormItem>
+                  <h3>答案</h3>
+                  <Input placeholder="必须和选项其中一个值相等" />
+                  <br/>
+                  <Input type="textarea" rows={4} placeholder="答案解析，选填"/>
+                </FormItem>
+
+                <FormItem>
+                   <h3>此题分值</h3>
+                   <Input placeholder="eg:2/4/6/8,不填则默认答卷剩余分数平均到不填的题目中" />
+                  </FormItem>
               </div>
           }
         })()
@@ -117,7 +150,7 @@ class AdminForm extends React.Component {
 
 
             <FormItem>
-              <Button type="primary" htmlType="submit" className="login-form-button" key="5">
+              <Button type="primary" htmlType="submit" className="login-form-button" key="5" onClick={this.submit(funPage)}>
                 添加
               </Button>
             </FormItem>

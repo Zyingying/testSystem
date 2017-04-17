@@ -58,7 +58,11 @@
 
       .ant-form-item {
         argin-bottom: 0;
-        height: 50px;
+        //height: 50px;
+
+        .input-option{
+          margin: 8px;
+        }
       }
 
     }
