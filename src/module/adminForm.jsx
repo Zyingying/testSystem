@@ -34,7 +34,9 @@ class AdminForm extends React.Component {
   submit(funPage){
       switch (funPage){
           case 4:
-              AdminAction.creatLOne()
+            let one = document.querySelector('#one');
+            let typename = one.value;
+            AdminAction.creatLOne();
       }
   }
 
@@ -56,7 +58,7 @@ class AdminForm extends React.Component {
                 {getFieldDecorator('level_one', {
                   rules: [{ required: true, message: '您输入的一级目录为空!' }],
                 })(
-                  <Input addonBefore={<Icon type="plus" />} placeholder="一级目录名称" />
+                  <Input addonBefore={<Icon type="plus" />} placeholder="一级目录名称" id="one"/>
                 )}
               </FormItem>
 
@@ -150,7 +152,7 @@ class AdminForm extends React.Component {
 
 
             <FormItem>
-              <Button type="primary" htmlType="submit" className="login-form-button" key="5" onClick={this.submit(funPage)}>
+              <Button type="primary" htmlType="submit" className="login-form-button" key="5" onClick={()=>{this.submit(funPage)}}>
                 添加
               </Button>
             </FormItem>
