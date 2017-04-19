@@ -12,7 +12,9 @@ class AdminForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      option:1
+      option:1,
+      level_one:'',
+      level_two:''
     };
   }
 
@@ -31,54 +33,53 @@ class AdminForm extends React.Component {
           message.error('选项数量不符，不能低于两个选项')
       }
   }
-  submit(funPage){
-      switch (funPage){
-          case 4:
-            let one = document.querySelector('#one');
-            let typename = one.value;
-            AdminAction.creatLOne();
-      }
+
+  setValue(key, value) {
+    this.state[key] = value;
+    this.setState(this.state);
   }
 
 
+
+
   render() {
-    let funPage = 0,items = [],count = 0;
-        funPage = this.props.funPage;
-    let {option} = this.state;
+    let items = [],count = 0,
+        {funPage,handleSubmit} = this.props;
+    let state = this.state;
+    let {option} = state;
 
     funPage = funPage-0;
     console.log(funPage)
-    const { getFieldDecorator,handleSubmit } = this.props.form;
-    return <Form onSubmit={handleSubmit} key="5">
+    let { getFieldDecorator } = this.props.form;
+    return <Form>
         {
           (()=>{
           switch (funPage){
             case 4:
-              return  <FormItem >
-                {getFieldDecorator('level_one', {
-                  rules: [{ required: true, message: '您输入的一级目录为空!' }],
-                })(
-                  <Input addonBefore={<Icon type="plus" />} placeholder="一级目录名称" id="one"/>
-                )}
-              </FormItem>
-
+              return  <FormItem label="一级目录名称：" required>
+                        <Input value={state.level_one}
+                               onChange={(e)=> {
+                                   this.setValue('level_one', e.target.value)
+                                 }}/>
+                      </FormItem>
+              break;
             case 5:
               return <div>
-                <FormItem>
-                  {getFieldDecorator('level_one', {
-                    rules: [{ required: true, message: '您输入的一级目录为空!' }],
-                  })(
-                    <Input addonBefore={<Icon type="plus" />} placeholder="一级目录名称" />
-                  )}
+                <FormItem label="一级目录名称：">
+                  <Input value={state.level_one}
+                         onChange={(e)=> {
+                           this.setValue('level_one', e.target.value)
+                         }}/>
                 </FormItem>
-                <FormItem>{getFieldDecorator('level_two', {
-                  rules: [{ required: true, message: '您输入的二级目录为空!' }],
-                })(
-                  <Input addonBefore={<Icon type="plus-circle" />} placeholder="二级目录名称" />
-                )}
+                  <FormItem label="二级目录名称：">
+                  <Input value={state.level_two}
+                         onChange={(e)=> {
+                           this.setValue('level_two', e.target.value)
+                         }}/> />
+
                 </FormItem>
               </div>
-
+              break;
             case 6:
               return <div>
                 <FormItem>
@@ -101,7 +102,7 @@ class AdminForm extends React.Component {
               )}
               </FormItem>
               </div>
-
+              break;
             case 7:
               let chooseNum = 1;
               return <div>
@@ -126,7 +127,7 @@ class AdminForm extends React.Component {
                   {(()=>{
 
                     for(count;count < option;count++){
-                        items.push(<Input placeholder={"选项"+(count+1)} className="input-option"/> );
+                        items.push(<Input placeholder={"选项"+(count+1)} className="input-option" ref={"option"} /> );
                     }
                   })()}
                     {items}
@@ -152,7 +153,7 @@ class AdminForm extends React.Component {
 
 
             <FormItem>
-              <Button type="primary" htmlType="submit" className="login-form-button" key="5" onClick={()=>{this.submit(funPage)}}>
+              <Button type="primary" htmlType="submit" className="login-form-button"  onClick={()=>{handleSubmit(funPage,state.level_one,state.level_two)}}>
                 添加
               </Button>
             </FormItem>

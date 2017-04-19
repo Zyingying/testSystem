@@ -3,6 +3,8 @@
  */
 "use strict";
 const Flux = require("pin-alt/src/flux");
+import {message} from 'antd';
+
 class AdminAction {
 
     constructor(){
@@ -22,11 +24,15 @@ class AdminAction {
             xhrFields: {withCredentials : true},
             crossDomain: true,
             data:{
-
+              typename:typename
             },
             success:(result)=>{
                 if(result.code == 200){
                     this.creatLOneSuccess(result.data);
+                  message.info('添加成功')
+                  setTimeout(function () {
+                    window.location.reload();
+                  },2000)
                 }else{
                     this.creatLOneFail();
                 }
@@ -51,6 +57,7 @@ class AdminAction {
             crossDomain: true,
             success:(result)=>{
                 if(result.code == 200){
+
                     this.creatLTwoSuccess(result.msg);
                 }else{
                     this.creatLTwoFail();

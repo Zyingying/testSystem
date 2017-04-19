@@ -10,6 +10,8 @@ const SubMenu = Menu.SubMenu;
 const SubjectAction = require('../action/subjectAction');
 const SubjectStore = require('../store/subjectStore');
 const connectToStores = require("alt-utils/lib/connectToStores");
+const AdminAction = require('../action/adminAction');
+const AdminStore = require('../store/adminStore');
 
 class Admin extends React.Component {
 
@@ -22,11 +24,14 @@ class Admin extends React.Component {
     }
 
     static getStores() {
-        return [SubjectStore];
+        return [SubjectStore,AdminStore];
     }
 
     static getPropsFromStores() {
-        return SubjectStore.getState();
+        return {
+          ...SubjectStore.getState(),
+          ...AdminStore.getState()
+        }
     }
 
     componentWillMount(){
@@ -48,21 +53,19 @@ class Admin extends React.Component {
         console.log(e)
     }
 
-    handleSubmit(e) {
-      let value , {fun_num} = this.props;
-      e.preventDefault();
-      this.props.form.validateFields((err, values) => {
-        if (!err) {
-          console.log('Received values of form: ', values);
-        }
-        value = values;
-      });
+  handleSubmit(num,one,two){
+    switch (num){
+      case 4:;
+        AdminAction.creatLOne(one);
 
-      switch (fun_num){
-        case 1:
-      }
+        break
+      case 5 :
+        AdminAction.creatLTwo(one,two);
 
+
+      case 7:
     }
+  }
 
 
 
@@ -116,7 +119,7 @@ class Admin extends React.Component {
 
                 <hr/>
 
-                <AdminForm funPage={funPage}/>
+                <AdminForm funPage={funPage} handleSubmit={this.handleSubmit.bind(this)}/>
 
             </div>
         </div>;
