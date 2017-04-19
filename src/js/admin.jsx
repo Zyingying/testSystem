@@ -57,12 +57,10 @@ class Admin extends React.Component {
     switch (num){
       case 4:;
         AdminAction.creatLOne(one);
-
         break
       case 5 :
         AdminAction.creatLTwo(one,two);
-
-
+            
       case 7:
     }
   }

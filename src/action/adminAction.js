@@ -10,9 +10,9 @@ class AdminAction {
     constructor(){
         this.url = {
             "levelOne":'http://localhost:3000/subjectType/create',
-            'levelTwo':'http://localhost:3000/subjectType/create'
+            'levelTwo':'http://localhost:3000/subjectItemType/create'
         };
-        this.generateActions('creatLOneSuccess','creatLOneFail','updateMsgSuccess','updateMsgFail');
+        this.generateActions('creatLOneSuccess','creatLOneFail','creatLTwoSuccess','creatLTwoFail');
     }
 
     creatLOne(typename){
@@ -29,10 +29,10 @@ class AdminAction {
             success:(result)=>{
                 if(result.code == 200){
                     this.creatLOneSuccess(result.data);
-                  message.info('添加成功')
-                  setTimeout(function () {
-                    window.location.reload();
-                  },2000)
+                    message.success('添加一级成功')
+                    setTimeout(function () {
+                        window.location.reload();
+                    },2000)
                 }else{
                     this.creatLOneFail();
                 }
@@ -43,8 +43,8 @@ class AdminAction {
         })
     }
 
-    creatLTwo(subjectName,parentType){
-        let sUrl = this.url["update"];
+    creatLTwo(parentType,subjectName){
+        let sUrl = this.url["levelTwo"];
         $.ajax({
             url:sUrl,
             type:'post',
@@ -57,8 +57,11 @@ class AdminAction {
             crossDomain: true,
             success:(result)=>{
                 if(result.code == 200){
-
                     this.creatLTwoSuccess(result.msg);
+                    message.success('添加二级成功')
+                    setTimeout(function () {
+                        window.location.reload();
+                    },2000)
                 }else{
                     this.creatLTwoFail();
                 }
