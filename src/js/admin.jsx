@@ -53,13 +53,16 @@ class Admin extends React.Component {
         console.log(e)
     }
 
-  handleSubmit(num,one,two){
+  handleSubmit(num,one,two,title,subTime){
     switch (num){
       case 4:;
         AdminAction.creatLOne(one);
         break
       case 5 :
         AdminAction.creatLTwo(one,two);
+
+      case 6:
+        AdminAction.creatTest(title,subTime,two);
             
       case 7:
     }

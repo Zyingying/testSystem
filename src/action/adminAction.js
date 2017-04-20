@@ -10,9 +10,10 @@ class AdminAction {
     constructor(){
         this.url = {
             "levelOne":'http://localhost:3000/subjectType/create',
-            'levelTwo':'http://localhost:3000/subjectItemType/create'
+            'levelTwo':'http://localhost:3000/subjectItemType/create',
+            'testName':'http://localhost:3000/subjectTitle/create'
         };
-        this.generateActions('creatLOneSuccess','creatLOneFail','creatLTwoSuccess','creatLTwoFail');
+        this.generateActions('creatLOneSuccess','creatLOneFail','creatLTwoSuccess','creatLTwoFail','creatTestSuccess','creatTestFail');
     }
 
     creatLOne(typename){
@@ -71,5 +72,35 @@ class AdminAction {
             }
         })
     }
+
+  creatTest(title,subjectTime,subjectItem){
+    let sUrl = this.url["testName"];
+    $.ajax({
+      url:sUrl,
+      type:'post',
+      data:{
+        title: title,
+        subjectTime: subjectTime,
+        subjectItem:subjectItem
+      },
+      dataType:'json',
+      xhrFields: {withCredentials : true},
+      crossDomain: true,
+      success:(result)=>{
+        if(result.code == 200){
+          this.creatTestSuccess(result.msg);
+          message.success('添加题目标题成功')
+          setTimeout(function () {
+            window.location.reload();
+          },2000)
+        }else{
+          this.creatTestFail();
+        }
+      },
+      error:()=>{
+        this.creatTestFail();
+      }
+    })
+  }
 }
 module.exports = Flux.createActions(AdminAction);

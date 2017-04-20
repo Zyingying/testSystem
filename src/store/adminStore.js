@@ -27,6 +27,10 @@ class AdminStore{
 
     }
 
+    onCreatTestSuccess(result){
+      this.result = results;
+    }
+
 }
 module.exports = Flux.createStore(AdminAction);
 

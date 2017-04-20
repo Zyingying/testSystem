@@ -16,7 +16,8 @@ class AdminForm extends React.Component {
             level_one: '',
             level_two: '',
             test_name: '',
-            test_time:' '
+            test_time:' ',
+            subject_name:' ',
 
         };
     }
@@ -214,7 +215,7 @@ class AdminForm extends React.Component {
 
             <FormItem>
                 <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => {
-                    handleSubmit(funPage, state.level_one, state.level_two)
+                    handleSubmit(funPage, state.level_one, state.level_two,state.test_name,state.test_time,state.subject_name)
                 }}>
                     添加
                 </Button>
