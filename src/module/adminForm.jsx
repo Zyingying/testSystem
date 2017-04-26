@@ -45,7 +45,7 @@ class AdminForm extends React.Component {
 
 
     render() {
-        let items = [],
+        let items = [],optionAll,
             {funPage, handleSubmit} = this.props;
         let state = this.state;
         let {option} = state;
@@ -114,12 +114,11 @@ class AdminForm extends React.Component {
                                                this.setValue('test_name', e.target.value)
                                            }}/>
                                 </FormItem>
-                                <input type="text" placeholder="课程id"/>
 
                                 <FormItem label="题目：">
-                                    <Input value={state.subject_name}
+                                    <Input value={state.question}
                                            onChange={(e) => {
-                                               this.setValue('subject_name', e.target.value)
+                                               this.setValue('question', e.target.value)
                                            }}/>
                                 </FormItem>
                                 <FormItem >
@@ -200,13 +199,26 @@ class AdminForm extends React.Component {
                                     <br/>
                                 </FormItem>
                                 <FormItem label="答案：">
-                                    <Input placeholder="必须和选项其中一个值相等"/>
+                                    <Input placeholder="必须和选项其中一个值相等"
+                                           value={state.answer}
+                                           onChange={(e) => {
+                                             this.setValue('answer', e.target.value)
+                                           }}/>
                                     <br/>
-                                    <Input type="textarea" rows={4} placeholder="答案解析，选填"/>
+                                    <Input type="textarea" rows={4}
+                                           placeholder="答案解析，选填"
+                                           value={state.detail}
+                                           onChange={(e) => {
+                                             this.setValue('detail', e.target.value)
+                                           }}/>
                                 </FormItem>
 
                                 <FormItem label="此题分值：">
-                                    <Input placeholder="eg:2/4/6/8,不填则默认答卷剩余分数平均到不填的题目中"/>
+                                    <Input placeholder="eg:2/4/6/8,不填则默认答卷剩余分数平均到不填的题目中"
+                                           value={state.score}
+                                           onChange={(e) => {
+                                             this.setValue('score', e.target.value)
+                                           }}/>
                                 </FormItem>
                             </div>
                     }
@@ -215,7 +227,8 @@ class AdminForm extends React.Component {
 
             <FormItem>
                 <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => {
-                    handleSubmit(funPage, state.level_one, state.level_two,state.test_name,state.test_time,state.subject_name)
+                  optionAll = [state.option_one,state.option_two,state.option_three,state.option_four]
+                  handleSubmit(funPage, state.level_one, state.level_two,state.test_name,state.test_time,state.question,optionAll,state.answer,state.detail,state.score)
                 }}>
                     添加
                 </Button>

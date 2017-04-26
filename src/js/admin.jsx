@@ -53,7 +53,7 @@ class Admin extends React.Component {
         console.log(e)
     }
 
-  handleSubmit(num,one,two,title,subTime){
+  handleSubmit(num,one,two,title,subTime,question,option,answer,detail,score){
     switch (num){
       case 4:;
         AdminAction.creatLOne(one);
@@ -65,6 +65,7 @@ class Admin extends React.Component {
         AdminAction.creatTest(title,subTime,two);
             
       case 7:
+        AdminAction.creatSubject(title,question,option,answer,detail,score);
     }
   }
 
@@ -112,11 +113,12 @@ class Admin extends React.Component {
             </Menu>
 
             <div className="w-changeMian">
-                <div className="title">现有的一级 && 二级目录</div>
+              {this.state.funPage < 7 ?<div className="title">现有的一级 && 二级目录</div>:null}
 
-                {/*{this.state.funPage == 1 ? 1:2}*/}
-                <MenuList subject={subject}
-                          menuClick={this.menuClick}/>
+
+                {this.state.funPage < 7 ?<MenuList subject={subject}
+                                                    menuClick={this.menuClick}/>:null}
+
 
                 <hr/>
 

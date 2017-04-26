@@ -33,10 +33,7 @@ class exam extends React.Component {
         SubjectAction.nameListById(itemId);
     }
 
-    showTest(id){
-        let history = this.props.history;
-        history.pushState(null,'/test?testId='+ id)
-    }
+
 
     render() {
 
@@ -56,8 +53,7 @@ class exam extends React.Component {
                     {nameList && nameList.map((item,n)=>{
                         return <IndexItem title={item.title}
                                           key={n}
-                                          id={item._id}
-                                          showTest={this.showTest.bind(this)}/>;
+                                          id={item._id}/>;
                     }) }
 
 

@@ -14,9 +14,12 @@ class SubjectAction {
           creatOne:'http://localhost:3000/subjectType/create',
           creatTwo:'http://localhost:3000/subjectItemType/create',
           creatTest:'http://localhost:3000/subject/create',
-          creatSubject:'http://localhost:3000/subject/create'
+          creatSubject:'http://localhost:3000/subject/create',
+          read:'http://localhost:3000/subjects/doRead',
+          finish:'http://localhost:3000/subjects/doFinished',
+          listRead:'http://localhost:3000/subjects/listRead'
         };
-        this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail','creatOneSuccess','creatOneFail','creatTwoSuccess','creatTwoFail','creatSubjectSuccess','creatSubjectFail');
+        this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail','creatOneSuccess','creatOneFail','creatTwoSuccess','creatTwoFail','creatSubjectSuccess','creatSubjectFail',"readSuccess",'readFail','listRead','listRead');
     }
 
     getAll(){
@@ -150,5 +153,70 @@ class SubjectAction {
       })
     }
 
+    read(id){
+      let sUrl = this.url["read"];
+      $.ajax({
+        url:sUrl,
+        type:'post',
+        data:{
+          subjectTitleId:id
+        },
+        dataType:'json',
+        success:(result)=>{
+          if(result.code == 200){
+            this.readSuccess(result.data);
+          }else{
+            this.readFail();
+          }
+        },
+        error:()=>{
+          this.readFail();
+        }
+      })
+    }
+
+    listRead(){
+      let sUrl = this.url["listRead"];
+      $.ajax({
+        url:sUrl,
+        type:'get',
+        dataType:'json',
+        success:(result)=>{
+          if(result.code == 200){
+            this.listReadSuccess(result.data);
+          }else{
+            this.listReadFail();
+          }
+        },
+        error:()=>{
+          this.readFail();
+        }
+      })
+    }
+
+    finish(id){
+      let sUrl = this.url["read"];
+      $.ajax({
+        url:sUrl,
+        type:'post',
+        data:{
+          subjectTitleId:id
+        },
+        dataType:'json',
+        success:(result)=>{
+          if(result.code == 200){
+            this.creatSubjectSuccess(result.data);
+          }else{
+            this.creatSubjectFail();
+          }
+        },
+        error:()=>{
+          this.creatSubjectFail();
+        }
+      })
+    }
+
 }
+
+
 module.exports = Flux.createActions(SubjectAction);

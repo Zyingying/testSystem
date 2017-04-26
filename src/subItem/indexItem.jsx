@@ -15,6 +15,11 @@ class IndexItem extends React.Component {
         super(props);
     }
 
+    showTest(id){
+        let history = this.props.history;
+        history.pushState(null,'/test?testId='+ id)
+    }
+
     render() {
         let {title,showTest,id} = this.props;
 
@@ -22,7 +27,7 @@ class IndexItem extends React.Component {
             <div className="test-title">{title}</div>
             <div className="logo frontend"></div>
 
-            <button className="btn none-btn exam-btn" onClick={()=>{showTest(id)}}>马上测试</button>
+            <button className="btn none-btn exam-btn" onClick={()=>{this.showTest(id)}}>马上测试</button>
         </div>;
     }
 }

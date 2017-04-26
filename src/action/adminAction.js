@@ -11,7 +11,8 @@ class AdminAction {
         this.url = {
             "levelOne":'http://localhost:3000/subjectType/create',
             'levelTwo':'http://localhost:3000/subjectItemType/create',
-            'testName':'http://localhost:3000/subjectTitle/create'
+            'testName':'http://localhost:3000/subjectTitle/create',
+            'testSubject':'http://localhost:3000/subject/create'
         };
         this.generateActions('creatLOneSuccess','creatLOneFail','creatLTwoSuccess','creatLTwoFail','creatTestSuccess','creatTestFail');
     }
@@ -73,7 +74,7 @@ class AdminAction {
         })
     }
 
-  creatTest(title,subjectTime,subjectItem){
+    creatTest(title,subjectTime,subjectItem){
     let sUrl = this.url["testName"];
     $.ajax({
       url:sUrl,
@@ -82,6 +83,39 @@ class AdminAction {
         title: title,
         subjectTime: subjectTime,
         subjectItem:subjectItem
+      },
+      dataType:'json',
+      xhrFields: {withCredentials : true},
+      crossDomain: true,
+      success:(result)=>{
+        if(result.code == 200){
+          this.creatTestSuccess(result.msg);
+          message.success('添加题目标题成功')
+          setTimeout(function () {
+            window.location.reload();
+          },2000)
+        }else{
+          this.creatTestFail();
+        }
+      },
+      error:()=>{
+        this.creatTestFail();
+      }
+    })
+  }
+
+    creatSubject(title,question,choice,select,detail,score){
+    let sUrl = this.url["testSubject"];
+    $.ajax({
+      url:sUrl,
+      type:'post',
+      data:{
+        title: title,
+        question:question,
+        choice:choice,
+        select:select,
+        detail:detail,
+        score:score
       },
       dataType:'json',
       xhrFields: {withCredentials : true},
