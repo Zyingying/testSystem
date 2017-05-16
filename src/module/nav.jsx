@@ -32,10 +32,17 @@ class Nav extends React.Component {
     LoginAction.isLogin();
   }
 
-  logout(){
-    LoginAction.logOut();
-    LoginAction.isLogin();
+  // logout(){
+  //
+  //
+  // }
 
+  handleClick = (e) => {
+    console.log('click ', e);
+    if(e.key === 'out'){
+      LoginAction.logOut();
+      LoginAction.isLogin();
+    }
   }
 
 
@@ -77,13 +84,16 @@ class Nav extends React.Component {
                 <Icon type="setting"/>账号设置
               </Link>
             </Menu.Item>
-            <Menu.Item key="setting:3">
-              <Link to="/admin">
-                <Icon type="setting"/>管理后台
-              </Link>
+            {isLogin.user.role =='admin' &&
+              <Menu.Item key="setting:3">
+                <Link to="/admin">
+                  <Icon type="setting"/>管理后台
+                </Link>
+              </Menu.Item>
+            }
+            <Menu.Item key="out">
+              <Icon type="poweroff"/>退出登录
             </Menu.Item>
-            <Menu.Item key="setting:4" onClick={()=>{this.logout()}}>
-              <Icon type="poweroff"/>退出登录</Menu.Item>
           </SubMenu>
           :
           <Menu.Item key="login" className="li-login">

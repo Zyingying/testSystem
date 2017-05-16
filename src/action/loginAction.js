@@ -77,6 +77,7 @@ class LoginAction {
             success: (result)=> {
                 if(result.code == 200) {
                     this.logoutSuccess(result);
+                    message.success('退出成功', 5)
                 }else{
                     this.logoutFail();
                 }
@@ -97,6 +98,7 @@ class LoginAction {
             success: (result)=> {
                 if(result) {
                     this.isLoginSuccess(result);
+
                 }else {
                     this.isLoginFail();
                 }

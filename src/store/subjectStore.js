@@ -25,8 +25,12 @@ class SubjectStore{
         this.testList = data;
     }
 
-    onlistReadSuccess(data){
+    onListReadSuccess(data){
         this.readlist = data;
+    }
+
+    onListFinishSuccess(data){
+        this.finishList = data;
     }
 
 

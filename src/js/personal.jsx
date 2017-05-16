@@ -31,6 +31,7 @@ class Personal extends React.Component {
       isLogin:undefined
     };
     SubjectAction.listRead();
+    SubjectAction.listFinish();
   }
 
   static getStores() {
@@ -48,15 +49,6 @@ class Personal extends React.Component {
 
   }
 
-  componentDidMount(){
-
-  }
-
-  componentWillMount() {
-    LoginStore.listen(this.getLoginStore());
-    // LoginAction.isLogin();
-    SubjectAction.listRead();
-  }
 
   componentWillUnmount() {
     LoginStore.unlisten(this.logLinsten);
@@ -77,7 +69,7 @@ class Personal extends React.Component {
 
   render() {
     let {isLogin,user} = this.state,day,img;
-    let {readlist} = this.props;
+    let {readlist,finishList} = this.props;
     let date = new Date();
     day = date.getDay()+1;
     switch (day){
@@ -132,7 +124,7 @@ class Personal extends React.Component {
               onChange={this.callback}
               className="show-person-list">
           <TabPane tab="已阅试题" key="1">
-            已阅试题
+
             {readlist && readlist.map((item,n)=>{
               return <IndexItem title={item.title}
                                 key={n}
@@ -140,7 +132,11 @@ class Personal extends React.Component {
             }) }
           </TabPane>
           <TabPane tab="已交试题" key="2">
-            已交试题
+            {finishList && finishList.map((item,n)=>{
+              return <IndexItem title={item.title}
+                                key={n}
+                                id={item._id}/>;
+            })}
           </TabPane>
         </Tabs>
       </div>

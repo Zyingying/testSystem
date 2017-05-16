@@ -13,6 +13,7 @@ const connectToStores = require("alt-utils/lib/connectToStores");
 class exam extends React.Component {
     constructor(props) {
         super(props);
+        this.clickId = '';
 
     }
     static getStores() {
@@ -31,8 +32,13 @@ class exam extends React.Component {
         // console.log('click', e);
         let itemId = e.key;
         SubjectAction.nameListById(itemId);
+        // this.clickId = itemId;
     }
 
+  showTest(id,name){
+    let history = this.props.history;
+    history.pushState(null,'/test?testId='+ id +'&title='+name);
+  }
 
 
     render() {
@@ -53,7 +59,9 @@ class exam extends React.Component {
                     {nameList && nameList.map((item,n)=>{
                         return <IndexItem title={item.title}
                                           key={n}
-                                          id={item._id}/>;
+                                          id={item._id}
+                                          showTest = {this.showTest.bind(this)}
+l                        />;
                     }) }
 
 

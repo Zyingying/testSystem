@@ -15,11 +15,12 @@ class SubjectAction {
           creatTwo:'http://localhost:3000/subjectItemType/create',
           creatTest:'http://localhost:3000/subject/create',
           creatSubject:'http://localhost:3000/subject/create',
-          read:'http://localhost:3000/subjects/doRead',
+          doRead:'http://localhost:3000/subjects/doRead',
           finish:'http://localhost:3000/subjects/doFinished',
-          listRead:'http://localhost:3000/subjects/listRead'
+          listRead:'http://localhost:3000/subjects/listRead',
+          listFinish:'http://localhost:3000/subjects/listFinished'
         };
-        this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail','creatOneSuccess','creatOneFail','creatTwoSuccess','creatTwoFail','creatSubjectSuccess','creatSubjectFail',"readSuccess",'readFail','listRead','listRead');
+        this.generateActions('getAllSuccess','getAllFail','nameListSuccess','nameListFail','subjectMianSuccess','subjectMianSuccess','ftechTestSuccess','ftechTestFail','creatOneSuccess','creatOneFail','creatTwoSuccess','creatTwoFail','creatSubjectSuccess','creatSubjectFail',"readSuccess",'readFail','listReadSuccess','listReadFail','listFinishSuccess','listFinishFail');
     }
 
     getAll(){
@@ -153,15 +154,18 @@ class SubjectAction {
       })
     }
 
-    read(id){
-      let sUrl = this.url["read"];
+    doRead(id,title){
+      let sUrl = this.url["doRead"];
       $.ajax({
         url:sUrl,
         type:'post',
         data:{
-          subjectTitleId:id
+          titleId:id,
+          title:title
         },
         dataType:'json',
+        xhrFields: {withCredentials : true},
+        crossDomain: true,
         success:(result)=>{
           if(result.code == 200){
             this.readSuccess(result.data);
@@ -181,6 +185,8 @@ class SubjectAction {
         url:sUrl,
         type:'get',
         dataType:'json',
+        xhrFields: {withCredentials : true},
+        crossDomain: true,
         success:(result)=>{
           if(result.code == 200){
             this.listReadSuccess(result.data);
@@ -189,19 +195,23 @@ class SubjectAction {
           }
         },
         error:()=>{
-          this.readFail();
+          this.listReadFail();
         }
       })
     }
 
-    finish(id){
-      let sUrl = this.url["read"];
+    finish(id,title,history){
+      let sUrl = this.url["finish"];
       $.ajax({
         url:sUrl,
         type:'post',
         data:{
-          subjectTitleId:id
+          titleId:id,
+          title:title,
+          history:history
         },
+        xhrFields: {withCredentials : true},
+        crossDomain: true,
         dataType:'json',
         success:(result)=>{
           if(result.code == 200){
@@ -212,6 +222,27 @@ class SubjectAction {
         },
         error:()=>{
           this.creatSubjectFail();
+        }
+      })
+    }
+
+    listFinish(){
+      let sUrl = this.url["listFinish"];
+      $.ajax({
+        url:sUrl,
+        type:'get',
+        dataType:'json',
+        xhrFields: {withCredentials : true},
+        crossDomain: true,
+        success:(result)=>{
+          if(result.code == 200){
+            this.listFinishSuccess(result.data);
+          }else{
+            this.listFinishFail();
+          }
+        },
+        error:()=>{
+          this.listFinishFail();
         }
       })
     }
