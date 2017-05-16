@@ -37,9 +37,11 @@ class Test extends React.Component {
     }
 
     componentWillMount() {
-        let {testId} = this.props.location.query;
+        let {testId,title} = this.props.location.query;
         let restTime = 20;
         SubjectAction.ftechTest(testId);
+        //已阅试卷
+        SubjectAction.doRead(testId,title);
         let that = this;
         var timeCount = setInterval(function(){
             that.showRestTime(restTime);
@@ -111,12 +113,13 @@ class Test extends React.Component {
     }
 
     submit(){
+      let {testId,title} = this.props.location.query;
       let answer = [], {testList} = this.props ,i = 0;
       for(i;i < testList.length;i++){
         answer.push(testList[i].answer);
       }
       this.setState({answer:answer,list:true})
-      console.log(answer)
+      SubjectAction.finish(testId,title,{record:this.state.value,score:0})
 
     }
 
@@ -180,28 +183,33 @@ class Test extends React.Component {
 
                         </div>
                         <div>
+                          {choice ?
                             <RadioGroup onChange={(e)=>{this.onChange(e,n)}} value={myAnswer}>
-                                <Radio value={choice.A}
-                                       className={ (myAnswer == choice.A )?
-                                         'chooseSelect':(showList && (choice.A==answer.select) ? 'error':' ')}>
-                                    {choice.A}
-                                </Radio>
-                                <Radio value={choice.B}
-                                       className={ myAnswer == choice.B ?
-                                         'chooseSelect':(showList && (choice.B==answer.select) ? 'error':' ')}>
-                                    {choice.B}
-                                </Radio>
-                                <Radio value={choice.C}
-                                       className={ myAnswer == choice.C ?
-                                         'chooseSelect':(showList && (choice.C==answer.select) ? 'error':' ')}>
-                                    {choice.C}
-                                </Radio>
-                                <Radio value={choice.D}
-                                       className={ myAnswer == choice.D ?
-                                         'chooseSelect':(showList && (choice.D==answer.select) ? 'error':' ')}>
-                                    {choice.D}
-                                </Radio>
+                              <Radio value={choice.A}
+                                     className={ (myAnswer == choice.A )?
+                                       'chooseSelect':(showList && (choice.A==answer.select) ? 'error':' ')}>
+                                {choice.A}
+                              </Radio>
+                              <Radio value={choice.B}
+                                     className={ myAnswer == choice.B ?
+                                       'chooseSelect':(showList && (choice.B==answer.select) ? 'error':' ')}>
+                                {choice.B}
+                              </Radio>
+                              <Radio value={choice.C}
+                                     className={ myAnswer == choice.C ?
+                                       'chooseSelect':(showList && (choice.C==answer.select) ? 'error':' ')}>
+                                {choice.C}
+                              </Radio>
+                              <Radio value={choice.D}
+                                     className={ myAnswer == choice.D ?
+                                       'chooseSelect':(showList && (choice.D==answer.select) ? 'error':' ')}>
+                                {choice.D}
+                              </Radio>
                             </RadioGroup>
+                          :
+                            null
+                          }
+
 
                         </div>
                         {this.state.list &&

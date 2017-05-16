@@ -10,18 +10,21 @@ const WeixinUtil = require("./weixinUtil");
 const MobileUtil = require("./mobileUtil");
 
 
+
 class App extends React.Component{
     constructor(props){
         super(props);
 
         this.state = {
-            loading: false
+            loading: false,
+            isLogin: undefined
         };
 
         this.listenAjax();
-        this.setCookie();
+        // this.setCookie();
 
     }
+
 
 
 
@@ -49,6 +52,7 @@ class App extends React.Component{
             return (location.search.match(r)||[])[1];
         }
     }
+
 
     listenAjax(){
         $(document).on('ajaxBeforeSend', ()=>{

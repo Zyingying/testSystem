@@ -3,6 +3,7 @@
  */
 "use strict";
 const Flux = require("pin-alt/src/flux");
+import { message } from 'antd';
 class LoginAction {
 
     constructor(){
@@ -13,7 +14,6 @@ class LoginAction {
             isLogin:'http://localhost:3000/user/isLogin'
         };
         this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail','isLoginSuccess','isLoginFail');
-        this._cacheAvatar = {};
     }
 
     login(email,psd){
@@ -29,11 +29,11 @@ class LoginAction {
             crossDomain: true,
             dataType:"json",
             success: (result)=> {
-                if(result.code == 200) {
+                // if(result.code == 200) {
                     this.loginSuccess(result);
-                }else{
-                    this.loginFail();
-                }
+                // }else{
+                //     this.loginFail();
+                // }
             },
             error: ()=> {
                 this.loginFail();
@@ -65,6 +65,7 @@ class LoginAction {
             }
         });
     }
+
     logOut(){
         let sUrl = this.url["logOut"];
         $.ajax({
@@ -76,6 +77,7 @@ class LoginAction {
             success: (result)=> {
                 if(result.code == 200) {
                     this.logoutSuccess(result);
+                    message.success('退出成功', 5)
                 }else{
                     this.logoutFail();
                 }
@@ -96,6 +98,7 @@ class LoginAction {
             success: (result)=> {
                 if(result) {
                     this.isLoginSuccess(result);
+
                 }else {
                     this.isLoginFail();
                 }
