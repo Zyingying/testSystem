@@ -15,6 +15,8 @@ class IndexItem extends React.Component {
         super(props);
     }
 
+
+
     render() {
         let {title,showTest,id} = this.props;
 
@@ -22,7 +24,7 @@ class IndexItem extends React.Component {
             <div className="test-title">{title}</div>
             <div className="logo frontend"></div>
 
-            <button className="btn none-btn exam-btn" onClick={()=>{showTest(id)}}>马上测试</button>
+            <button className="btn none-btn exam-btn" onClick={()=>{showTest(id,title)}}>马上测试</button>
         </div>;
     }
 }

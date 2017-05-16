@@ -11,8 +11,7 @@ const MobileUtil = {
         return /ios|iphone|ipad|ipod/i.test(UA);
     },
 
-    isAndroid: () => {
-        return /android/i.test(UA);
+    isAndroid: () => {        return /android/i.test(UA);
     },
 
     isLogin: () => {

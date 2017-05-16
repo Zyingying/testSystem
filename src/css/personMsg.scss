@@ -1,6 +1,11 @@
 .f-page.personMsg{
   overflow: hidden;
   background: #f8f8f8;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
   
   input,button,select,textarea{
     outline:none

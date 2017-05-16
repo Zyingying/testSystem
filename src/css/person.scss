@@ -1,6 +1,11 @@
 .f-page.person{
   overflow: hidden;
   background: #f8f8f8;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
 
   .main-person{
     width: 1000px;
@@ -15,8 +20,8 @@
     }
     .user-img{
       display: block;
-      width: 80px;
-      height: 80px;
+      width: 100px;
+      height: 100px;
       background: #ddd;
       border-radius: 50%;
       margin: 0 auto;
