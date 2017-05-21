@@ -31,8 +31,6 @@
         width: 210px;
       }
 
-
-
       .ant-row{
         //display: inline-block;
         margin-bottom: 20px;
@@ -68,6 +66,14 @@
     }
   }
 
+
+  ul.ant-cascader-menu {
+    height: auto;
+  }
+
+  form .ant-cascader-picker {
+    width: auto;
+  }
 
 
 }

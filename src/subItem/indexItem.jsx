@@ -18,13 +18,13 @@ class IndexItem extends React.Component {
 
 
     render() {
-        let {title,showTest,id} = this.props;
+        let {title,showTest,id,examTime} = this.props;
 
         return <div className="w-testIndex">
             <div className="test-title">{title}</div>
             <div className="logo frontend"></div>
 
-            <button className="btn none-btn exam-btn" onClick={()=>{showTest(id,title)}}>马上测试</button>
+            <button className="btn none-btn exam-btn" onClick={()=>{showTest(id,title,examTime)}}>马上测试</button>
         </div>;
     }
 }

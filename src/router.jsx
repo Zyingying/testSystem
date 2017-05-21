@@ -15,6 +15,7 @@ const Login = require("./js/login");
 const Exam = require("./js/exam");
 const Test = require("./js/test");
 const Admin = require("./js/admin");
+const ChangePsd = require('./js/changePsd');
 
 // const LoginAction = require('./action/loginAction');
 // const LoginStore = require('./store/loginStore');
@@ -44,6 +45,7 @@ let routes = <Router history={createHashHistory()}>
         <Route path="test" component={Test}/>
         <Route path="personal" component={Personal} onEnter={requireLogin}/>
         <Route path="admin" component={Admin} onEnter={requireLogin}/>
+        <Route path="changePsd" component={ChangePsd} onEnter={requireLogin}/>
     </Route>
 </Router>;
 ReactDom.render(routes,document.getElementById("App"));

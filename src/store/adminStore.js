@@ -31,6 +31,10 @@ class AdminStore{
       this.result = results;
     }
 
+    onChangOneSuccess(result){
+
+    }
+
 }
 module.exports = Flux.createStore(AdminAction);
 

@@ -33,6 +33,14 @@ class SubjectStore{
         this.finishList = data;
     }
 
+    onCreatTestSuccess(data){
+
+    }
+
+  getAllTestSuccess(data){
+        this.testList = data;
+  }
+
 
     onGetAllFail(){}
 

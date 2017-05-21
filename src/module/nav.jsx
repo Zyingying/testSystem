@@ -84,6 +84,11 @@ class Nav extends React.Component {
                 <Icon type="setting"/>账号设置
               </Link>
             </Menu.Item>
+            <Menu.Item key="changePsd">
+              <Link to="/changePsd">
+                <Icon type="poweroff"/>修改密码
+              </Link>
+            </Menu.Item>
             {isLogin.user.role =='admin' &&
               <Menu.Item key="setting:3">
                 <Link to="/admin">
@@ -91,6 +96,7 @@ class Nav extends React.Component {
                 </Link>
               </Menu.Item>
             }
+
             <Menu.Item key="out">
               <Icon type="poweroff"/>退出登录
             </Menu.Item>

@@ -11,9 +11,10 @@ class LoginAction {
             login:'http://localhost:3000/user/signin',
             register:'http://localhost:3000/user/signup',
             logOut:'http://localhost:3000/user/logout',
-            isLogin:'http://localhost:3000/user/isLogin'
+            isLogin:'http://localhost:3000/user/isLogin',
+            changePsd:'http://localhost:3000/user/updatePassword'
         };
-        this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail','isLoginSuccess','isLoginFail');
+        this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail','isLoginSuccess','isLoginFail','changePsdSuccess','changePsdFail');
     }
 
     login(email,psd){
@@ -107,6 +108,31 @@ class LoginAction {
                 this.isLoginFail();
             }
         });
+    }
+    changePsd(pre,newpsd){
+      let sUrl = this.url["changePsd"];
+      $.ajax({
+        url: sUrl,
+        type: 'post',
+        dataType:"json",
+        data:{
+          pre_password:pre,
+          new_password:newpsd
+        },
+        xhrFields: {withCredentials : true},
+        crossDomain: true,
+        success: (result)=> {
+          if(result) {
+            this.changePsdSuccess(result);
+
+          }else {
+            this.changePsdFail();
+          }
+        },
+        error: ()=> {
+          this.changePsdFail();
+        }
+      });
     }
 
 

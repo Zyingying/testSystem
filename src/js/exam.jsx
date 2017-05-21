@@ -35,9 +35,9 @@ class exam extends React.Component {
         // this.clickId = itemId;
     }
 
-  showTest(id,name){
+  showTest(id,name,examTime){
     let history = this.props.history;
-    history.pushState(null,'/test?testId='+ id +'&title='+name);
+    history.pushState(null,'/test?testId='+ id +'&title='+name+'&examTime=' + examTime);
   }
 
 
@@ -60,6 +60,7 @@ class exam extends React.Component {
                         return <IndexItem title={item.title}
                                           key={n}
                                           id={item._id}
+                                          examTime = {item.examTime}
                                           showTest = {this.showTest.bind(this)}
 l                        />;
                     }) }

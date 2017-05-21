@@ -1,10 +1,9 @@
 "use strict"
 const React = require("react");
-import {Form, Input, Button, Checkbox, Icon, message} from 'antd';
+import {Form, Input, Button, Cascader , Icon, message, Select} from 'antd';
+const Option = Select.Option;
 const FormItem = Form.Item;
 const CreateForm = Form.create;
-const AdminAction = require('../action/adminAction');
-const AdminStore = require('../store/adminStore');
 
 
 class AdminForm extends React.Component {
@@ -13,12 +12,14 @@ class AdminForm extends React.Component {
     super(props);
     this.state = {
       option: 2,
+      change_one_id: '',
       level_one: '',
       level_two: '',
       test_name: '',
-      test_time: ' ',
+      test_year: ' ',
       subject_name: ' ',
-
+      test_time: '',
+      cascader_value:'',
     };
   }
 
@@ -43,25 +44,112 @@ class AdminForm extends React.Component {
     this.setState(this.state);
   }
 
+  handleChange(value) {
+    this.state.change_one_id = value;
+  }
+
+  onChange(value) {
+    this.state.cascader_value = value;
+  }
+
+  testNameSelect(value,option){
+    this.state.test_name = value;
+  }
 
   render() {
-    let items = [], optionAll,
-      {funPage, handleSubmit,clickId} = this.props;
+    let optionAll,cascader =[],item=[],
+      {funPage, handleSubmit, clickId, subject,three,testList} = this.props;
     let state = this.state;
     let {option} = state;
-
     funPage = funPage - 0;
-    console.log(funPage)
-    let {getFieldDecorator} = this.props.form;
+
+    subject && subject.map((n)=>{
+      let child = [];
+      if(n.subjects && n.subjects.length > 0){
+
+        item = n.subjects;
+
+        item && item.map((i)=>{
+
+            child.push({value:i._id,label:i.subjectName});
+        })
+      }
+      cascader.push({value:n._id,label:n.typename,children:child});
+    })
     return <Form>
       {
         (() => {
           switch (funPage) {
             case 1:
               return <FormItem label="点击以上一级目录以修改：" required>
-                <Input value={clickId}/>
-                <Input placeholder="修改的名称"/>
+                <Select
+                  showSearch
+                  style={{width: 200}}
+                  placeholder="选择要修改的一级目录"
+                  optionFilterProp="children"
+                  onChange={this.handleChange.bind(this)}
+                  filterOption={(input, option) => option.props.value.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                >
+                  {subject && subject.length > 0 && subject.map((sub) => {
+                    return <Option value={sub._id}>{sub.typename}</Option>
+                  })}
+                </Select>
+                <Input value={state.level_one}
+                       onChange={(e) => {
+                         this.setValue('level_one', e.target.value)
+                       }}/>
               </FormItem>;
+              break;
+
+            case 2:
+              return  <FormItem label="点击以上二级目录以修改：" required>
+                <Cascader options={cascader} onChange={this.onChange.bind(this)} changeOnSelect size="large" placeholder="选择二级目录"/>
+                <Input value={state.level_two}
+                       placeholder="修改后的二级目录"
+                       onChange={(e) => {
+                         this.setValue('level_two', e.target.value)
+                       }}/>
+              </FormItem>;
+              break;
+
+            case 3:
+              return <div>
+                <FormItem label="试题名称：">
+                  <Select
+                    showSearch
+                    style={{ width: 200 }}
+                    optionFilterProp="children"
+                    onSelect={this.testNameSelect.bind(this)}
+                    filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                  >
+                    {
+                      testList && testList.map((n)=>{
+                      return <Option value={n.title} key={n._id} onClick={()=>{console.log(n._id)}}>{n.title}</Option>;
+                    })}
+                  </Select>
+                </FormItem>
+                <FormItem label="出题时间：">
+                  <Input value={state.test_year}
+                         onChange={(e) => {
+                           this.setValue('test_year', e.target.value)
+                         }}/>
+                </FormItem>
+                <FormItem label="考试时长：">
+                  <Input value={state.test_time}
+                         onChange={(e) => {
+                           this.setValue('test_time', e.target.value)
+                         }}/>
+                </FormItem>
+                <FormItem label="所属二级类目：">
+                  <Input value={state.level_two}
+                         onChange={(e) => {
+                           this.setValue('level_two', e.target.value)
+                         }}/>
+                </FormItem>
+                <Cascader options={cascader} onChange={this.onChange.bind(this)} changeOnSelect size="large" placeholder="选择二级目录"/>
+              </div>;
+              break;
+                         
             case 4:
               return <FormItem label="一级目录名称：" required>
                 <Input value={state.level_one}
@@ -70,6 +158,7 @@ class AdminForm extends React.Component {
                        }}/>
               </FormItem>
               break;
+
             case 5:
               return <div>
                 <FormItem label="所在的一级目录的名称：">
@@ -88,6 +177,7 @@ class AdminForm extends React.Component {
                 </FormItem>
               </div>
               break;
+
             case 6:
               return <div>
                 <FormItem label="试题名称：">
@@ -97,28 +187,40 @@ class AdminForm extends React.Component {
                          }}/>
                 </FormItem>
                 <FormItem label="出题时间：">
+                  <Input value={state.test_year}
+                         onChange={(e) => {
+                           this.setValue('test_year', e.target.value)
+                         }}/>
+                </FormItem>
+                <FormItem label="考试时长：">
                   <Input value={state.test_time}
                          onChange={(e) => {
                            this.setValue('test_time', e.target.value)
                          }}/>
                 </FormItem>
                 <FormItem label="所属二级类目：">
-                  <Input value={state.level_two}
-                         onChange={(e) => {
-                           this.setValue('level_two', e.target.value)
-                         }}/>
+                  <Cascader options={cascader} onChange={this.onChange.bind(this)} changeOnSelect size="large" placeholder="选择二级目录"/>
                 </FormItem>
-              </div>
+              </div>;
               break;
+
             case 7:
               let chooseNum = 1;
               return <div>
                 <FormItem label="必须要是课程列表里面存在的试题：">
-                  <Input value={state.test_name}
-                         onChange={(e) => {
-                           this.setValue('test_name', e.target.value)
-                         }}/>
+                  <Select
+                    showSearch
+                    style={{ width: 200 }}
+                    optionFilterProp="children"
+                    onSelect={this.testNameSelect.bind(this)}
+                    filterOption={(input, option) => option.props.value.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+                  >
+                    {testList && testList.map((n)=>{
+                      return <Option value={n.title} refs={n._id}>{n.title}</Option>;
+                    })}
+                  </Select>
                 </FormItem>
+
 
                 <FormItem label="题目：">
                   <Input value={state.question}
@@ -232,10 +334,10 @@ class AdminForm extends React.Component {
 
       <FormItem>
         <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => {
-          optionAll = [state.option_one, state.option_two, state.option_three, state.option_four]
-          handleSubmit(funPage, state.level_one, state.level_two, state.test_name, state.test_time, state.question, optionAll, state.answer, state.detail, state.score)
+          optionAll = [state.option_one, state.option_two, state.option_three, state.option_four];
+          handleSubmit(funPage, state.level_one, state.level_two, state.test_name, state.test_year, state.test_time, state.question, optionAll, state.answer, state.detail, state.score, state.change_one_id,state.cascader_value)
         }}>
-          添加
+          确定
         </Button>
       </FormItem>
     </Form>;
