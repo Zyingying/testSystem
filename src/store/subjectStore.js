@@ -25,6 +25,22 @@ class SubjectStore{
         this.testList = data;
     }
 
+    onListReadSuccess(data){
+        this.readlist = data;
+    }
+
+    onListFinishSuccess(data){
+        this.finishList = data;
+    }
+
+    onCreatTestSuccess(data){
+
+    }
+
+  getAllTestSuccess(data){
+        this.testList = data;
+  }
+
 
     onGetAllFail(){}
 

@@ -26,6 +26,10 @@ class LoginStore{
 
     }
 
+    oncChangePsdSuccess(result){
+        this.change = result;
+    }
+
 
 
     onRegisterFail(){}

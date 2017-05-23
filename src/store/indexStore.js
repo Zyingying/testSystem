@@ -7,6 +7,14 @@ class IndexStore{
 
   }
 
+  onFetchRecmdSuccess(result){
+    this.recmd = result;
+  }
+
+  fetchBannerSuccess(result){
+    this.banner = result;
+  }
+
 }
 module.exports = Flux.createStore(IndexStore);
 

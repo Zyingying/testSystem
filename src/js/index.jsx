@@ -9,72 +9,77 @@ const IndexStore = require("../store/indexStore");
 
 const IndexItem = require("../subItem/indexItem");
 
-import { Carousel } from 'antd';
-
+import {Carousel} from 'antd';
 
 
 class Index extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isLogin:false
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {}
 
-    static getStores() {
-        return [IndexStore];
-    }
+    IndexAction.fetchRecmd(16);
+    IndexAction.fetchBanner('all');
+  }
 
-    static getPropsFromStores() {
-        return IndexStore.getState();
-    }
+  static getStores() {
+    return [IndexStore];
+  }
+
+  static getPropsFromStores() {
+    return IndexStore.getState();
+  }
+
+  showTest(id, name, examTime) {
+    let history = this.props.history;
+    history.pushState(null, '/test?testId=' + id + '&title=' + name + '&examTime=' + examTime);
+  }
 
 
+  render() {
+    let state = this.state,
+      title = '';
+    let {recmd,banner} = this.props;
+    console.log(banner);
+    return <div className="f-page index">
 
+      <Nav/>
 
-
-
-    render() {
-        let state = this.state,
-            title = '';
-        return <div className="f-page index">
-
-                <div className="w-categories">
-                    <Nav isLogin={state.isLogin}/>
+      <Carousel autoplay="true" className="w-sildshow">
+        {banner && banner.map((ban, n) => {
+          return <div>
+                  <a href="" className="w-banner">
+                    <img src={ban.url} alt=""/>
+                  </a>
                 </div>
+        })}
 
-                <Carousel autoplay="true" className="w-sildshow">
-                    <div>
-                        <a href=""
-                           className="w-banner">
-                            <img src="http://static.nowcoder.com/recommand/ad/offer-960.png" alt=""/>
-                        </a>
-                    </div>
-                    <div>
-                        <a href=""  className="w-banner" >
-                            <img src="http://uploadfiles.nowcoder.com/files/20161105/826546_1478323513738_qimokaoshishouye.jpg" alt=""/>
-                        </a>
-                    </div>
-                </Carousel>
+        <div>
+          <a href="" className="w-banner">
+            <img src="http://uploadfiles.nowcoder.com/files/20161105/826546_1478323513738_qimokaoshishouye.jpg" alt=""/>
+          </a>
+        </div>
+      </Carousel>
 
-                <div className="w-main">
-                    <div className="w-topic">
-                        <h1>精准能力评估+智能专项练习</h1>
-                        <h2>选择目标职位，测评技能现状，为你定制薄弱知识点专项练习</h2>
+      <div className="w-main">
+        <div className="w-topic">
+          <h1>精准能力评估+智能专项练习</h1>
+          <h2>选择目标职位，测评技能现状，为你定制薄弱知识点专项练习</h2>
 
-                        <IndexItem title='计算机学科专业基础综合'/>
-                        <IndexItem title="2016校招真题练习"/>
-                        <IndexItem title="2016校招真题练习"/>
-                        <IndexItem title="ACM训练"/>
+          {recmd && recmd.map((item, n) => {
+            return <IndexItem title={item.title}
+                       key={n}
+                       id={item._id}
+                       examTime={item.examTime}
+                       showTest={this.showTest.bind(this)}
+            />
+          })}
 
-                    </div>
-                </div>
+        </div>
+      </div>
 
 
-
-
-        </div>;
-    }
+    </div>;
+  }
 }
 
 module.exports = connectToStores(Index);

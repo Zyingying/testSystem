@@ -13,6 +13,7 @@ const connectToStores = require("alt-utils/lib/connectToStores");
 class exam extends React.Component {
     constructor(props) {
         super(props);
+        this.clickId = '';
 
     }
     static getStores() {
@@ -31,12 +32,14 @@ class exam extends React.Component {
         // console.log('click', e);
         let itemId = e.key;
         SubjectAction.nameListById(itemId);
+        // this.clickId = itemId;
     }
 
-    showTest(id){
-        let history = this.props.history;
-        history.pushState(null,'/test?testId='+ id)
-    }
+  showTest(id,name,examTime){
+    let history = this.props.history;
+    history.pushState(null,'/test?testId='+ id +'&title='+name+'&examTime=' + examTime);
+  }
+
 
     render() {
 
@@ -47,9 +50,7 @@ class exam extends React.Component {
 
 
         return <div className="f-page exam">
-            <div className="w-categories">
                 <Nav/>
-            </div>
             <div className="main-exam">
                 <MenuList subject={subject}
                           menuClick={this.menuClick}/>
@@ -59,7 +60,9 @@ class exam extends React.Component {
                         return <IndexItem title={item.title}
                                           key={n}
                                           id={item._id}
-                                          showTest={this.showTest.bind(this)}/>;
+                                          examTime = {item.examTime}
+                                          showTest = {this.showTest.bind(this)}
+l                        />;
                     }) }
 
 

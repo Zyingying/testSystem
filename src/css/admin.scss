@@ -31,8 +31,6 @@
         width: 210px;
       }
 
-
-
       .ant-row{
         //display: inline-block;
         margin-bottom: 20px;
@@ -58,12 +56,24 @@
 
       .ant-form-item {
         argin-bottom: 0;
-        height: 50px;
+        //height: 50px;
+
+        .input-option{
+          margin: 8px;
+        }
       }
 
     }
   }
 
+
+  ul.ant-cascader-menu {
+    height: auto;
+  }
+
+  form .ant-cascader-picker {
+    width: auto;
+  }
 
 
 }

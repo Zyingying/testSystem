@@ -9,6 +9,9 @@ module.exports= [
 
   {type:'creat',content:'添加一级目录'},
   {type:'creat',content:'添加二级目录'},
-  {type:'creat',content:'添加试题名称'}
+  {type:'creat',content:'添加试题名称'},
+  {type:'creat',content:'添加题目'},
+
+  {type:'recommend',content:'推荐题目'}
 
 ];

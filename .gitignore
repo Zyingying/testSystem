@@ -40,14 +40,13 @@ src/css/*.css
 src/css/*.map
 src/design/*.png
 
-package.json
-server.js
 .gitignore
 win.cmd
-webpack.config.js
 .babelrc
 
 #build
 build
 #html
 html
+
+.idea

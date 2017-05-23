@@ -9,3 +9,13 @@
 @import "personMsg";
 @import "person";
 
+ul.ant-cascader-menu {
+  height: auto;
+}
+
+.admin{
+  .clearfix:before, .clearfix:after {
+    content: "";
+    display: inline;
+  }
+}

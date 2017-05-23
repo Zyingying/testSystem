@@ -3,6 +3,7 @@
  */
 "use strict";
 const Flux = require("pin-alt/src/flux");
+import {message} from 'antd';
 class LoginAction {
 
     constructor(){
@@ -10,10 +11,10 @@ class LoginAction {
             login:'http://localhost:3000/user/signin',
             register:'http://localhost:3000/user/signup',
             logOut:'http://localhost:3000/user/logout',
-            isLogin:'http://localhost:3000/user/isLogin'
+            isLogin:'http://localhost:3000/user/isLogin',
+            changePsd:'http://localhost:3000/user/updatePassword'
         };
-        this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail','isLoginSuccess','isLoginFail');
-        this._cacheAvatar = {};
+        this.generateActions('loginSuccess','loginFail','registerSuccess','registerFail','logoutSuccess','logoutFail','isLoginSuccess','isLoginFail','changePsdSuccess','changePsdFail');
     }
 
     login(email,psd){
@@ -29,13 +30,14 @@ class LoginAction {
             crossDomain: true,
             dataType:"json",
             success: (result)=> {
-                if(result.code == 200) {
+                // if(result.code == 200) {
                     this.loginSuccess(result);
-                }else{
-                    this.loginFail();
-                }
+                // }else{
+                //     this.loginFail();
+                // }
             },
             error: ()=> {
+              message()
                 this.loginFail();
             }
         });
@@ -65,6 +67,7 @@ class LoginAction {
             }
         });
     }
+
     logOut(){
         let sUrl = this.url["logOut"];
         $.ajax({
@@ -76,6 +79,7 @@ class LoginAction {
             success: (result)=> {
                 if(result.code == 200) {
                     this.logoutSuccess(result);
+                    message.success('退出成功', 5)
                 }else{
                     this.logoutFail();
                 }
@@ -95,7 +99,9 @@ class LoginAction {
             crossDomain: true,
             success: (result)=> {
                 if(result) {
+
                     this.isLoginSuccess(result);
+
                 }else {
                     this.isLoginFail();
                 }
@@ -104,6 +110,32 @@ class LoginAction {
                 this.isLoginFail();
             }
         });
+    }
+    changePsd(pre,newpsd){
+      let sUrl = this.url["changePsd"];
+      $.ajax({
+        url: sUrl,
+        type: 'post',
+        dataType:"json",
+        data:{
+          pre_password:pre,
+          new_password:newpsd
+        },
+        xhrFields: {withCredentials : true},
+        crossDomain: true,
+        success: (result)=> {
+          if(result) {
+            message.success('更新成功')
+            this.changePsdSuccess(result);
+
+          }else {
+            this.changePsdFail();
+          }
+        },
+        error: ()=> {
+          this.changePsdFail();
+        }
+      });
     }
 
 

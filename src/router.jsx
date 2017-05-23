@@ -15,31 +15,37 @@ const Login = require("./js/login");
 const Exam = require("./js/exam");
 const Test = require("./js/test");
 const Admin = require("./js/admin");
+const ChangePsd = require('./js/changePsd');
 
+// const LoginAction = require('./action/loginAction');
+// const LoginStore = require('./store/loginStore');
+// const connectToStores = require("alt-utils/lib/connectToStores");
 
-const mobileUtil = require("./mobileUtil");
 
 function requireLogin(nextState, replace){
-    if(!mobileUtil.isLogin()){
+    let data = window._test_data;
+    let isLogin = !!data;
+
+    if(!isLogin){
         if(window.__needReloadForLogin){
-            // replace(null, nextState.location.pathname);
             window.location.reload();
         } else {
             replace({nextState: nextState}, '/login');
         }
     }
 }
-// onEnter={requireLogin}
+
 
 let routes = <Router history={createHashHistory()}>
-                <Route path="/" component={App}>
-                    <IndexRoute component={Index} />
-                    <Route path="login" components={Login}/>
-                    <Route path="personMsg" component={personMsg} />
-                    <Route path="exam" component={Exam}/>
-                    <Route path="test" component={Test}/>
-                    <Route path="personal" component={Personal}/>
-                    <Route path="admin" component={Admin}/>
-                </Route>
-            </Router>;
+    <Route path="/" component={App}>
+        <IndexRoute component={Index} />
+        <Route path="login" components={Login} />
+        <Route path="personMsg" component={personMsg} onEnter={requireLogin}/>
+        <Route path="exam" component={Exam}/>
+        <Route path="test" component={Test}/>
+        <Route path="personal" component={Personal} onEnter={requireLogin}/>
+        <Route path="admin" component={Admin} onEnter={requireLogin}/>
+        <Route path="changePsd" component={ChangePsd} onEnter={requireLogin}/>
+    </Route>
+</Router>;
 ReactDom.render(routes,document.getElementById("App"));
