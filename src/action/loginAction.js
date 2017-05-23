@@ -3,7 +3,7 @@
  */
 "use strict";
 const Flux = require("pin-alt/src/flux");
-import { message } from 'antd';
+import {message} from 'antd';
 class LoginAction {
 
     constructor(){
@@ -37,6 +37,7 @@ class LoginAction {
                 // }
             },
             error: ()=> {
+              message()
                 this.loginFail();
             }
         });
@@ -98,6 +99,7 @@ class LoginAction {
             crossDomain: true,
             success: (result)=> {
                 if(result) {
+
                     this.isLoginSuccess(result);
 
                 }else {
@@ -123,6 +125,7 @@ class LoginAction {
         crossDomain: true,
         success: (result)=> {
           if(result) {
+            message.success('更新成功')
             this.changePsdSuccess(result);
 
           }else {

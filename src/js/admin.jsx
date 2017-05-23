@@ -13,6 +13,9 @@ const connectToStores = require("alt-utils/lib/connectToStores");
 const AdminAction = require('../action/adminAction');
 const AdminStore = require('../store/adminStore');
 
+const IndexAction = require("../action/indexAction");
+const IndexStore = require("../store/indexStore");
+
 class Admin extends React.Component {
 
   constructor(props) {
@@ -47,66 +50,9 @@ class Admin extends React.Component {
     if (this.state.pageHeight != pageH) {
       this.setState({pageHeight: pageH});
     }
-    // SubjectStore.listen(this.getAll());
   }
 
 
-  componentWillUnmount(){
-
-  }
-
-  getAll(){
-    // return this.listener = (store) =>{
-    //
-    //   let subject = store.subject,
-    //     nameList = store.nameList,
-    //     item ,cascader = [];
-    //
-    //   subject && subject.map((n)=>{
-    //     if(n.subjects && n.subjects.length > 0){
-    //       item = n.subjects;
-    //       item && item.map((i)=>{
-    //         this.count ++;
-    //       })
-    //     }
-    //   });
-    //
-    //   if(this.flag < this.count ){
-    //     subject && subject.map((n)=>{
-    //       let child = [],children = [];
-    //       if(n.subjects && n.subjects.length > 0){
-    //
-    //         item = n.subjects;
-    //
-    //         item && item.map((i)=>{
-    //           if(!nameList){
-    //             SubjectAction.nameListById(i._id);
-    //
-    //           }else{
-    //             nameList.length && nameList.map((j)=>{
-    //               if(j.subjectItemId == i._id){
-    //                 children.push({value:j._id,label:j.title})
-    //               }
-    //             });
-    //             this.flag ++;
-    //             child.push({value:i._id,label:i.subjectName,children:children});
-    //
-    //           }
-    //
-    //         })
-    //       }
-    //       if(nameList){
-    //         cascader.push({value:n._id,label:n.typename,children:child});
-    //
-    //       }
-    //     });
-    //
-    //   }
-    //
-    //   this.three = cascader;
-    //   console.log(this.three);
-    // }
-  }
 
   handleClick(e) {
     this.setState({
@@ -122,7 +68,7 @@ class Admin extends React.Component {
   }
 
 
-  handleSubmit(num, one, two, title, subTime, testTime, question, option, answer, detail, score, one_id ,cascader) {
+  handleSubmit(num, one, two, title, subTime, testTime, question, option, answer, detail, score, one_id ,cascader,test_new_name) {
     switch (num) {
       case 1:
         AdminAction.changOne(one, one_id);
@@ -132,7 +78,7 @@ class Admin extends React.Component {
         break;
 
       case 3:
-        AdminAction.changeTestName();
+        AdminAction.changeTestName(title,cascader[1],test_new_name,subTime,testTime);
         break;
       case 4:
 
@@ -146,6 +92,9 @@ class Admin extends React.Component {
         break;
       case 7:
         AdminAction.creatSubject(title, question, option, answer, detail, score);
+
+      case 8:
+        IndexAction.chooseRecmd(title);
     }
   }
 
@@ -162,7 +111,7 @@ class Admin extends React.Component {
       <Menu onClick={this.handleClick.bind(this)}
             style={{width: 240, height: this.state.pageHeight}}
             defaultSelectedKeys={['1']}
-            defaultOpenKeys={['change', 'creat']}
+            defaultOpenKeys={['change', 'creat','recommend']}
             mode="inline"
             className="admin-menu"
             theme="dark"
@@ -184,6 +133,17 @@ class Admin extends React.Component {
                                 </span>}>
           {navList.map((obj, n) => {
             if (obj.type == 'creat') {
+              return <Menu.Item key={n}>{obj.content}</Menu.Item>
+
+            }
+          })}
+        </SubMenu>
+        <SubMenu key="recommend"
+                 title={<span><Icon type="folder-add"/>
+                                    <span>推荐</span>
+                                </span>}>
+          {navList.map((obj, n) => {
+            if (obj.type == 'recommend') {
               return <Menu.Item key={n}>{obj.content}</Menu.Item>
 
             }

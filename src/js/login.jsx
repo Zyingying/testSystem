@@ -49,6 +49,8 @@ class Login extends React.Component {
                 setTimeout(function () {
                     history.pushState(null,'/')
                 },3000)
+            }else{
+              message.error(result.msg);
             }
 
         }

@@ -45,8 +45,9 @@ class Personal extends React.Component {
     }
   }
 
-  callback(){
-
+  showTest(id, name, examTime) {
+    let history = this.props.history;
+    history.pushState(null, '/test?testId=' + id + '&title=' + name + '&examTime=' + examTime);
   }
 
 
@@ -54,17 +55,6 @@ class Personal extends React.Component {
     LoginStore.unlisten(this.logLinsten);
 
   }
-
-  // getLoginStore() {
-  //   return this.logLinsten = (store) => {
-  //     let status = store.isLogin.type;
-  //     if (status == 1) {
-  //       this.setState({isLogin: true,user:store.isLogin.user.email});
-  //     } else {
-  //       this.state.isLogin = false;
-  //     }
-  //   }
-  // }
 
 
   render() {
@@ -128,14 +118,20 @@ class Personal extends React.Component {
             {readlist && readlist.map((item,n)=>{
               return <IndexItem title={item.title}
                                 key={n}
-                                id={item._id}/>;
+                                id={item._id}
+                                examTime={item.examTime}
+                                showTest={this.showTest.bind(this)}
+              />;
             }) }
           </TabPane>
           <TabPane tab="已交试题" key="2">
             {finishList && finishList.map((item,n)=>{
               return <IndexItem title={item.title}
                                 key={n}
-                                id={item._id}/>;
+                                id={item._id}
+                                examTime={item.examTime}
+                                showTest={this.showTest.bind(this)}
+              />;
             })}
           </TabPane>
         </Tabs>

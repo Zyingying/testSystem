@@ -202,15 +202,17 @@ class AdminAction {
     })
   }
 
-  changeTestName(){
+  changeTestName(id,two,new_test_name,create_time,examTime){
     let sUrl = this.url["changeTestName"];
     $.ajax({
       url: sUrl,
       type: 'post',
       data: {
-        _id : id,
-        subjectName: two ,
-        parentType: parent
+        preTitleId:id,
+        subjectItemId: two,
+        title: new_test_name,
+        subjectTime: create_time,
+        examTime: examTime
       },
       dataType: 'json',
       xhrFields: {withCredentials: true},

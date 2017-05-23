@@ -1,10 +1,10 @@
 "use strict"
 const React = require("react");
-import {Form, Input, Button, Cascader , Icon, message, Select} from 'antd';
+import {Form, Input, Button, Cascader , Icon, message, Select,Table, Popconfirm} from 'antd';
 const Option = Select.Option;
 const FormItem = Form.Item;
 const CreateForm = Form.create;
-
+const EditableTable = require('./editableTable');
 
 class AdminForm extends React.Component {
 
@@ -20,6 +20,7 @@ class AdminForm extends React.Component {
       subject_name: ' ',
       test_time: '',
       cascader_value:'',
+      test_new_name:''
     };
   }
 
@@ -50,10 +51,11 @@ class AdminForm extends React.Component {
 
   onChange(value) {
     this.state.cascader_value = value;
+    this.state.level_one = value[1];
   }
 
   testNameSelect(value,option){
-    this.state.test_name = value;
+    this.state.test_name = option.props.title;
   }
 
   render() {
@@ -80,6 +82,9 @@ class AdminForm extends React.Component {
       {
         (() => {
           switch (funPage) {
+            case 0:
+              return <EditableTable/>;
+              break;
             case 1:
               return <FormItem label="点击以上一级目录以修改：" required>
                 <Select
@@ -124,9 +129,15 @@ class AdminForm extends React.Component {
                   >
                     {
                       testList && testList.map((n)=>{
-                      return <Option value={n.title} key={n._id} onClick={()=>{console.log(n._id)}}>{n.title}</Option>;
+                      return <Option value={n.title} title={n._id}>{n.title}</Option>;
                     })}
                   </Select>
+                </FormItem>
+                <FormItem label="新试题名">
+                  <Input value={state.test_new_name}
+                         onChange={(e) => {
+                           this.setValue('test_new_name', e.target.value)
+                         }}/>
                 </FormItem>
                 <FormItem label="出题时间：">
                   <Input value={state.test_year}
@@ -141,12 +152,9 @@ class AdminForm extends React.Component {
                          }}/>
                 </FormItem>
                 <FormItem label="所属二级类目：">
-                  <Input value={state.level_two}
-                         onChange={(e) => {
-                           this.setValue('level_two', e.target.value)
-                         }}/>
-                </FormItem>
-                <Cascader options={cascader} onChange={this.onChange.bind(this)} changeOnSelect size="large" placeholder="选择二级目录"/>
+                  <Cascader options={cascader} onChange={this.onChange.bind(this)} changeOnSelect size="large" placeholder="选择二级目录"/>
+              </FormItem>
+
               </div>;
               break;
                          
@@ -216,7 +224,7 @@ class AdminForm extends React.Component {
                     filterOption={(input, option) => option.props.value.toLowerCase().indexOf(input.toLowerCase()) >= 0}
                   >
                     {testList && testList.map((n)=>{
-                      return <Option value={n.title} refs={n._id}>{n.title}</Option>;
+                      return <Option value={n.title} title={n._id}>{n.title}</Option>;
                     })}
                   </Select>
                 </FormItem>
@@ -328,6 +336,23 @@ class AdminForm extends React.Component {
                          }}/>
                 </FormItem>
               </div>
+
+            case 8:
+              return <FormItem label="选择要推荐的题目：">
+              <Select
+                showSearch
+                style={{ width: 200 }}
+                optionFilterProp="children"
+                onSelect={this.testNameSelect.bind(this)}
+                filterOption={(input, option) => option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+              >
+                {
+                  testList && testList.map((n)=>{
+                    return <Option value={n.title} key={n._id} title={n._id}>{n.title}</Option>;
+                  })}
+              </Select>
+              </FormItem>
+            break;
           }
         })()
       }
@@ -335,7 +360,7 @@ class AdminForm extends React.Component {
       <FormItem>
         <Button type="primary" htmlType="submit" className="login-form-button" onClick={() => {
           optionAll = [state.option_one, state.option_two, state.option_three, state.option_four];
-          handleSubmit(funPage, state.level_one, state.level_two, state.test_name, state.test_year, state.test_time, state.question, optionAll, state.answer, state.detail, state.score, state.change_one_id,state.cascader_value)
+          handleSubmit(funPage, state.level_one, state.level_two, state.test_name, state.test_year, state.test_time, state.question, optionAll, state.answer, state.detail, state.score, state.change_one_id,state.cascader_value,state.test_new_name)
         }}>
           确定
         </Button>

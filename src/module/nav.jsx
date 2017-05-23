@@ -32,10 +32,6 @@ class Nav extends React.Component {
     LoginAction.isLogin();
   }
 
-  // logout(){
-  //
-  //
-  // }
 
   handleClick = (e) => {
     console.log('click ', e);

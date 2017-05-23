@@ -28,6 +28,7 @@ class Test extends React.Component {
       list: false,
 
     }
+    
     this.onChange = this.onChange.bind(this);
 
   }
@@ -62,7 +63,6 @@ class Test extends React.Component {
     var timeCount = setInterval(function () {
       that.showRestTime(restTime);
       restTime--;
-      this.state.useTime += 1000;
       if (restTime < 0) {
         clearInterval(timeCount);
       }
